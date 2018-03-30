@@ -1,0 +1,2 @@
+# GraduationDesign_EvaluationSystem
+Student professional competency assessment system
