@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="GDES-WEB:war">
+    <output-path>$PROJECT_DIR$/GDES-WEB/target</output-path>
+    <root id="archive" name="GDES-WEB.war">
+      <element id="artifact" artifact-name="GDES-WEB:war exploded" />
+    </root>
+  </artifact>
+</component>
