@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdes.GDES.dao.TeacherDao">
+    <resultMap id="teachermap" type="Teacher">
+        <id column="id_t" property="id_t"/>
+        <result column="name_t" property="name_t"/>
+        <result column="id_m" property="id_m"/>
+        <result column="majorleader_t" property="majorleader_t"/>
+        <result column="courseleader_t" property="courseleader_t"/>
+    </resultMap>
+
+    <select id="getTeacherById" parameterType="String" resultMap="teachermap">
+        SELECT * FROM teacher WHERE id_t = #{id_t}
+    </select>
+</mapper>

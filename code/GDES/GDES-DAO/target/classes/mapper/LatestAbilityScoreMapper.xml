@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdes.GDES.dao.LatestAbilityScoreDao">
+    <resultMap id="latestabilityscoremap" type="LatestAbilityScore">
+        <id column="id_s" property="id_s"/>
+        <id column="id_ap" property="id_ap"/>
+        <result column="score_las" property="score_las"/>
+        <result column="proportion_las" property="proportion_las"/>
+        <result column="time_las" property="time_las"/>
+    </resultMap>
+
+    <!--按学号查询-->
+    <select id="getAbilityScoreListById" parameterType="String" resultMap="latestabilityscoremap">
+        SELECT * FROM latestabilityscore WHERE id_s = #{id_s}
+    </select>
+
+</mapper>
