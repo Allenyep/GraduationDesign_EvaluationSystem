@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allen.mapper.JsgnbMapper">
-  <resultMap id="BaseResultMap" type="com.allen.model.Jsgnb">
+<mapper namespace="com.gdes.GDES.dao.JsgnbMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Jsgnb">
     <result column="id_f" jdbcType="INTEGER" property="idF" />
     <result column="id_r" jdbcType="INTEGER" property="idR" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List">
     id_f, id_r
   </sql>
-  <select id="selectByExample" parameterType="com.allen.model.JsgnbExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.JsgnbExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -80,17 +80,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.allen.model.JsgnbExample">
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.JsgnbExample">
     delete from jsgnb
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.allen.model.Jsgnb">
+  <insert id="insert" parameterType="com.gdes.GDES.model.Jsgnb">
     insert into jsgnb (id_f, id_r)
     values (#{idF,jdbcType=INTEGER}, #{idR,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.allen.model.Jsgnb">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Jsgnb">
     insert into jsgnb
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idF != null">
@@ -109,7 +109,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.allen.model.JsgnbExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gdes.GDES.model.JsgnbExample" resultType="java.lang.Long">
     select count(*) from jsgnb
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

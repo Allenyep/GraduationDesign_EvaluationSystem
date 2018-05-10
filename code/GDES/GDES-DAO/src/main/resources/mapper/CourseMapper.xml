@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allen.mapper.CourseMapper">
-  <resultMap id="BaseResultMap" type="com.allen.model.Course">
+<mapper namespace="com.gdes.GDES.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Course">
     <id column="id_c" jdbcType="VARCHAR" property="idC" />
     <result column="name_c" jdbcType="VARCHAR" property="nameC" />
     <result column="leader_c" jdbcType="VARCHAR" property="leaderC" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.allen.model.Course">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gdes.GDES.model.Course">
     <result column="introduction_c" jdbcType="LONGVARCHAR" property="introductionC" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -73,7 +73,7 @@
   <sql id="Blob_Column_List">
     introduction_c
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.allen.model.CourseExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gdes.GDES.model.CourseExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -89,7 +89,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.allen.model.CourseExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.CourseExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -115,19 +115,19 @@
     delete from course
     where id_c = #{idC,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.allen.model.CourseExample">
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.CourseExample">
     delete from course
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.allen.model.Course">
+  <insert id="insert" parameterType="com.gdes.GDES.model.Course">
     insert into course (id_c, name_c, leader_c, 
       introduction_c)
     values (#{idC,jdbcType=VARCHAR}, #{nameC,jdbcType=VARCHAR}, #{leaderC,jdbcType=VARCHAR}, 
       #{introductionC,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.allen.model.Course">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Course">
     insert into course
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idC != null">
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.allen.model.CourseExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gdes.GDES.model.CourseExample" resultType="java.lang.Long">
     select count(*) from course
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -203,7 +203,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.allen.model.Course">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Course">
     update course
     <set>
       <if test="nameC != null">
@@ -218,14 +218,14 @@
     </set>
     where id_c = #{idC,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.allen.model.Course">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gdes.GDES.model.Course">
     update course
     set name_c = #{nameC,jdbcType=VARCHAR},
       leader_c = #{leaderC,jdbcType=VARCHAR},
       introduction_c = #{introductionC,jdbcType=LONGVARCHAR}
     where id_c = #{idC,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.allen.model.Course">
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Course">
     update course
     set name_c = #{nameC,jdbcType=VARCHAR},
       leader_c = #{leaderC,jdbcType=VARCHAR}

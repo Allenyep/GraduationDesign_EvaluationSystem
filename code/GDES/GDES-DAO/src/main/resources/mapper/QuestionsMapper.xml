@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allen.mapper.QuestionsMapper">
-  <resultMap id="BaseResultMap" type="com.allen.model.Questions">
+<mapper namespace="com.gdes.GDES.dao.QuestionsMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Questions">
     <id column="id_q" jdbcType="VARCHAR" property="idQ" />
     <result column="id_c" jdbcType="VARCHAR" property="idC" />
     <result column="datatime_q" jdbcType="VARCHAR" property="datatimeQ" />
@@ -12,7 +12,7 @@
     <result column="automaticscoring_q" jdbcType="VARCHAR" property="automaticscoringQ" />
     <result column="deleteornot_q" jdbcType="VARCHAR" property="deleteornotQ" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.allen.model.QuestionsWithBLOBs">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gdes.GDES.model.QuestionsWithBLOBs">
     <result column="context_q" jdbcType="LONGVARCHAR" property="contextQ" />
     <result column="answer_q" jdbcType="LONGVARCHAR" property="answerQ" />
   </resultMap>
@@ -80,7 +80,7 @@
   <sql id="Blob_Column_List">
     context_q, answer_q
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.allen.model.QuestionsExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gdes.GDES.model.QuestionsExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -96,7 +96,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.allen.model.QuestionsExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.QuestionsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -122,13 +122,13 @@
     delete from questions
     where id_q = #{idQ,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.allen.model.QuestionsExample">
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.QuestionsExample">
     delete from questions
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.allen.model.QuestionsWithBLOBs">
+  <insert id="insert" parameterType="com.gdes.GDES.model.QuestionsWithBLOBs">
     insert into questions (id_q, id_c, datatime_q, 
       score_q, time_q, style_q, 
       id_t, automaticscoring_q, deleteornot_q, 
@@ -138,7 +138,7 @@
       #{idT,jdbcType=VARCHAR}, #{automaticscoringQ,jdbcType=VARCHAR}, #{deleteornotQ,jdbcType=VARCHAR}, 
       #{contextQ,jdbcType=LONGVARCHAR}, #{answerQ,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.allen.model.QuestionsWithBLOBs">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.QuestionsWithBLOBs">
     insert into questions
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idQ != null">
@@ -211,7 +211,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.allen.model.QuestionsExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gdes.GDES.model.QuestionsExample" resultType="java.lang.Long">
     select count(*) from questions
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -290,7 +290,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.allen.model.QuestionsWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.QuestionsWithBLOBs">
     update questions
     <set>
       <if test="idC != null">
@@ -326,7 +326,7 @@
     </set>
     where id_q = #{idQ,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.allen.model.QuestionsWithBLOBs">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gdes.GDES.model.QuestionsWithBLOBs">
     update questions
     set id_c = #{idC,jdbcType=VARCHAR},
       datatime_q = #{datatimeQ,jdbcType=VARCHAR},
@@ -340,7 +340,7 @@
       answer_q = #{answerQ,jdbcType=LONGVARCHAR}
     where id_q = #{idQ,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.allen.model.Questions">
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Questions">
     update questions
     set id_c = #{idC,jdbcType=VARCHAR},
       datatime_q = #{datatimeQ,jdbcType=VARCHAR},

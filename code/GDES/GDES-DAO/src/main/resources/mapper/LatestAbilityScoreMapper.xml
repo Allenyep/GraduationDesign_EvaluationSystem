@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allen.mapper.LatestabilityscoreMapper">
-  <resultMap id="BaseResultMap" type="com.allen.model.Latestabilityscore">
+<mapper namespace="com.gdes.GDES.dao.LatestabilityscoreMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Latestabilityscore">
     <id column="id_s" jdbcType="VARCHAR" property="idS" />
     <id column="id_ap" jdbcType="INTEGER" property="idAp" />
     <result column="score_las" jdbcType="VARCHAR" property="scoreLas" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     id_s, id_ap, score_las, proportion_las, time_las
   </sql>
-  <select id="selectByExample" parameterType="com.allen.model.LatestabilityscoreExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.LatestabilityscoreExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -83,31 +83,31 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.allen.model.LatestabilityscoreKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.gdes.GDES.model.LatestabilityscoreKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from latestabilityscore
     where id_s = #{idS,jdbcType=VARCHAR}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.allen.model.LatestabilityscoreKey">
+  <delete id="deleteByPrimaryKey" parameterType="com.gdes.GDES.model.LatestabilityscoreKey">
     delete from latestabilityscore
     where id_s = #{idS,jdbcType=VARCHAR}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.allen.model.LatestabilityscoreExample">
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.LatestabilityscoreExample">
     delete from latestabilityscore
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.allen.model.Latestabilityscore">
+  <insert id="insert" parameterType="com.gdes.GDES.model.Latestabilityscore">
     insert into latestabilityscore (id_s, id_ap, score_las, 
       proportion_las, time_las)
     values (#{idS,jdbcType=VARCHAR}, #{idAp,jdbcType=INTEGER}, #{scoreLas,jdbcType=VARCHAR}, 
       #{proportionLas,jdbcType=VARCHAR}, #{timeLas,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.allen.model.Latestabilityscore">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Latestabilityscore">
     insert into latestabilityscore
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idS != null">
@@ -144,7 +144,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.allen.model.LatestabilityscoreExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gdes.GDES.model.LatestabilityscoreExample" resultType="java.lang.Long">
     select count(*) from latestabilityscore
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -184,7 +184,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.allen.model.Latestabilityscore">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Latestabilityscore">
     update latestabilityscore
     <set>
       <if test="scoreLas != null">
@@ -200,7 +200,7 @@
     where id_s = #{idS,jdbcType=VARCHAR}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.allen.model.Latestabilityscore">
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Latestabilityscore">
     update latestabilityscore
     set score_las = #{scoreLas,jdbcType=VARCHAR},
       proportion_las = #{proportionLas,jdbcType=VARCHAR},

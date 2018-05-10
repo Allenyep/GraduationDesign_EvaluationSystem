@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allen.mapper.PostabilitypointMapper">
-  <resultMap id="BaseResultMap" type="com.allen.model.Postabilitypoint">
+<mapper namespace="com.gdes.GDES.dao.PostabilitypointMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Postabilitypoint">
     <id column="id_p" jdbcType="INTEGER" property="idP" />
     <id column="id_ap" jdbcType="INTEGER" property="idAp" />
     <result column="proportion_sap" jdbcType="VARCHAR" property="proportionSap" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     id_p, id_ap, proportion_sap
   </sql>
-  <select id="selectByExample" parameterType="com.allen.model.PostabilitypointExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.PostabilitypointExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -81,31 +81,31 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.allen.model.PostabilitypointKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.gdes.GDES.model.PostabilitypointKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from postabilitypoint
     where id_p = #{idP,jdbcType=INTEGER}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.allen.model.PostabilitypointKey">
+  <delete id="deleteByPrimaryKey" parameterType="com.gdes.GDES.model.PostabilitypointKey">
     delete from postabilitypoint
     where id_p = #{idP,jdbcType=INTEGER}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.allen.model.PostabilitypointExample">
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.PostabilitypointExample">
     delete from postabilitypoint
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.allen.model.Postabilitypoint">
+  <insert id="insert" parameterType="com.gdes.GDES.model.Postabilitypoint">
     insert into postabilitypoint (id_p, id_ap, proportion_sap
       )
     values (#{idP,jdbcType=INTEGER}, #{idAp,jdbcType=INTEGER}, #{proportionSap,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.allen.model.Postabilitypoint">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Postabilitypoint">
     insert into postabilitypoint
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idP != null">
@@ -130,7 +130,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.allen.model.PostabilitypointExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gdes.GDES.model.PostabilitypointExample" resultType="java.lang.Long">
     select count(*) from postabilitypoint
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -162,7 +162,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.allen.model.Postabilitypoint">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Postabilitypoint">
     update postabilitypoint
     <set>
       <if test="proportionSap != null">
@@ -172,7 +172,7 @@
     where id_p = #{idP,jdbcType=INTEGER}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.allen.model.Postabilitypoint">
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Postabilitypoint">
     update postabilitypoint
     set proportion_sap = #{proportionSap,jdbcType=VARCHAR}
     where id_p = #{idP,jdbcType=INTEGER}

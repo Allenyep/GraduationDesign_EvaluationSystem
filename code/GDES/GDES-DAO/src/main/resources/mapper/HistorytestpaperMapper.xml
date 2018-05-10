@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allen.mapper.HistorytestpaperMapper">
-  <resultMap id="BaseResultMap" type="com.allen.model.Historytestpaper">
+<mapper namespace="com.gdes.GDES.dao.HistorytestpaperMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Historytestpaper">
     <id column="id_t" jdbcType="VARCHAR" property="idT" />
     <id column="id_s" jdbcType="VARCHAR" property="idS" />
     <id column="id_er" jdbcType="VARCHAR" property="idEr" />
@@ -10,7 +10,7 @@
     <result column="timeconsuming_htp" jdbcType="VARCHAR" property="timeconsumingHtp" />
     <result column="timeproportion_htp" jdbcType="VARCHAR" property="timeproportionHtp" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.allen.model.Historytestpaper">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gdes.GDES.model.Historytestpaper">
     <result column="answer_htp" jdbcType="LONGVARCHAR" property="answerHtp" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -77,7 +77,7 @@
   <sql id="Blob_Column_List">
     answer_htp
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.allen.model.HistorytestpaperExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gdes.GDES.model.HistorytestpaperExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -93,7 +93,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.allen.model.HistorytestpaperExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.HistorytestpaperExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -107,7 +107,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.allen.model.HistorytestpaperKey" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="com.gdes.GDES.model.HistorytestpaperKey" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
@@ -118,20 +118,20 @@
       and id_er = #{idEr,jdbcType=VARCHAR}
       and id_q = #{idQ,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.allen.model.HistorytestpaperKey">
+  <delete id="deleteByPrimaryKey" parameterType="com.gdes.GDES.model.HistorytestpaperKey">
     delete from historytestpaper
     where id_t = #{idT,jdbcType=VARCHAR}
       and id_s = #{idS,jdbcType=VARCHAR}
       and id_er = #{idEr,jdbcType=VARCHAR}
       and id_q = #{idQ,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.allen.model.HistorytestpaperExample">
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.HistorytestpaperExample">
     delete from historytestpaper
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.allen.model.Historytestpaper">
+  <insert id="insert" parameterType="com.gdes.GDES.model.Historytestpaper">
     insert into historytestpaper (id_t, id_s, id_er, 
       id_q, score_htp, timeconsuming_htp, 
       timeproportion_htp, answer_htp)
@@ -139,7 +139,7 @@
       #{idQ,jdbcType=VARCHAR}, #{scoreHtp,jdbcType=VARCHAR}, #{timeconsumingHtp,jdbcType=VARCHAR}, 
       #{timeproportionHtp,jdbcType=VARCHAR}, #{answerHtp,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.allen.model.Historytestpaper">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Historytestpaper">
     insert into historytestpaper
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idT != null">
@@ -194,7 +194,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.allen.model.HistorytestpaperExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gdes.GDES.model.HistorytestpaperExample" resultType="java.lang.Long">
     select count(*) from historytestpaper
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -259,7 +259,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.allen.model.Historytestpaper">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Historytestpaper">
     update historytestpaper
     <set>
       <if test="scoreHtp != null">
@@ -280,7 +280,7 @@
       and id_er = #{idEr,jdbcType=VARCHAR}
       and id_q = #{idQ,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.allen.model.Historytestpaper">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gdes.GDES.model.Historytestpaper">
     update historytestpaper
     set score_htp = #{scoreHtp,jdbcType=VARCHAR},
       timeconsuming_htp = #{timeconsumingHtp,jdbcType=VARCHAR},
@@ -291,7 +291,7 @@
       and id_er = #{idEr,jdbcType=VARCHAR}
       and id_q = #{idQ,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.allen.model.Historytestpaper">
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Historytestpaper">
     update historytestpaper
     set score_htp = #{scoreHtp,jdbcType=VARCHAR},
       timeconsuming_htp = #{timeconsumingHtp,jdbcType=VARCHAR},

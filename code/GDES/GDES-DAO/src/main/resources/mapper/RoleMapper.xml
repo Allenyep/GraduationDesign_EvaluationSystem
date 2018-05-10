@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allen.mapper.RoleMapper">
-  <resultMap id="BaseResultMap" type="com.allen.model.Role">
+<mapper namespace="com.gdes.GDES.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Role">
     <id column="id_r" jdbcType="INTEGER" property="idR" />
     <result column="jsm" jdbcType="VARCHAR" property="jsm" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List">
     id_r, jsm
   </sql>
-  <select id="selectByExample" parameterType="com.allen.model.RoleExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.RoleExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -90,17 +90,17 @@
     delete from role
     where id_r = #{idR,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.allen.model.RoleExample">
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.RoleExample">
     delete from role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.allen.model.Role">
+  <insert id="insert" parameterType="com.gdes.GDES.model.Role">
     insert into role (id_r, jsm)
     values (#{idR,jdbcType=INTEGER}, #{jsm,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.allen.model.Role">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Role">
     insert into role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idR != null">
@@ -119,7 +119,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.allen.model.RoleExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gdes.GDES.model.RoleExample" resultType="java.lang.Long">
     select count(*) from role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -147,7 +147,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.allen.model.Role">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Role">
     update role
     <set>
       <if test="jsm != null">
@@ -156,7 +156,7 @@
     </set>
     where id_r = #{idR,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.allen.model.Role">
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Role">
     update role
     set jsm = #{jsm,jdbcType=VARCHAR}
     where id_r = #{idR,jdbcType=INTEGER}

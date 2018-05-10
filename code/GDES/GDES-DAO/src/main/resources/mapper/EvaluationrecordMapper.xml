@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allen.mapper.EvaluationrecordMapper">
-  <resultMap id="BaseResultMap" type="com.allen.model.Evaluationrecord">
+<mapper namespace="com.gdes.GDES.dao.EvaluationrecordMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Evaluationrecord">
     <id column="id_t" jdbcType="VARCHAR" property="idT" />
     <id column="id_s" jdbcType="VARCHAR" property="idS" />
     <id column="id_er" jdbcType="VARCHAR" property="idEr" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     id_t, id_s, id_er, begin_er, end_er, consumption_er
   </sql>
-  <select id="selectByExample" parameterType="com.allen.model.EvaluationrecordExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.EvaluationrecordExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -84,7 +84,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.allen.model.EvaluationrecordKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.gdes.GDES.model.EvaluationrecordKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from evaluationrecord
@@ -92,19 +92,19 @@
       and id_s = #{idS,jdbcType=VARCHAR}
       and id_er = #{idEr,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.allen.model.EvaluationrecordKey">
+  <delete id="deleteByPrimaryKey" parameterType="com.gdes.GDES.model.EvaluationrecordKey">
     delete from evaluationrecord
     where id_t = #{idT,jdbcType=VARCHAR}
       and id_s = #{idS,jdbcType=VARCHAR}
       and id_er = #{idEr,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.allen.model.EvaluationrecordExample">
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.EvaluationrecordExample">
     delete from evaluationrecord
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.allen.model.Evaluationrecord">
+  <insert id="insert" parameterType="com.gdes.GDES.model.Evaluationrecord">
     insert into evaluationrecord (id_t, id_s, id_er, 
       begin_er, end_er, consumption_er
       )
@@ -112,7 +112,7 @@
       #{beginEr,jdbcType=VARCHAR}, #{endEr,jdbcType=VARCHAR}, #{consumptionEr,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.allen.model.Evaluationrecord">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Evaluationrecord">
     insert into evaluationrecord
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idT != null">
@@ -155,7 +155,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.allen.model.EvaluationrecordExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gdes.GDES.model.EvaluationrecordExample" resultType="java.lang.Long">
     select count(*) from evaluationrecord
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -199,7 +199,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.allen.model.Evaluationrecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Evaluationrecord">
     update evaluationrecord
     <set>
       <if test="beginEr != null">
@@ -216,7 +216,7 @@
       and id_s = #{idS,jdbcType=VARCHAR}
       and id_er = #{idEr,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.allen.model.Evaluationrecord">
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Evaluationrecord">
     update evaluationrecord
     set begin_er = #{beginEr,jdbcType=VARCHAR},
       end_er = #{endEr,jdbcType=VARCHAR},

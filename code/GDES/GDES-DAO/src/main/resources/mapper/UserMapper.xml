@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allen.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.allen.model.User">
+<mapper namespace="com.gdes.GDES.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.User">
     <id column="id_u" jdbcType="VARCHAR" property="idU" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     id_u, username, password, name, sex
   </sql>
-  <select id="selectByExample" parameterType="com.allen.model.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,19 +93,19 @@
     delete from user
     where id_u = #{idU,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.allen.model.UserExample">
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.UserExample">
     delete from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.allen.model.User">
+  <insert id="insert" parameterType="com.gdes.GDES.model.User">
     insert into user (id_u, username, password, 
       name, sex)
     values (#{idU,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.allen.model.User">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idU != null">
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.allen.model.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gdes.GDES.model.UserExample" resultType="java.lang.Long">
     select count(*) from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.allen.model.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.User">
     update user
     <set>
       <if test="username != null">
@@ -200,7 +200,7 @@
     </set>
     where id_u = #{idU,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.allen.model.User">
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.User">
     update user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
