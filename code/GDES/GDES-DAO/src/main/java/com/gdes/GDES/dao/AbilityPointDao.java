@@ -1,6 +1,6 @@
 package com.gdes.GDES.dao;
 
-import com.gdes.GDES.model.AbilityPoint;
+import com.gdes.GDES.model.Abilitypoint;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -10,5 +10,5 @@ public interface AbilityPointDao {
      * @param id_ap
      * @return
      */
-    public AbilityPoint getAbilityPointById(Integer id_ap);
+   // public AbilityPoint getAbilityPointById(Integer id_ap);
 }

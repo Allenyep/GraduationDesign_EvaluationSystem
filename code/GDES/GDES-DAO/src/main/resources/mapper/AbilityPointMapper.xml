@@ -1,14 +1,196 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gdes.GDES.dao.AbilityPointDao">
-    <resultMap id="abilitypointmap" type="AbilityPoint">
-        <id column="id_ap" property="id_ap"/>
-        <result column="name_ap" property="name_ap"/>
-        <result column="aspect_ap" property="aspect_ap"/>
-        <result column="class_ap" property="class_ap"/>
-    </resultMap>
-
-    <select id="getAbilityPointById" parameterType="Integer" resultMap="abilitypointmap">
-        SELECT * FROM abilitypoint WHERE id_ap = #{id_ap}
-    </select>
+<mapper namespace="com.allen.mapper.AbilitypointMapper">
+  <resultMap id="BaseResultMap" type="com.allen.model.Abilitypoint">
+    <id column="id_ap" jdbcType="INTEGER" property="idAp" />
+    <result column="name_ap" jdbcType="VARCHAR" property="nameAp" />
+    <result column="aspect_ap" jdbcType="VARCHAR" property="aspectAp" />
+    <result column="class_ap" jdbcType="VARCHAR" property="classAp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id_ap, name_ap, aspect_ap, class_ap
+  </sql>
+  <select id="selectByExample" parameterType="com.allen.model.AbilitypointExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from abilitypoint
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from abilitypoint
+    where id_ap = #{idAp,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from abilitypoint
+    where id_ap = #{idAp,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.allen.model.AbilitypointExample">
+    delete from abilitypoint
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.allen.model.Abilitypoint">
+    insert into abilitypoint (id_ap, name_ap, aspect_ap, 
+      class_ap)
+    values (#{idAp,jdbcType=INTEGER}, #{nameAp,jdbcType=VARCHAR}, #{aspectAp,jdbcType=VARCHAR}, 
+      #{classAp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.allen.model.Abilitypoint">
+    insert into abilitypoint
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idAp != null">
+        id_ap,
+      </if>
+      <if test="nameAp != null">
+        name_ap,
+      </if>
+      <if test="aspectAp != null">
+        aspect_ap,
+      </if>
+      <if test="classAp != null">
+        class_ap,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idAp != null">
+        #{idAp,jdbcType=INTEGER},
+      </if>
+      <if test="nameAp != null">
+        #{nameAp,jdbcType=VARCHAR},
+      </if>
+      <if test="aspectAp != null">
+        #{aspectAp,jdbcType=VARCHAR},
+      </if>
+      <if test="classAp != null">
+        #{classAp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.allen.model.AbilitypointExample" resultType="java.lang.Long">
+    select count(*) from abilitypoint
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update abilitypoint
+    <set>
+      <if test="record.idAp != null">
+        id_ap = #{record.idAp,jdbcType=INTEGER},
+      </if>
+      <if test="record.nameAp != null">
+        name_ap = #{record.nameAp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aspectAp != null">
+        aspect_ap = #{record.aspectAp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classAp != null">
+        class_ap = #{record.classAp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update abilitypoint
+    set id_ap = #{record.idAp,jdbcType=INTEGER},
+      name_ap = #{record.nameAp,jdbcType=VARCHAR},
+      aspect_ap = #{record.aspectAp,jdbcType=VARCHAR},
+      class_ap = #{record.classAp,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.allen.model.Abilitypoint">
+    update abilitypoint
+    <set>
+      <if test="nameAp != null">
+        name_ap = #{nameAp,jdbcType=VARCHAR},
+      </if>
+      <if test="aspectAp != null">
+        aspect_ap = #{aspectAp,jdbcType=VARCHAR},
+      </if>
+      <if test="classAp != null">
+        class_ap = #{classAp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_ap = #{idAp,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.allen.model.Abilitypoint">
+    update abilitypoint
+    set name_ap = #{nameAp,jdbcType=VARCHAR},
+      aspect_ap = #{aspectAp,jdbcType=VARCHAR},
+      class_ap = #{classAp,jdbcType=VARCHAR}
+    where id_ap = #{idAp,jdbcType=INTEGER}
+  </update>
 </mapper>
