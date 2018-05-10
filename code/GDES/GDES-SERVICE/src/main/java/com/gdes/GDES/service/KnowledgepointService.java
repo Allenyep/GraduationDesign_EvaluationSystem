@@ -2,6 +2,8 @@ package com.gdes.GDES.service;
 
 import com.gdes.GDES.model.Knowledgepoint;
 
+import java.util.List;
+
 /**
  *
  * Created by Allen on 2018/5/10.
@@ -15,7 +17,7 @@ public interface KnowledgepointService {
      * @return
      * @throws Exception
      */
-    public Knowledgepoint queryAllKonwledgepoint(String id_c)throws Exception;
+    public List<Knowledgepoint> queryAllKonwledgepoint(String id_c)throws Exception;
 
     /**
      * 添加知识点

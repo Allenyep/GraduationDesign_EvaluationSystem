@@ -28,8 +28,7 @@ public class TestKonwledgepoint {
         kpe.setOrderByClause("id_kp asc");
         kpe.setDistinct(false);
         KnowledgepointExample.Criteria criteria=kpe.createCriteria();
-        criteria.andIdApIsNotNull();
-
+        criteria.andIdCIsNotNull();
         List<Knowledgepoint> list=kpm.selectByExample(kpe);
 
 //        System.out.println(list);
@@ -43,7 +42,7 @@ public class TestKonwledgepoint {
     public void findKonwledgepoint()throws Exception{
         KnowledgepointExample kpe=new KnowledgepointExample();
         KnowledgepointExample.Criteria criteria=kpe.createCriteria();
-        criteria.andNameKpLike("%顺序表%");
+        criteria.andIdCEqualTo("2");
 
         List<Knowledgepoint> list=kpm.selectByExample(kpe);
         for(Knowledgepoint kp:list){
