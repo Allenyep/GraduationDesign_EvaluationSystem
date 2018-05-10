@@ -7,7 +7,7 @@ public class Student {
 
     private String idM;
 
-    private String dataS;
+    private String dateS;
 
     public String getIdS() {
         return idS;
@@ -33,11 +33,11 @@ public class Student {
         this.idM = idM == null ? null : idM.trim();
     }
 
-    public String getDataS() {
-        return dataS;
+    public String getDateS() {
+        return dateS;
     }
 
-    public void setDataS(String dataS) {
-        this.dataS = dataS == null ? null : dataS.trim();
+    public void setDateS(String dateS) {
+        this.dateS = dateS == null ? null : dateS.trim();
     }
 }

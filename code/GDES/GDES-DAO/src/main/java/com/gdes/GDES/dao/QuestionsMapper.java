@@ -2,10 +2,8 @@ package com.gdes.GDES.dao;
 
 import com.gdes.GDES.model.Questions;
 import com.gdes.GDES.model.QuestionsExample;
-import com.gdes.GDES.model.QuestionsWithBLOBs;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface QuestionsMapper {
     long countByExample(QuestionsExample example);
@@ -14,25 +12,19 @@ public interface QuestionsMapper {
 
     int deleteByPrimaryKey(String idQ);
 
-    int insert(QuestionsWithBLOBs record);
+    int insert(Questions record);
 
-    int insertSelective(QuestionsWithBLOBs record);
-
-    List<QuestionsWithBLOBs> selectByExampleWithBLOBs(QuestionsExample example);
+    int insertSelective(Questions record);
 
     List<Questions> selectByExample(QuestionsExample example);
 
-    QuestionsWithBLOBs selectByPrimaryKey(String idQ);
+    Questions selectByPrimaryKey(String idQ);
 
-    int updateByExampleSelective(@Param("record") QuestionsWithBLOBs record, @Param("example") QuestionsExample example);
-
-    int updateByExampleWithBLOBs(@Param("record") QuestionsWithBLOBs record, @Param("example") QuestionsExample example);
+    int updateByExampleSelective(@Param("record") Questions record, @Param("example") QuestionsExample example);
 
     int updateByExample(@Param("record") Questions record, @Param("example") QuestionsExample example);
 
-    int updateByPrimaryKeySelective(QuestionsWithBLOBs record);
-
-    int updateByPrimaryKeyWithBLOBs(QuestionsWithBLOBs record);
+    int updateByPrimaryKeySelective(Questions record);
 
     int updateByPrimaryKey(Questions record);
 }

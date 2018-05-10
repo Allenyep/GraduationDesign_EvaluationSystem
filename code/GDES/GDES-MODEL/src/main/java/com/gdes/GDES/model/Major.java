@@ -7,7 +7,7 @@ public class Major {
 
     private String leaderM;
 
-    private String idFm;
+    private Integer idMb;
 
     public String getIdM() {
         return idM;
@@ -33,11 +33,11 @@ public class Major {
         this.leaderM = leaderM == null ? null : leaderM.trim();
     }
 
-    public String getIdFm() {
-        return idFm;
+    public Integer getIdMb() {
+        return idMb;
     }
 
-    public void setIdFm(String idFm) {
-        this.idFm = idFm == null ? null : idFm.trim();
+    public void setIdMb(Integer idMb) {
+        this.idMb = idMb;
     }
 }

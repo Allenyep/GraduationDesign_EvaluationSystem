@@ -3,9 +3,8 @@ package com.gdes.GDES.dao;
 import com.gdes.GDES.model.Latestabilityscore;
 import com.gdes.GDES.model.LatestabilityscoreExample;
 import com.gdes.GDES.model.LatestabilityscoreKey;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface LatestabilityscoreMapper {
     long countByExample(LatestabilityscoreExample example);

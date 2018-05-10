@@ -433,6 +433,76 @@ public class KnowledgepointExample {
             addCriterion("id_c not between", value1, value2, "idC");
             return (Criteria) this;
         }
+
+        public Criteria andNoteKpIsNull() {
+            addCriterion("note_kp is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpIsNotNull() {
+            addCriterion("note_kp is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpEqualTo(String value) {
+            addCriterion("note_kp =", value, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpNotEqualTo(String value) {
+            addCriterion("note_kp <>", value, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpGreaterThan(String value) {
+            addCriterion("note_kp >", value, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpGreaterThanOrEqualTo(String value) {
+            addCriterion("note_kp >=", value, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpLessThan(String value) {
+            addCriterion("note_kp <", value, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpLessThanOrEqualTo(String value) {
+            addCriterion("note_kp <=", value, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpLike(String value) {
+            addCriterion("note_kp like", value, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpNotLike(String value) {
+            addCriterion("note_kp not like", value, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpIn(List<String> values) {
+            addCriterion("note_kp in", values, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpNotIn(List<String> values) {
+            addCriterion("note_kp not in", values, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpBetween(String value1, String value2) {
+            addCriterion("note_kp between", value1, value2, "noteKp");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoteKpNotBetween(String value1, String value2) {
+            addCriterion("note_kp not between", value1, value2, "noteKp");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

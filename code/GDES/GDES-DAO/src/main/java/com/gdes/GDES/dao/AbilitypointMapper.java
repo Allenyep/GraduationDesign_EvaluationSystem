@@ -1,11 +1,9 @@
 package com.gdes.GDES.dao;
 
-
 import com.gdes.GDES.model.Abilitypoint;
 import com.gdes.GDES.model.AbilitypointExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface AbilitypointMapper {
     long countByExample(AbilitypointExample example);

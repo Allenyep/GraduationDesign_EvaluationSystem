@@ -3,7 +3,7 @@ package com.gdes.GDES.test;
 import com.gdes.GDES.dao.QuestionsMapper;
 import com.gdes.GDES.model.Questions;
 import com.gdes.GDES.model.QuestionsExample;
-import com.gdes.GDES.model.QuestionsWithBLOBs;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -31,15 +31,12 @@ public class testQuestions {
         criteria.andIdQIsNotNull();
 
         List<Questions> list=qm.selectByExample(qe);
-        List<QuestionsWithBLOBs> listb=qm.selectByExampleWithBLOBs(qe);
+//        List<QuestionsWithBLOBs> listb=qm.selectByExampleWithBLOBs(qe);
 
         for(Questions q:list){
             System.out.println(q.getScoreQ());
         }
-        for(QuestionsWithBLOBs qwb:listb){
-            System.out.println(qwb.getContextQ());
-            System.out.println(qwb.getAnswerQ());
-        }
+
     }
 
     @Test
@@ -47,6 +44,5 @@ public class testQuestions {
         QuestionsExample qe=new QuestionsExample();
         QuestionsExample.Criteria criteria=qe.createCriteria();
 
-        QuestionsWithBLOBs
     }
 }

@@ -7,9 +7,13 @@ public class Questions {
 
     private String datatimeQ;
 
+    private String contextQ;
+
     private String scoreQ;
 
     private String timeQ;
+
+    private String answerQ;
 
     private String styleQ;
 
@@ -43,6 +47,14 @@ public class Questions {
         this.datatimeQ = datatimeQ == null ? null : datatimeQ.trim();
     }
 
+    public String getContextQ() {
+        return contextQ;
+    }
+
+    public void setContextQ(String contextQ) {
+        this.contextQ = contextQ == null ? null : contextQ.trim();
+    }
+
     public String getScoreQ() {
         return scoreQ;
     }
@@ -57,6 +69,14 @@ public class Questions {
 
     public void setTimeQ(String timeQ) {
         this.timeQ = timeQ == null ? null : timeQ.trim();
+    }
+
+    public String getAnswerQ() {
+        return answerQ;
+    }
+
+    public void setAnswerQ(String answerQ) {
+        this.answerQ = answerQ == null ? null : answerQ.trim();
     }
 
     public String getStyleQ() {

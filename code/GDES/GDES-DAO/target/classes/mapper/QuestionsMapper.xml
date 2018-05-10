@@ -5,16 +5,14 @@
     <id column="id_q" jdbcType="VARCHAR" property="idQ" />
     <result column="id_c" jdbcType="VARCHAR" property="idC" />
     <result column="datatime_q" jdbcType="VARCHAR" property="datatimeQ" />
+    <result column="context_q" jdbcType="VARCHAR" property="contextQ" />
     <result column="score_q" jdbcType="VARCHAR" property="scoreQ" />
     <result column="time_q" jdbcType="VARCHAR" property="timeQ" />
+    <result column="answer_q" jdbcType="VARCHAR" property="answerQ" />
     <result column="style_q" jdbcType="VARCHAR" property="styleQ" />
     <result column="id_t" jdbcType="VARCHAR" property="idT" />
     <result column="automaticscoring_q" jdbcType="VARCHAR" property="automaticscoringQ" />
     <result column="deleteornot_q" jdbcType="VARCHAR" property="deleteornotQ" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gdes.GDES.model.QuestionsWithBLOBs">
-    <result column="context_q" jdbcType="LONGVARCHAR" property="contextQ" />
-    <result column="answer_q" jdbcType="LONGVARCHAR" property="answerQ" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,27 +73,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id_q, id_c, datatime_q, score_q, time_q, style_q, id_t, automaticscoring_q, deleteornot_q
+    id_q, id_c, datatime_q, context_q, score_q, time_q, answer_q, style_q, id_t, automaticscoring_q, 
+    deleteornot_q
   </sql>
-  <sql id="Blob_Column_List">
-    context_q, answer_q
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gdes.GDES.model.QuestionsExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from questions
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.gdes.GDES.model.QuestionsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -110,11 +90,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from questions
     where id_q = #{idQ,jdbcType=VARCHAR}
   </select>
@@ -128,17 +106,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gdes.GDES.model.QuestionsWithBLOBs">
+  <insert id="insert" parameterType="com.gdes.GDES.model.Questions">
     insert into questions (id_q, id_c, datatime_q, 
-      score_q, time_q, style_q, 
-      id_t, automaticscoring_q, deleteornot_q, 
-      context_q, answer_q)
+      context_q, score_q, time_q, 
+      answer_q, style_q, id_t, 
+      automaticscoring_q, deleteornot_q)
     values (#{idQ,jdbcType=VARCHAR}, #{idC,jdbcType=VARCHAR}, #{datatimeQ,jdbcType=VARCHAR}, 
-      #{scoreQ,jdbcType=VARCHAR}, #{timeQ,jdbcType=VARCHAR}, #{styleQ,jdbcType=VARCHAR}, 
-      #{idT,jdbcType=VARCHAR}, #{automaticscoringQ,jdbcType=VARCHAR}, #{deleteornotQ,jdbcType=VARCHAR}, 
-      #{contextQ,jdbcType=LONGVARCHAR}, #{answerQ,jdbcType=LONGVARCHAR})
+      #{contextQ,jdbcType=VARCHAR}, #{scoreQ,jdbcType=VARCHAR}, #{timeQ,jdbcType=VARCHAR}, 
+      #{answerQ,jdbcType=VARCHAR}, #{styleQ,jdbcType=VARCHAR}, #{idT,jdbcType=VARCHAR}, 
+      #{automaticscoringQ,jdbcType=VARCHAR}, #{deleteornotQ,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.gdes.GDES.model.QuestionsWithBLOBs">
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Questions">
     insert into questions
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idQ != null">
@@ -150,11 +128,17 @@
       <if test="datatimeQ != null">
         datatime_q,
       </if>
+      <if test="contextQ != null">
+        context_q,
+      </if>
       <if test="scoreQ != null">
         score_q,
       </if>
       <if test="timeQ != null">
         time_q,
+      </if>
+      <if test="answerQ != null">
+        answer_q,
       </if>
       <if test="styleQ != null">
         style_q,
@@ -168,12 +152,6 @@
       <if test="deleteornotQ != null">
         deleteornot_q,
       </if>
-      <if test="contextQ != null">
-        context_q,
-      </if>
-      <if test="answerQ != null">
-        answer_q,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="idQ != null">
@@ -185,11 +163,17 @@
       <if test="datatimeQ != null">
         #{datatimeQ,jdbcType=VARCHAR},
       </if>
+      <if test="contextQ != null">
+        #{contextQ,jdbcType=VARCHAR},
+      </if>
       <if test="scoreQ != null">
         #{scoreQ,jdbcType=VARCHAR},
       </if>
       <if test="timeQ != null">
         #{timeQ,jdbcType=VARCHAR},
+      </if>
+      <if test="answerQ != null">
+        #{answerQ,jdbcType=VARCHAR},
       </if>
       <if test="styleQ != null">
         #{styleQ,jdbcType=VARCHAR},
@@ -202,12 +186,6 @@
       </if>
       <if test="deleteornotQ != null">
         #{deleteornotQ,jdbcType=VARCHAR},
-      </if>
-      <if test="contextQ != null">
-        #{contextQ,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="answerQ != null">
-        #{answerQ,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -229,11 +207,17 @@
       <if test="record.datatimeQ != null">
         datatime_q = #{record.datatimeQ,jdbcType=VARCHAR},
       </if>
+      <if test="record.contextQ != null">
+        context_q = #{record.contextQ,jdbcType=VARCHAR},
+      </if>
       <if test="record.scoreQ != null">
         score_q = #{record.scoreQ,jdbcType=VARCHAR},
       </if>
       <if test="record.timeQ != null">
         time_q = #{record.timeQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answerQ != null">
+        answer_q = #{record.answerQ,jdbcType=VARCHAR},
       </if>
       <if test="record.styleQ != null">
         style_q = #{record.styleQ,jdbcType=VARCHAR},
@@ -247,30 +231,7 @@
       <if test="record.deleteornotQ != null">
         deleteornot_q = #{record.deleteornotQ,jdbcType=VARCHAR},
       </if>
-      <if test="record.contextQ != null">
-        context_q = #{record.contextQ,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="record.answerQ != null">
-        answer_q = #{record.answerQ,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update questions
-    set id_q = #{record.idQ,jdbcType=VARCHAR},
-      id_c = #{record.idC,jdbcType=VARCHAR},
-      datatime_q = #{record.datatimeQ,jdbcType=VARCHAR},
-      score_q = #{record.scoreQ,jdbcType=VARCHAR},
-      time_q = #{record.timeQ,jdbcType=VARCHAR},
-      style_q = #{record.styleQ,jdbcType=VARCHAR},
-      id_t = #{record.idT,jdbcType=VARCHAR},
-      automaticscoring_q = #{record.automaticscoringQ,jdbcType=VARCHAR},
-      deleteornot_q = #{record.deleteornotQ,jdbcType=VARCHAR},
-      context_q = #{record.contextQ,jdbcType=LONGVARCHAR},
-      answer_q = #{record.answerQ,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -280,8 +241,10 @@
     set id_q = #{record.idQ,jdbcType=VARCHAR},
       id_c = #{record.idC,jdbcType=VARCHAR},
       datatime_q = #{record.datatimeQ,jdbcType=VARCHAR},
+      context_q = #{record.contextQ,jdbcType=VARCHAR},
       score_q = #{record.scoreQ,jdbcType=VARCHAR},
       time_q = #{record.timeQ,jdbcType=VARCHAR},
+      answer_q = #{record.answerQ,jdbcType=VARCHAR},
       style_q = #{record.styleQ,jdbcType=VARCHAR},
       id_t = #{record.idT,jdbcType=VARCHAR},
       automaticscoring_q = #{record.automaticscoringQ,jdbcType=VARCHAR},
@@ -290,7 +253,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.QuestionsWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Questions">
     update questions
     <set>
       <if test="idC != null">
@@ -299,11 +262,17 @@
       <if test="datatimeQ != null">
         datatime_q = #{datatimeQ,jdbcType=VARCHAR},
       </if>
+      <if test="contextQ != null">
+        context_q = #{contextQ,jdbcType=VARCHAR},
+      </if>
       <if test="scoreQ != null">
         score_q = #{scoreQ,jdbcType=VARCHAR},
       </if>
       <if test="timeQ != null">
         time_q = #{timeQ,jdbcType=VARCHAR},
+      </if>
+      <if test="answerQ != null">
+        answer_q = #{answerQ,jdbcType=VARCHAR},
       </if>
       <if test="styleQ != null">
         style_q = #{styleQ,jdbcType=VARCHAR},
@@ -317,35 +286,17 @@
       <if test="deleteornotQ != null">
         deleteornot_q = #{deleteornotQ,jdbcType=VARCHAR},
       </if>
-      <if test="contextQ != null">
-        context_q = #{contextQ,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="answerQ != null">
-        answer_q = #{answerQ,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id_q = #{idQ,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gdes.GDES.model.QuestionsWithBLOBs">
-    update questions
-    set id_c = #{idC,jdbcType=VARCHAR},
-      datatime_q = #{datatimeQ,jdbcType=VARCHAR},
-      score_q = #{scoreQ,jdbcType=VARCHAR},
-      time_q = #{timeQ,jdbcType=VARCHAR},
-      style_q = #{styleQ,jdbcType=VARCHAR},
-      id_t = #{idT,jdbcType=VARCHAR},
-      automaticscoring_q = #{automaticscoringQ,jdbcType=VARCHAR},
-      deleteornot_q = #{deleteornotQ,jdbcType=VARCHAR},
-      context_q = #{contextQ,jdbcType=LONGVARCHAR},
-      answer_q = #{answerQ,jdbcType=LONGVARCHAR}
     where id_q = #{idQ,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Questions">
     update questions
     set id_c = #{idC,jdbcType=VARCHAR},
       datatime_q = #{datatimeQ,jdbcType=VARCHAR},
+      context_q = #{contextQ,jdbcType=VARCHAR},
       score_q = #{scoreQ,jdbcType=VARCHAR},
       time_q = #{timeQ,jdbcType=VARCHAR},
+      answer_q = #{answerQ,jdbcType=VARCHAR},
       style_q = #{styleQ,jdbcType=VARCHAR},
       id_t = #{idT,jdbcType=VARCHAR},
       automaticscoring_q = #{automaticscoringQ,jdbcType=VARCHAR},

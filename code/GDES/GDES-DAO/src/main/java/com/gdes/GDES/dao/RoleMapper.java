@@ -2,9 +2,8 @@ package com.gdes.GDES.dao;
 
 import com.gdes.GDES.model.Role;
 import com.gdes.GDES.model.RoleExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface RoleMapper {
     long countByExample(RoleExample example);

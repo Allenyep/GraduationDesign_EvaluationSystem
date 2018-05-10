@@ -3,9 +3,8 @@ package com.gdes.GDES.dao;
 import com.gdes.GDES.model.Studentpost;
 import com.gdes.GDES.model.StudentpostExample;
 import com.gdes.GDES.model.StudentpostKey;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface StudentpostMapper {
     long countByExample(StudentpostExample example);

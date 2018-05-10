@@ -2,9 +2,8 @@ package com.gdes.GDES.dao;
 
 import com.gdes.GDES.model.Teacher;
 import com.gdes.GDES.model.TeacherExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface TeacherMapper {
     long countByExample(TeacherExample example);

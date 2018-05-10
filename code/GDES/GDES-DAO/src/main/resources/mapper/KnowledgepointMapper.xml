@@ -7,9 +7,7 @@
     <result column="name_kp" jdbcType="VARCHAR" property="nameKp" />
     <result column="proportion_kp" jdbcType="VARCHAR" property="proportionKp" />
     <result column="id_c" jdbcType="VARCHAR" property="idC" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gdes.GDES.model.Knowledgepoint">
-    <result column="note_kp" jdbcType="LONGVARCHAR" property="noteKp" />
+    <result column="note_kp" jdbcType="VARCHAR" property="noteKp" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,27 +68,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id_kp, id_ap, name_kp, proportion_kp, id_c
+    id_kp, id_ap, name_kp, proportion_kp, id_c, note_kp
   </sql>
-  <sql id="Blob_Column_List">
-    note_kp
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gdes.GDES.model.KnowledgepointExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from knowledgepoint
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.gdes.GDES.model.KnowledgepointExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -105,11 +84,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from knowledgepoint
     where id_kp = #{idKp,jdbcType=INTEGER}
   </select>
@@ -128,7 +105,7 @@
       proportion_kp, id_c, note_kp
       )
     values (#{idKp,jdbcType=INTEGER}, #{idAp,jdbcType=INTEGER}, #{nameKp,jdbcType=VARCHAR}, 
-      #{proportionKp,jdbcType=VARCHAR}, #{idC,jdbcType=VARCHAR}, #{noteKp,jdbcType=LONGVARCHAR}
+      #{proportionKp,jdbcType=VARCHAR}, #{idC,jdbcType=VARCHAR}, #{noteKp,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.gdes.GDES.model.Knowledgepoint">
@@ -170,7 +147,7 @@
         #{idC,jdbcType=VARCHAR},
       </if>
       <if test="noteKp != null">
-        #{noteKp,jdbcType=LONGVARCHAR},
+        #{noteKp,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -199,21 +176,9 @@
         id_c = #{record.idC,jdbcType=VARCHAR},
       </if>
       <if test="record.noteKp != null">
-        note_kp = #{record.noteKp,jdbcType=LONGVARCHAR},
+        note_kp = #{record.noteKp,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update knowledgepoint
-    set id_kp = #{record.idKp,jdbcType=INTEGER},
-      id_ap = #{record.idAp,jdbcType=INTEGER},
-      name_kp = #{record.nameKp,jdbcType=VARCHAR},
-      proportion_kp = #{record.proportionKp,jdbcType=VARCHAR},
-      id_c = #{record.idC,jdbcType=VARCHAR},
-      note_kp = #{record.noteKp,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -224,7 +189,8 @@
       id_ap = #{record.idAp,jdbcType=INTEGER},
       name_kp = #{record.nameKp,jdbcType=VARCHAR},
       proportion_kp = #{record.proportionKp,jdbcType=VARCHAR},
-      id_c = #{record.idC,jdbcType=VARCHAR}
+      id_c = #{record.idC,jdbcType=VARCHAR},
+      note_kp = #{record.noteKp,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -245,18 +211,9 @@
         id_c = #{idC,jdbcType=VARCHAR},
       </if>
       <if test="noteKp != null">
-        note_kp = #{noteKp,jdbcType=LONGVARCHAR},
+        note_kp = #{noteKp,jdbcType=VARCHAR},
       </if>
     </set>
-    where id_kp = #{idKp,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gdes.GDES.model.Knowledgepoint">
-    update knowledgepoint
-    set id_ap = #{idAp,jdbcType=INTEGER},
-      name_kp = #{nameKp,jdbcType=VARCHAR},
-      proportion_kp = #{proportionKp,jdbcType=VARCHAR},
-      id_c = #{idC,jdbcType=VARCHAR},
-      note_kp = #{noteKp,jdbcType=LONGVARCHAR}
     where id_kp = #{idKp,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Knowledgepoint">
@@ -264,7 +221,8 @@
     set id_ap = #{idAp,jdbcType=INTEGER},
       name_kp = #{nameKp,jdbcType=VARCHAR},
       proportion_kp = #{proportionKp,jdbcType=VARCHAR},
-      id_c = #{idC,jdbcType=VARCHAR}
+      id_c = #{idC,jdbcType=VARCHAR},
+      note_kp = #{noteKp,jdbcType=VARCHAR}
     where id_kp = #{idKp,jdbcType=INTEGER}
   </update>
 </mapper>

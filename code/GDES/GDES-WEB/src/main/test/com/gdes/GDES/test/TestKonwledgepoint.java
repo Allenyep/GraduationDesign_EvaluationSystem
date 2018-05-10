@@ -59,6 +59,7 @@ public class TestKonwledgepoint {
         kp.setNameKp("栈的符号表示");
         kp.setProportionKp("0.2");
 
+        //
         kpm.insert(kp);
     }
 
@@ -67,6 +68,7 @@ public class TestKonwledgepoint {
         Knowledgepoint kp=new Knowledgepoint();
         kp.setIdKp(3);
         kp.setProportionKp("0.01");
+
 
         kpm.updateByPrimaryKeySelective(kp);
     }

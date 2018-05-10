@@ -2,9 +2,8 @@ package com.gdes.GDES.dao;
 
 import com.gdes.GDES.model.Post;
 import com.gdes.GDES.model.PostExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PostMapper {
     long countByExample(PostExample example);
