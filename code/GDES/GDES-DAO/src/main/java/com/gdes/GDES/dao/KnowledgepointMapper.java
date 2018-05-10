@@ -1,7 +1,7 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Knowledgepoint;
-import com.allen.model.KnowledgepointExample;
+import com.gdes.GDES.model.Knowledgepoint;
+import com.gdes.GDES.model.KnowledgepointExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

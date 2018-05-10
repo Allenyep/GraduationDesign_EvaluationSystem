@@ -1,8 +1,8 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Studentpost;
-import com.allen.model.StudentpostExample;
-import com.allen.model.StudentpostKey;
+import com.gdes.GDES.model.Studentpost;
+import com.gdes.GDES.model.StudentpostExample;
+import com.gdes.GDES.model.StudentpostKey;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

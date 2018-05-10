@@ -1,7 +1,7 @@
 package com.gdes.GDES.dao;
 
-import com.gdes.GDES.model.LatestAbilityScore;
-import com.gdes.GDES.model.ScoreDetail;
+import com.gdes.GDES.model.Latestabilityscore;
+import com.gdes.GDES.model.Scoredetail;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,5 +13,5 @@ public interface ScoreDetailDao {
      * @param latestAbilityScore
      * @return
      */
-    public List<ScoreDetail> getScoreDetailListByAbilityId(LatestAbilityScore latestAbilityScore);
+    public List<Scoredetail> getScoreDetailListByAbilityId(Latestabilityscore latestAbilityScore);
 }

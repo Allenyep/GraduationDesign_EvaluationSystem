@@ -1,8 +1,8 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Scoredetail;
-import com.allen.model.ScoredetailExample;
-import com.allen.model.ScoredetailKey;
+import com.gdes.GDES.model.Scoredetail;
+import com.gdes.GDES.model.ScoredetailExample;
+import com.gdes.GDES.model.ScoredetailKey;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

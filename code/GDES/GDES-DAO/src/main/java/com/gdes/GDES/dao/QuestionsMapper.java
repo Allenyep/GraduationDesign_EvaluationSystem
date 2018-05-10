@@ -1,8 +1,8 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Questions;
-import com.allen.model.QuestionsExample;
-import com.allen.model.QuestionsWithBLOBs;
+import com.gdes.GDES.model.Questions;
+import com.gdes.GDES.model.QuestionsExample;
+import com.gdes.GDES.model.QuestionsWithBLOBs;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

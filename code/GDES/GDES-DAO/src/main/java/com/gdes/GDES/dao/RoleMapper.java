@@ -1,7 +1,7 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Role;
-import com.allen.model.RoleExample;
+import com.gdes.GDES.model.Role;
+import com.gdes.GDES.model.RoleExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

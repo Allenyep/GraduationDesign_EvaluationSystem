@@ -10,5 +10,5 @@ public interface AbilityPointDao {
      * @param id_ap
      * @return
      */
-   // public AbilityPoint getAbilityPointById(Integer id_ap);
+    public Abilitypoint getAbilityPointById(Integer id_ap);
 }

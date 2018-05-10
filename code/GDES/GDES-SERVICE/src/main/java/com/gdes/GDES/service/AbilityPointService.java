@@ -1,6 +1,6 @@
 package com.gdes.GDES.service;
 
-import com.gdes.GDES.model.AbilityPoint;
+import com.gdes.GDES.model.Abilitypoint;
 
 public interface AbilityPointService {
     /**
@@ -8,5 +8,5 @@ public interface AbilityPointService {
      * @param id_ap
      * @return
      */
-    public AbilityPoint getAbilityPointById(Integer id_ap);
+    public Abilitypoint getAbilityPointById(Integer id_ap);
 }

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gdes.GDES.dao.LatestabilityscoreMapper">
-  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Latestabilityscore">
-    <id column="id_s" jdbcType="VARCHAR" property="idS" />
+<mapper namespace="com.gdes.GDES.dao.PostabilitypointMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Postabilitypoint">
+    <id column="id_p" jdbcType="INTEGER" property="idP" />
     <id column="id_ap" jdbcType="INTEGER" property="idAp" />
-    <result column="score_las" jdbcType="VARCHAR" property="scoreLas" />
-    <result column="proportion_las" jdbcType="VARCHAR" property="proportionLas" />
-    <result column="time_las" jdbcType="VARCHAR" property="timeLas" />
+    <result column="proportion_sap" jdbcType="VARCHAR" property="proportionSap" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id_s, id_ap, score_las, proportion_las, time_las
+    id_p, id_ap, proportion_sap
   </sql>
-  <select id="selectByExample" parameterType="com.gdes.GDES.model.LatestabilityscoreExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.PostabilitypointExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from latestabilityscore
+    from postabilitypoint
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,90 +81,72 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.gdes.GDES.model.LatestabilityscoreKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.gdes.GDES.model.PostabilitypointKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from latestabilityscore
-    where id_s = #{idS,jdbcType=VARCHAR}
+    from postabilitypoint
+    where id_p = #{idP,jdbcType=INTEGER}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.gdes.GDES.model.LatestabilityscoreKey">
-    delete from latestabilityscore
-    where id_s = #{idS,jdbcType=VARCHAR}
+  <delete id="deleteByPrimaryKey" parameterType="com.gdes.GDES.model.PostabilitypointKey">
+    delete from postabilitypoint
+    where id_p = #{idP,jdbcType=INTEGER}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.LatestabilityscoreExample">
-    delete from latestabilityscore
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.PostabilitypointExample">
+    delete from postabilitypoint
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gdes.GDES.model.Latestabilityscore">
-    insert into latestabilityscore (id_s, id_ap, score_las, 
-      proportion_las, time_las)
-    values (#{idS,jdbcType=VARCHAR}, #{idAp,jdbcType=INTEGER}, #{scoreLas,jdbcType=VARCHAR}, 
-      #{proportionLas,jdbcType=VARCHAR}, #{timeLas,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.gdes.GDES.model.Postabilitypoint">
+    insert into postabilitypoint (id_p, id_ap, proportion_sap
+      )
+    values (#{idP,jdbcType=INTEGER}, #{idAp,jdbcType=INTEGER}, #{proportionSap,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Latestabilityscore">
-    insert into latestabilityscore
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Postabilitypoint">
+    insert into postabilitypoint
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="idS != null">
-        id_s,
+      <if test="idP != null">
+        id_p,
       </if>
       <if test="idAp != null">
         id_ap,
       </if>
-      <if test="scoreLas != null">
-        score_las,
-      </if>
-      <if test="proportionLas != null">
-        proportion_las,
-      </if>
-      <if test="timeLas != null">
-        time_las,
+      <if test="proportionSap != null">
+        proportion_sap,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="idS != null">
-        #{idS,jdbcType=VARCHAR},
+      <if test="idP != null">
+        #{idP,jdbcType=INTEGER},
       </if>
       <if test="idAp != null">
         #{idAp,jdbcType=INTEGER},
       </if>
-      <if test="scoreLas != null">
-        #{scoreLas,jdbcType=VARCHAR},
-      </if>
-      <if test="proportionLas != null">
-        #{proportionLas,jdbcType=VARCHAR},
-      </if>
-      <if test="timeLas != null">
-        #{timeLas,jdbcType=VARCHAR},
+      <if test="proportionSap != null">
+        #{proportionSap,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gdes.GDES.model.LatestabilityscoreExample" resultType="java.lang.Long">
-    select count(*) from latestabilityscore
+  <select id="countByExample" parameterType="com.gdes.GDES.model.PostabilitypointExample" resultType="java.lang.Long">
+    select count(*) from postabilitypoint
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update latestabilityscore
+    update postabilitypoint
     <set>
-      <if test="record.idS != null">
-        id_s = #{record.idS,jdbcType=VARCHAR},
+      <if test="record.idP != null">
+        id_p = #{record.idP,jdbcType=INTEGER},
       </if>
       <if test="record.idAp != null">
         id_ap = #{record.idAp,jdbcType=INTEGER},
       </if>
-      <if test="record.scoreLas != null">
-        score_las = #{record.scoreLas,jdbcType=VARCHAR},
-      </if>
-      <if test="record.proportionLas != null">
-        proportion_las = #{record.proportionLas,jdbcType=VARCHAR},
-      </if>
-      <if test="record.timeLas != null">
-        time_las = #{record.timeLas,jdbcType=VARCHAR},
+      <if test="record.proportionSap != null">
+        proportion_sap = #{record.proportionSap,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -174,38 +154,28 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update latestabilityscore
-    set id_s = #{record.idS,jdbcType=VARCHAR},
+    update postabilitypoint
+    set id_p = #{record.idP,jdbcType=INTEGER},
       id_ap = #{record.idAp,jdbcType=INTEGER},
-      score_las = #{record.scoreLas,jdbcType=VARCHAR},
-      proportion_las = #{record.proportionLas,jdbcType=VARCHAR},
-      time_las = #{record.timeLas,jdbcType=VARCHAR}
+      proportion_sap = #{record.proportionSap,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Latestabilityscore">
-    update latestabilityscore
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Postabilitypoint">
+    update postabilitypoint
     <set>
-      <if test="scoreLas != null">
-        score_las = #{scoreLas,jdbcType=VARCHAR},
-      </if>
-      <if test="proportionLas != null">
-        proportion_las = #{proportionLas,jdbcType=VARCHAR},
-      </if>
-      <if test="timeLas != null">
-        time_las = #{timeLas,jdbcType=VARCHAR},
+      <if test="proportionSap != null">
+        proportion_sap = #{proportionSap,jdbcType=VARCHAR},
       </if>
     </set>
-    where id_s = #{idS,jdbcType=VARCHAR}
+    where id_p = #{idP,jdbcType=INTEGER}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Latestabilityscore">
-    update latestabilityscore
-    set score_las = #{scoreLas,jdbcType=VARCHAR},
-      proportion_las = #{proportionLas,jdbcType=VARCHAR},
-      time_las = #{timeLas,jdbcType=VARCHAR}
-    where id_s = #{idS,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Postabilitypoint">
+    update postabilitypoint
+    set proportion_sap = #{proportionSap,jdbcType=VARCHAR}
+    where id_p = #{idP,jdbcType=INTEGER}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </update>
 </mapper>

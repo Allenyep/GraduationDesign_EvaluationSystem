@@ -1,7 +1,7 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Jsgnb;
-import com.allen.model.JsgnbExample;
+import com.gdes.GDES.model.Jsgnb;
+import com.gdes.GDES.model.JsgnbExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

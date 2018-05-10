@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gdes.GDES.dao.TeacherMapper">
-  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Teacher">
-    <id column="id_t" jdbcType="VARCHAR" property="idT" />
-    <result column="name_t" jdbcType="VARCHAR" property="nameT" />
+<mapper namespace="com.gdes.GDES.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Student">
+    <id column="id_s" jdbcType="VARCHAR" property="idS" />
+    <result column="name_s" jdbcType="VARCHAR" property="nameS" />
     <result column="id_m" jdbcType="VARCHAR" property="idM" />
-    <result column="majorleader_t" jdbcType="VARCHAR" property="majorleaderT" />
-    <result column="courseleader_t" jdbcType="VARCHAR" property="courseleaderT" />
+    <result column="data_s" jdbcType="VARCHAR" property="dataS" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id_t, name_t, id_m, majorleader_t, courseleader_t
+    id_s, name_s, id_m, data_s
   </sql>
-  <select id="selectByExample" parameterType="com.gdes.GDES.model.TeacherExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.StudentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from teacher
+    from student
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,85 +85,76 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from teacher
-    where id_t = #{idT,jdbcType=VARCHAR}
+    from student
+    where id_s = #{idS,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from teacher
-    where id_t = #{idT,jdbcType=VARCHAR}
+    delete from student
+    where id_s = #{idS,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.TeacherExample">
-    delete from teacher
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.StudentExample">
+    delete from student
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gdes.GDES.model.Teacher">
-    insert into teacher (id_t, name_t, id_m, 
-      majorleader_t, courseleader_t)
-    values (#{idT,jdbcType=VARCHAR}, #{nameT,jdbcType=VARCHAR}, #{idM,jdbcType=VARCHAR}, 
-      #{majorleaderT,jdbcType=VARCHAR}, #{courseleaderT,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.gdes.GDES.model.Student">
+    insert into student (id_s, name_s, id_m, 
+      data_s)
+    values (#{idS,jdbcType=VARCHAR}, #{nameS,jdbcType=VARCHAR}, #{idM,jdbcType=VARCHAR}, 
+      #{dataS,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Teacher">
-    insert into teacher
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Student">
+    insert into student
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="idT != null">
-        id_t,
+      <if test="idS != null">
+        id_s,
       </if>
-      <if test="nameT != null">
-        name_t,
+      <if test="nameS != null">
+        name_s,
       </if>
       <if test="idM != null">
         id_m,
       </if>
-      <if test="majorleaderT != null">
-        majorleader_t,
-      </if>
-      <if test="courseleaderT != null">
-        courseleader_t,
+      <if test="dataS != null">
+        data_s,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="idT != null">
-        #{idT,jdbcType=VARCHAR},
+      <if test="idS != null">
+        #{idS,jdbcType=VARCHAR},
       </if>
-      <if test="nameT != null">
-        #{nameT,jdbcType=VARCHAR},
+      <if test="nameS != null">
+        #{nameS,jdbcType=VARCHAR},
       </if>
       <if test="idM != null">
         #{idM,jdbcType=VARCHAR},
       </if>
-      <if test="majorleaderT != null">
-        #{majorleaderT,jdbcType=VARCHAR},
-      </if>
-      <if test="courseleaderT != null">
-        #{courseleaderT,jdbcType=VARCHAR},
+      <if test="dataS != null">
+        #{dataS,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gdes.GDES.model.TeacherExample" resultType="java.lang.Long">
-    select count(*) from teacher
+  <select id="countByExample" parameterType="com.gdes.GDES.model.StudentExample" resultType="java.lang.Long">
+    select count(*) from student
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update teacher
+    update student
     <set>
-      <if test="record.idT != null">
-        id_t = #{record.idT,jdbcType=VARCHAR},
+      <if test="record.idS != null">
+        id_s = #{record.idS,jdbcType=VARCHAR},
       </if>
-      <if test="record.nameT != null">
-        name_t = #{record.nameT,jdbcType=VARCHAR},
+      <if test="record.nameS != null">
+        name_s = #{record.nameS,jdbcType=VARCHAR},
       </if>
       <if test="record.idM != null">
         id_m = #{record.idM,jdbcType=VARCHAR},
       </if>
-      <if test="record.majorleaderT != null">
-        majorleader_t = #{record.majorleaderT,jdbcType=VARCHAR},
-      </if>
-      <if test="record.courseleaderT != null">
-        courseleader_t = #{record.courseleaderT,jdbcType=VARCHAR},
+      <if test="record.dataS != null">
+        data_s = #{record.dataS,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -172,40 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update teacher
-    set id_t = #{record.idT,jdbcType=VARCHAR},
-      name_t = #{record.nameT,jdbcType=VARCHAR},
+    update student
+    set id_s = #{record.idS,jdbcType=VARCHAR},
+      name_s = #{record.nameS,jdbcType=VARCHAR},
       id_m = #{record.idM,jdbcType=VARCHAR},
-      majorleader_t = #{record.majorleaderT,jdbcType=VARCHAR},
-      courseleader_t = #{record.courseleaderT,jdbcType=VARCHAR}
+      data_s = #{record.dataS,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Teacher">
-    update teacher
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Student">
+    update student
     <set>
-      <if test="nameT != null">
-        name_t = #{nameT,jdbcType=VARCHAR},
+      <if test="nameS != null">
+        name_s = #{nameS,jdbcType=VARCHAR},
       </if>
       <if test="idM != null">
         id_m = #{idM,jdbcType=VARCHAR},
       </if>
-      <if test="majorleaderT != null">
-        majorleader_t = #{majorleaderT,jdbcType=VARCHAR},
-      </if>
-      <if test="courseleaderT != null">
-        courseleader_t = #{courseleaderT,jdbcType=VARCHAR},
+      <if test="dataS != null">
+        data_s = #{dataS,jdbcType=VARCHAR},
       </if>
     </set>
-    where id_t = #{idT,jdbcType=VARCHAR}
+    where id_s = #{idS,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Teacher">
-    update teacher
-    set name_t = #{nameT,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Student">
+    update student
+    set name_s = #{nameS,jdbcType=VARCHAR},
       id_m = #{idM,jdbcType=VARCHAR},
-      majorleader_t = #{majorleaderT,jdbcType=VARCHAR},
-      courseleader_t = #{courseleaderT,jdbcType=VARCHAR}
-    where id_t = #{idT,jdbcType=VARCHAR}
+      data_s = #{dataS,jdbcType=VARCHAR}
+    where id_s = #{idS,jdbcType=VARCHAR}
   </update>
 </mapper>

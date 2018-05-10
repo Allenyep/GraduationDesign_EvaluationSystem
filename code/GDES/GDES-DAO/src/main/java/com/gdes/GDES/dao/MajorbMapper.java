@@ -1,7 +1,7 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Majorb;
-import com.allen.model.MajorbExample;
+import com.gdes.GDES.model.Majorb;
+import com.gdes.GDES.model.MajorbExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

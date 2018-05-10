@@ -1,7 +1,7 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Post;
-import com.allen.model.PostExample;
+import com.gdes.GDES.model.Post;
+import com.gdes.GDES.model.PostExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

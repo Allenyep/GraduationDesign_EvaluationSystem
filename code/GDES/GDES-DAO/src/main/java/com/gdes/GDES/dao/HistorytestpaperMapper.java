@@ -1,8 +1,8 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Historytestpaper;
-import com.allen.model.HistorytestpaperExample;
-import com.allen.model.HistorytestpaperKey;
+import com.gdes.GDES.model.Historytestpaper;
+import com.gdes.GDES.model.HistorytestpaperExample;
+import com.gdes.GDES.model.HistorytestpaperKey;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

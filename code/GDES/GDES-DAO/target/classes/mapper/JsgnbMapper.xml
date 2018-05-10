@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gdes.GDES.dao.AbilitypointMapper">
-  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Abilitypoint">
-    <id column="id_ap" jdbcType="INTEGER" property="idAp" />
-    <result column="name_ap" jdbcType="VARCHAR" property="nameAp" />
-    <result column="aspect_ap" jdbcType="VARCHAR" property="aspectAp" />
-    <result column="class_ap" jdbcType="VARCHAR" property="classAp" />
+<mapper namespace="com.gdes.GDES.dao.JsgnbMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Jsgnb">
+    <result column="id_f" jdbcType="INTEGER" property="idF" />
+    <result column="id_r" jdbcType="INTEGER" property="idR" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id_ap, name_ap, aspect_ap, class_ap
+    id_f, id_r
   </sql>
-  <select id="selectByExample" parameterType="com.gdes.GDES.model.AbilitypointExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.JsgnbExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from abilitypoint
+    from jsgnb
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -82,79 +80,49 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from abilitypoint
-    where id_ap = #{idAp,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from abilitypoint
-    where id_ap = #{idAp,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.AbilitypointExample">
-    delete from abilitypoint
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.JsgnbExample">
+    delete from jsgnb
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gdes.GDES.model.Abilitypoint">
-    insert into abilitypoint (id_ap, name_ap, aspect_ap, 
-      class_ap)
-    values (#{idAp,jdbcType=INTEGER}, #{nameAp,jdbcType=VARCHAR}, #{aspectAp,jdbcType=VARCHAR}, 
-      #{classAp,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.gdes.GDES.model.Jsgnb">
+    insert into jsgnb (id_f, id_r)
+    values (#{idF,jdbcType=INTEGER}, #{idR,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Abilitypoint">
-    insert into abilitypoint
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Jsgnb">
+    insert into jsgnb
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="idAp != null">
-        id_ap,
+      <if test="idF != null">
+        id_f,
       </if>
-      <if test="nameAp != null">
-        name_ap,
-      </if>
-      <if test="aspectAp != null">
-        aspect_ap,
-      </if>
-      <if test="classAp != null">
-        class_ap,
+      <if test="idR != null">
+        id_r,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="idAp != null">
-        #{idAp,jdbcType=INTEGER},
+      <if test="idF != null">
+        #{idF,jdbcType=INTEGER},
       </if>
-      <if test="nameAp != null">
-        #{nameAp,jdbcType=VARCHAR},
-      </if>
-      <if test="aspectAp != null">
-        #{aspectAp,jdbcType=VARCHAR},
-      </if>
-      <if test="classAp != null">
-        #{classAp,jdbcType=VARCHAR},
+      <if test="idR != null">
+        #{idR,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gdes.GDES.model.AbilitypointExample" resultType="java.lang.Long">
-    select count(*) from abilitypoint
+  <select id="countByExample" parameterType="com.gdes.GDES.model.JsgnbExample" resultType="java.lang.Long">
+    select count(*) from jsgnb
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update abilitypoint
+    update jsgnb
     <set>
-      <if test="record.idAp != null">
-        id_ap = #{record.idAp,jdbcType=INTEGER},
+      <if test="record.idF != null">
+        id_f = #{record.idF,jdbcType=INTEGER},
       </if>
-      <if test="record.nameAp != null">
-        name_ap = #{record.nameAp,jdbcType=VARCHAR},
-      </if>
-      <if test="record.aspectAp != null">
-        aspect_ap = #{record.aspectAp,jdbcType=VARCHAR},
-      </if>
-      <if test="record.classAp != null">
-        class_ap = #{record.classAp,jdbcType=VARCHAR},
+      <if test="record.idR != null">
+        id_r = #{record.idR,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -162,35 +130,11 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update abilitypoint
-    set id_ap = #{record.idAp,jdbcType=INTEGER},
-      name_ap = #{record.nameAp,jdbcType=VARCHAR},
-      aspect_ap = #{record.aspectAp,jdbcType=VARCHAR},
-      class_ap = #{record.classAp,jdbcType=VARCHAR}
+    update jsgnb
+    set id_f = #{record.idF,jdbcType=INTEGER},
+      id_r = #{record.idR,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Abilitypoint">
-    update abilitypoint
-    <set>
-      <if test="nameAp != null">
-        name_ap = #{nameAp,jdbcType=VARCHAR},
-      </if>
-      <if test="aspectAp != null">
-        aspect_ap = #{aspectAp,jdbcType=VARCHAR},
-      </if>
-      <if test="classAp != null">
-        class_ap = #{classAp,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id_ap = #{idAp,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Abilitypoint">
-    update abilitypoint
-    set name_ap = #{nameAp,jdbcType=VARCHAR},
-      aspect_ap = #{aspectAp,jdbcType=VARCHAR},
-      class_ap = #{classAp,jdbcType=VARCHAR}
-    where id_ap = #{idAp,jdbcType=INTEGER}
   </update>
 </mapper>

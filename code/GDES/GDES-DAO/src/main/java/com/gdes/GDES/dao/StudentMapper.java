@@ -1,7 +1,7 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Student;
-import com.allen.model.StudentExample;
+import com.gdes.GDES.model.Student;
+import com.gdes.GDES.model.StudentExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
