@@ -303,4 +303,306 @@
       deleteornot_q = #{deleteornotQ,jdbcType=VARCHAR}
     where id_q = #{idQ,jdbcType=VARCHAR}
   </update>
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Questions">
+    <id column="id_q" jdbcType="VARCHAR" property="idQ" />
+    <result column="id_c" jdbcType="VARCHAR" property="idC" />
+    <result column="datatime_q" jdbcType="VARCHAR" property="datatimeQ" />
+    <result column="context_q" jdbcType="VARCHAR" property="contextQ" />
+    <result column="score_q" jdbcType="VARCHAR" property="scoreQ" />
+    <result column="time_q" jdbcType="VARCHAR" property="timeQ" />
+    <result column="answer_q" jdbcType="VARCHAR" property="answerQ" />
+    <result column="style_q" jdbcType="VARCHAR" property="styleQ" />
+    <result column="id_t" jdbcType="VARCHAR" property="idT" />
+    <result column="automaticscoring_q" jdbcType="VARCHAR" property="automaticscoringQ" />
+    <result column="deleteornot_q" jdbcType="VARCHAR" property="deleteornotQ" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id_q, id_c, datatime_q, context_q, score_q, time_q, answer_q, style_q, id_t, automaticscoring_q, 
+    deleteornot_q
+  </sql>
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.QuestionsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from questions
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from questions
+    where id_q = #{idQ,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from questions
+    where id_q = #{idQ,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.QuestionsExample">
+    delete from questions
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gdes.GDES.model.Questions">
+    insert into questions (id_q, id_c, datatime_q, 
+      context_q, score_q, time_q, 
+      answer_q, style_q, id_t, 
+      automaticscoring_q, deleteornot_q)
+    values (#{idQ,jdbcType=VARCHAR}, #{idC,jdbcType=VARCHAR}, #{datatimeQ,jdbcType=VARCHAR}, 
+      #{contextQ,jdbcType=VARCHAR}, #{scoreQ,jdbcType=VARCHAR}, #{timeQ,jdbcType=VARCHAR}, 
+      #{answerQ,jdbcType=VARCHAR}, #{styleQ,jdbcType=VARCHAR}, #{idT,jdbcType=VARCHAR}, 
+      #{automaticscoringQ,jdbcType=VARCHAR}, #{deleteornotQ,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Questions">
+    insert into questions
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idQ != null">
+        id_q,
+      </if>
+      <if test="idC != null">
+        id_c,
+      </if>
+      <if test="datatimeQ != null">
+        datatime_q,
+      </if>
+      <if test="contextQ != null">
+        context_q,
+      </if>
+      <if test="scoreQ != null">
+        score_q,
+      </if>
+      <if test="timeQ != null">
+        time_q,
+      </if>
+      <if test="answerQ != null">
+        answer_q,
+      </if>
+      <if test="styleQ != null">
+        style_q,
+      </if>
+      <if test="idT != null">
+        id_t,
+      </if>
+      <if test="automaticscoringQ != null">
+        automaticscoring_q,
+      </if>
+      <if test="deleteornotQ != null">
+        deleteornot_q,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idQ != null">
+        #{idQ,jdbcType=VARCHAR},
+      </if>
+      <if test="idC != null">
+        #{idC,jdbcType=VARCHAR},
+      </if>
+      <if test="datatimeQ != null">
+        #{datatimeQ,jdbcType=VARCHAR},
+      </if>
+      <if test="contextQ != null">
+        #{contextQ,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreQ != null">
+        #{scoreQ,jdbcType=VARCHAR},
+      </if>
+      <if test="timeQ != null">
+        #{timeQ,jdbcType=VARCHAR},
+      </if>
+      <if test="answerQ != null">
+        #{answerQ,jdbcType=VARCHAR},
+      </if>
+      <if test="styleQ != null">
+        #{styleQ,jdbcType=VARCHAR},
+      </if>
+      <if test="idT != null">
+        #{idT,jdbcType=VARCHAR},
+      </if>
+      <if test="automaticscoringQ != null">
+        #{automaticscoringQ,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteornotQ != null">
+        #{deleteornotQ,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gdes.GDES.model.QuestionsExample" resultType="java.lang.Long">
+    select count(*) from questions
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update questions
+    <set>
+      <if test="record.idQ != null">
+        id_q = #{record.idQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idC != null">
+        id_c = #{record.idC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datatimeQ != null">
+        datatime_q = #{record.datatimeQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contextQ != null">
+        context_q = #{record.contextQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scoreQ != null">
+        score_q = #{record.scoreQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeQ != null">
+        time_q = #{record.timeQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answerQ != null">
+        answer_q = #{record.answerQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.styleQ != null">
+        style_q = #{record.styleQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idT != null">
+        id_t = #{record.idT,jdbcType=VARCHAR},
+      </if>
+      <if test="record.automaticscoringQ != null">
+        automaticscoring_q = #{record.automaticscoringQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleteornotQ != null">
+        deleteornot_q = #{record.deleteornotQ,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update questions
+    set id_q = #{record.idQ,jdbcType=VARCHAR},
+      id_c = #{record.idC,jdbcType=VARCHAR},
+      datatime_q = #{record.datatimeQ,jdbcType=VARCHAR},
+      context_q = #{record.contextQ,jdbcType=VARCHAR},
+      score_q = #{record.scoreQ,jdbcType=VARCHAR},
+      time_q = #{record.timeQ,jdbcType=VARCHAR},
+      answer_q = #{record.answerQ,jdbcType=VARCHAR},
+      style_q = #{record.styleQ,jdbcType=VARCHAR},
+      id_t = #{record.idT,jdbcType=VARCHAR},
+      automaticscoring_q = #{record.automaticscoringQ,jdbcType=VARCHAR},
+      deleteornot_q = #{record.deleteornotQ,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Questions">
+    update questions
+    <set>
+      <if test="idC != null">
+        id_c = #{idC,jdbcType=VARCHAR},
+      </if>
+      <if test="datatimeQ != null">
+        datatime_q = #{datatimeQ,jdbcType=VARCHAR},
+      </if>
+      <if test="contextQ != null">
+        context_q = #{contextQ,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreQ != null">
+        score_q = #{scoreQ,jdbcType=VARCHAR},
+      </if>
+      <if test="timeQ != null">
+        time_q = #{timeQ,jdbcType=VARCHAR},
+      </if>
+      <if test="answerQ != null">
+        answer_q = #{answerQ,jdbcType=VARCHAR},
+      </if>
+      <if test="styleQ != null">
+        style_q = #{styleQ,jdbcType=VARCHAR},
+      </if>
+      <if test="idT != null">
+        id_t = #{idT,jdbcType=VARCHAR},
+      </if>
+      <if test="automaticscoringQ != null">
+        automaticscoring_q = #{automaticscoringQ,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteornotQ != null">
+        deleteornot_q = #{deleteornotQ,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_q = #{idQ,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Questions">
+    update questions
+    set id_c = #{idC,jdbcType=VARCHAR},
+      datatime_q = #{datatimeQ,jdbcType=VARCHAR},
+      context_q = #{contextQ,jdbcType=VARCHAR},
+      score_q = #{scoreQ,jdbcType=VARCHAR},
+      time_q = #{timeQ,jdbcType=VARCHAR},
+      answer_q = #{answerQ,jdbcType=VARCHAR},
+      style_q = #{styleQ,jdbcType=VARCHAR},
+      id_t = #{idT,jdbcType=VARCHAR},
+      automaticscoring_q = #{automaticscoringQ,jdbcType=VARCHAR},
+      deleteornot_q = #{deleteornotQ,jdbcType=VARCHAR}
+    where id_q = #{idQ,jdbcType=VARCHAR}
+  </update>
 </mapper>

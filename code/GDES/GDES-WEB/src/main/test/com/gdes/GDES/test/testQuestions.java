@@ -4,6 +4,7 @@ import com.gdes.GDES.dao.QuestionsMapper;
 import com.gdes.GDES.model.Questions;
 import com.gdes.GDES.model.QuestionsExample;
 
+import com.gdes.GDES.model.utils.UUid;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -31,10 +32,9 @@ public class testQuestions {
         criteria.andIdQIsNotNull();
 
         List<Questions> list=qm.selectByExample(qe);
-//        List<QuestionsWithBLOBs> listb=qm.selectByExampleWithBLOBs(qe);
 
         for(Questions q:list){
-            System.out.println(q.getScoreQ());
+            System.out.println(q.getContextQ());
         }
 
     }
@@ -43,6 +43,29 @@ public class testQuestions {
     public void queryQuestions(){
         QuestionsExample qe=new QuestionsExample();
         QuestionsExample.Criteria criteria=qe.createCriteria();
+        criteria.andContextQLike("%顺序表%");
 
+        List<Questions> list=qm.selectByExample(qe);
+
+        for(Questions q:list){
+            System.out.println(q.getContextQ());
+        }
+    }
+
+    /**
+     * UUid插入主键
+     */
+    @Test
+    public void addQuestions(){
+        Questions question=new Questions();
+        question.setIdQ(UUid.getUUID());
+        question.setIdC("2");
+        question.setContextQ("数组的长度是多少");
+        question.setScoreQ("5");
+        question.setAnswerQ("12");
+        question.setIdT("1");
+        question.setStyleQ("2");
+
+        qm.insertSelective(question);
     }
 }

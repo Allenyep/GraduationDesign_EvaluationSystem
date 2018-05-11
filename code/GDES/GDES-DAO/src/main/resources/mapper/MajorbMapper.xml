@@ -161,4 +161,164 @@
     set name_mb = #{nameMb,jdbcType=VARCHAR}
     where id_mb = #{idMb,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Majorb">
+    <id column="id_mb" jdbcType="INTEGER" property="idMb" />
+    <result column="name_mb" jdbcType="VARCHAR" property="nameMb" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id_mb, name_mb
+  </sql>
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.MajorbExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from majorb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from majorb
+    where id_mb = #{idMb,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from majorb
+    where id_mb = #{idMb,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.MajorbExample">
+    delete from majorb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gdes.GDES.model.Majorb">
+    insert into majorb (id_mb, name_mb)
+    values (#{idMb,jdbcType=INTEGER}, #{nameMb,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Majorb">
+    insert into majorb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idMb != null">
+        id_mb,
+      </if>
+      <if test="nameMb != null">
+        name_mb,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idMb != null">
+        #{idMb,jdbcType=INTEGER},
+      </if>
+      <if test="nameMb != null">
+        #{nameMb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gdes.GDES.model.MajorbExample" resultType="java.lang.Long">
+    select count(*) from majorb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update majorb
+    <set>
+      <if test="record.idMb != null">
+        id_mb = #{record.idMb,jdbcType=INTEGER},
+      </if>
+      <if test="record.nameMb != null">
+        name_mb = #{record.nameMb,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update majorb
+    set id_mb = #{record.idMb,jdbcType=INTEGER},
+      name_mb = #{record.nameMb,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Majorb">
+    update majorb
+    <set>
+      <if test="nameMb != null">
+        name_mb = #{nameMb,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_mb = #{idMb,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Majorb">
+    update majorb
+    set name_mb = #{nameMb,jdbcType=VARCHAR}
+    where id_mb = #{idMb,jdbcType=INTEGER}
+  </update>
 </mapper>

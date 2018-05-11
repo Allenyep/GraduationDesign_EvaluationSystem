@@ -55,8 +55,8 @@ public class TestKonwledgepoint {
     public void addKonwledgepoint(){
         Knowledgepoint kp=new Knowledgepoint();
         kp.setIdC("2");
-        kp.setIdAp(1);
-        kp.setNameKp("栈的符号表示");
+        kp.setIdAp(4);
+        kp.setNameKp("数组的抽象思维");
         kp.setProportionKp("0.2");
 
         //
