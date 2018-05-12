@@ -1,0 +1,188 @@
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title></title>
+ <meta name="keywords" content=" keywords" />
+ <meta name="description" content="description" />
+</head>
+<script src="assets/js/jquery.min.js"></script>
+<style type="text/css">
+ body{font-size:13px}
+ .clsInit{width:435px;height::35px;line-height:35px;padding-left:10px}
+ .clsTip{padding-top:5px;background-color:#eee;display:none}
+ .btn{border:solid 1px #666;padding:2px;width:65px;float:right;margin-top:6px;margin-right:6px;filter:progid:DXImageTransform.Mcrosoft.Gradient(GraientType=0,StartColorStr=#FFFFFF,EndColorStr=#ECE9D8);}
+</style>
+<body>
+<!-- <script type="text/javascript">
+ $(function(){
+  function objInit(obj){
+   return $(obj).html('<option>请选择</option>');
+  }
+  var arrData={
+   厂商1:{品牌一:'型号1-1-1,型号1-1-2',
+     品牌二:'型号1-2-1,型号1-2-2'},
+   厂商2:{品牌一:'型号2-1-1,型号2-1-2',
+     品牌二:'型号2-2-1,型号2-2-2'},
+   厂商3:{品牌一:'型号3-1-1,型号3-1-2',
+     品牌二:'型号3-2-1,型号3-2-2'}
+  };
+  $.each(arrData,function(pF){
+   $('#selF').append('<option>'+pF+'</option>');
+
+  });
+  $('#selF').change(function(){
+   objInit('#selT');
+   objInit('#selC');
+   $.each(arrData,function(pF,pS){
+    if($('#selF option:selected').text()==pF){
+     $.each(pS,function(pT,pC){
+      $('#selT').append('<option>'+pT+'</option>');
+     });
+     $('#selT').change(function(){
+      objInit('#selC');
+      $.each(pS,function(pT,pC){
+       if($('#selT option:selected').text()==pT){
+        $.each(pC.split(","),function(){
+         $('#selC').append('<option>'+this+'</option>');
+        })
+       }
+      })
+      
+     });
+    }
+   })
+  });
+ });
+</script> -->
+<!-- <script type="text/javascript">
+	$(document).ready(function(){ 
+ //找到下拉框 
+ var carnameSelect = $(".carname").children("select"); 
+ var cartypeSelect = $(".cartype").children("select"); 
+  
+ //给下拉框注册事件 
+ carnameSelect.change(function(){ 
+  var carnameValue = $(this).val();
+  if( carnameValue != ""){ 
+   //carnameValue不为空的情况接着判断 
+   if(!carnameSelect.data(carnameValue)){ 
+    //不在缓冲区中,需要向服务器请求 
+    $.post("ChainSelect",{keyword:carnameValue,type:"top"},function(data){ 
+     if (data.length != 0){ 
+      //返回的数据不为空 
+      cartypeSelect.html(""); 
+      $("<option value=''>请选择汽车类型</option>").appendTo(cartypeSelect); 
+      for(var i = 0;i < data.length; i++ ){ 
+       $("<option value =' " + data[i] + " '> "+ data[i] +"</option>").appendTo(cartypeSelect); 
+      } 
+      cartypeSelect.parent().show(); 
+      carnameSelect.next().show(); 
+     }else{ 
+      //返回的数据为空 
+      cartypeSelect.parent().hide(); 
+      carnameSelect.next().hide(); 
+     } 
+     carnameSelect.data(carnameValue,data); 
+    },"json"); 
+   }else{ 
+    //在缓冲区中 
+    var data = carnameSelect.data(carnameValue); 
+    if (data.length != 0){ 
+      //返回的数据不为空 
+      cartypeSelect.html(""); 
+      $("<option value=''>请选择汽车类型</option>").appendTo(cartypeSelect); 
+      for(var i = 0;i < data.length; i++ ){ 
+       $("<option value =' " + data[i] + " '> "+ data[i] +"</option>").appendTo(cartypeSelect); 
+      } 
+      cartypeSelect.parent().show(); 
+      carnameSelect.next().show(); 
+     }else{ 
+      //返回的数据为空 
+      cartypeSelect.parent().hide(); 
+      carnameSelect.next().hide(); 
+     } 
+   } 
+  }else{ 
+   //carnameValue为空的情况，隐藏第二个下拉框 
+   cartypeSelect.parent().hide(); 
+   carnameSelect.next().hide(); 
+  } 
+ }); 
+  
+}); 
+
+	var nengliData=[
+		['问题的符号表示','问题求解过程的符号表示','逻辑思维'],
+		['简单算法设计','复杂算法设计','简单算法分析','复杂算法分析'],
+		['设计应用程序','实现应用程序','配置应用程序'],
+		['小型程序设计','大型程序设计'],
+		['管理组织一个网站','配置和继承电子商务软件'],
+		['设计数字电路','实现数字电路']
+	]
+</script> -->
+
+
+<div class="clsInit">
+
+ 厂商：<select id="selF"><option>请选择</option></select>
+ 品牌：<select id="selT"><option>请选择</option></select>
+ 型号：<select id="selC"><option>请选择</option></select>
+ <input type="button" value="查询" id="Button1" class="btn" />
+</div>
+<div class="clsInit" id="divTip"></div>
+<p>13213213231</p>
+<div class="condition-items">
+							<span class="condition-title">方面：</span>
+							<select id="fangmian">
+								<option>请选择</option>
+								<option>模型ML</option>
+								<option>算法AL</option>
+								<option>应用程序AP</option>
+								<option>计算机程序设计BP</option>
+								<option>通过集成开发系统ID</option>
+								<option>硬件与设备HW</option>
+							</select>
+						</div>
+						<div class="condition-items">
+							<span class="condition-title">能力点：</span>
+							<select id="nengli">
+								<option>请选择</option>
+								<!-- <option>问题的符号表示</option>
+								<option>问题求解过程的符号表示</option>
+								<option>逻辑思维</option>
+								<option>抽象思维</option> -->
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+</body>
+<script type="text/javascript">
+					var nengliData=[
+							['问题的符号表示','问题求解过程的符号表示','逻辑思维'],
+							['简单算法设计','复杂算法设计','简单算法分析','复杂算法分析'],
+							['设计应用程序','实现应用程序','配置应用程序'],
+							['小型程序设计','大型程序设计'],
+							['管理组织一个网站','配置和继承电子商务软件'],
+							['设计数字电路','实现数字电路']
+						];
+					var nengli=$('#nengli');
+					$('#fangmian').change(function() {
+						nengli.empty();
+						// $('#nengli').append("<option>请选择能力</option>");
+						$("<option value=''>请选择能力</option>").appendTo(nengli); 
+
+						var checkedIndex=$('#fangmian').get(0).selectedIndex;
+						// alert(checkedIndex);
+						console.log(checkedIndex);
+						var positionGrade =nengliData[checkedIndex-1];
+						for(var i=0;i<positionGrade.length;i++){  
+                			opt = "<option>"+positionGrade[i]+"</option>";  
+                			console.log(opt);
+                			nengli.append(opt);
+            			} 
+
+					});
+		
+</script>
+</html>

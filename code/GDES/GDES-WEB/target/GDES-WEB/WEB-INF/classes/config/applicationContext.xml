@@ -14,6 +14,44 @@
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+    <!-- shiro start -->
+    <!-- 自定义realm -->
+    <bean id="myRealm" class="com.gdes.GDES.realm.MyRealm"/>
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm"/>
+    </bean>
+    <!-- shiro过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- shiro的核心安全接口，属性是必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 身份验证失败，则跳转到登录页面 -->
+        <property name="loginUrl" value="/usertest/index.do"/>
+        <!-- 权限验证失败，跳转到指定页面 -->
+        <property name="unauthorizedUrl" value="/usertest/unauthorized.do"/>
+        <!-- shiro连接约束配置，即过滤链的定义 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!--/user/login=anon-->
+                <!--/user/*=authc-->
+                <!--/user/*=authc-->
+                <!--/usertest/login.do=roles[admin]-->
+                /usertest/form=roles[admin]
+
+            </value>
+        </property>
+    </bean>
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <!-- 开启shiro注解 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+        <!--<property name="proxyTargetClass" value="true" />-->
+    </bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    <!-- shiro end -->
+
     <!-- jdbc配置 -->
     <context:property-placeholder location="classpath:config/jdbc.properties" />
 

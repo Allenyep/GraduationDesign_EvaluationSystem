@@ -208,4 +208,28 @@
       sex = #{sex,jdbcType=VARCHAR}
     where id_u = #{idU,jdbcType=VARCHAR}
   </update>
+
+
+
+
+  <!--select * from t_user where username=#{userName}-->
+  <select id="selectUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM user where id_u=#{idU}
+  </select>
+
+  <!--select r.roleName from t_user u,t_role r where u.roleId=r.id and u.userName=#{userName}-->
+  <!--SELECT r.name from t_user tu,t_role r,t_user_role ur where-->
+  <!--tu.uid=ur.uid  and r.rid=ur.rid and tu.username=#{userName}-->
+  <select id="selectRolesByUserName" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT  r.jsm  FROM user u,role r,userrole ur WHERE
+    u.id_u=ur.id_u and r.id_r=ur.id_r and u.id_u=#{idU}
+  </select>
+
+  <!--select p.permissionName from t_user u,t_role r,t_permission p where u.roleId=r.id and p.roleId=r.id and u.userName=#{userName}-->
+  <!--SELECT p.url  FROM t_user_role ur,t_permission p,t_role r,t_user u,t_role_permission rp WHERE rp.pid=p.pid-->
+  <!--AND u.uid=ur.uid and rp.rid=r.rid AND rp.pid=p.pid AND u.username=#{userName}-->
+  <select id="selectPermissionByUserName" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT  f.link  FROM user u,features f,role r,jsgnb j,userrole ur WHERE
+    j.id_f=f.id_f AND j.id_r=r.id_r AND u.id_u=ur.id_u and u.id_u=#{idU}
+  </select>
 </mapper>
