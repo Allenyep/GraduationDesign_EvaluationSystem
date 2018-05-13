@@ -211,10 +211,29 @@
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 课程管理
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
+                <ul class="sidebar-nav sidebar-nav-sub" style="display: block">
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:;" target="index">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 基础课管理
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:;">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 专业课管理
+                        </a>
+                    </li>
+
+                </ul>
             </li>
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 知识点管理
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 能力点管理
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
             </li>

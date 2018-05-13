@@ -98,35 +98,33 @@
                                         <th>课程名称</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr class="gradeX">
-                                        <td>顺序表</td>
-                                        <td>0.1</td>
-                                        <td>test</td>
-                                        <td>
-                                            <div class="tpl-table-black-operation">
-                                                <a href="javascript:;"
-                                                   data-am-modal="{target: '#doc-modal-2', closeViaDimmer: 0, width: 400, height: 400}"
-                                                   id="doc-confirm-toggle">
-                                                    <i class="am-icon-pencil"></i> 编辑
-                                                </a>
-                                                <a href="javascript:;" class="tpl-table-black-operation-del"
-                                                   data-am-modal="{target: '#my-confirm', closeViaDimmer: 0}">
-                                                    <i class="am-icon-trash"></i> 删除
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <c:forEach items="${konwlist}" var="a">
+                                    <tbody id="tablelist">
+                                    <%--<tr class="gradeX">--%>
+                                        <%--<td>顺序表</td>--%>
+                                        <%--<td>0.1</td>--%>
+                                        <%--<td>testhard</td>--%>
+                                        <%--<td>--%>
+                                            <%--<div class="tpl-table-black-operation">--%>
+                                                <%--<a href="javascript:;"--%>
+                                                   <%--id="updatekonwA">--%>
+                                                    <%--<i class="am-icon-pencil"></i> 编辑--%>
+                                                <%--</a>--%>
+                                                <%--<a href="javascript:;" class="tpl-table-black-operation-del"--%>
+                                                   <%--data-am-modal="{target: '#my-confirm', closeViaDimmer: 0}">--%>
+                                                    <%--<i class="am-icon-trash"></i> 删除--%>
+                                                <%--</a>--%>
+                                            <%--</div>--%>
+                                        <%--</td>--%>
+                                    <%--</tr>--%>
+                                    <c:forEach items="${konwlist}" var="a" varStatus="i">
                                         <tr>
                                             <td>${a.nameKp}</td>
                                             <td>${a.proportionKp}</td>
                                             <td>${a.noteKp}</td>
                                             <td>
                                                 <div class="tpl-table-black-operation">
-                                                    <a href="javascript:;"
-                                                       data-am-modal="{target: '#doc-modal-2', closeViaDimmer: 0, width: 400, height: 400}"
-                                                       id="doc-confirm-toggle">
+                                                    <a href="javascript:;" onclick="updatedata(${i.index},${a.idKp})"
+                                                       id="updateKp">
                                                         <i class="am-icon-pencil"></i> 编辑
                                                     </a>
                                                     <a href="javascript:;" onclick="if(confirm('确定删除?')==true)
@@ -206,16 +204,18 @@
         <div class="am-modal-hd">修改知识点
             <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
         </div>
-        <form class="am-form">
+        <form class="am-form" action="/teacher/updateKnowledgepoint.do" method="post">
             <fieldset>
                 <div class="am-form-group">
                     <label for="nameKp2">知识点名称</label>
-                    <input type="text" class="" id="nameKp2" placeholder="输入知识点名称">
+                    <input type="text" class="" name="nameKp" id="nameKp2" placeholder="输入知识点名称">
                 </div>
+
+                <input type="hidden" id="idKp" name="idKp">
 
                 <div class="am-form-group">
                     <label for="proportionKp2">知识点占比</label>
-                    <input type="text" class="" id="proportionKp2" placeholder="占比0.1到1之间">
+                    <input type="text" class="" name="proportionKp" id="proportionKp2" placeholder="占比0.1到1之间">
                 </div>
                 <p>
                     <button type="submit" class="am-btn am-btn-default">提交</button>
@@ -244,6 +244,20 @@
         alert("delete");
     });
 
+    function updatedata(row,idKp){
+        var tdArr=$('#tablelist').children("tr").eq(row);
+        var konwname=tdArr.find("td").eq(0).text();
+        var proportion=tdArr.find("td").eq(1).text();
+        console.log(konwname);
+        console.log(proportion);
+
+        $('#doc-modal-2').modal();
+        $('#nameKp2').val(konwname);
+        $('#proportionKp2').val(proportion);
+        $('#idKp').val(idKp);
+
+
+    }
 </script>
 
 <script src="../assets/js/amazeui.min.js"></script>

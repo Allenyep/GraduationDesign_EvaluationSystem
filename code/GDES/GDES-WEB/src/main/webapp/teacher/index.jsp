@@ -213,7 +213,7 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub" style="display: block">
                     <li class="sidebar-nav-link">
-                        <a href="javascript:;">
+                        <a href="/teacher/chutiindex.jsp" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 出题
                         </a>
                     </li>

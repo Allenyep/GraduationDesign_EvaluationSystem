@@ -25,13 +25,14 @@ public class teacherController {
 
     //通过教师课程加载初始页面
     @RequestMapping("knowledgepoint")
-    public String init(String id_s, Model model) throws Exception {
+    public String init(String message, Model model) throws Exception {
         List<Knowledgepoint> list=kps.queryAllKnowledgepoint();
         model.addAttribute("konwlist",list);
         for(Knowledgepoint kp:list){
             System.out.println(kp.getNameKp());
         }
 
+        model.addAttribute("message",message);
         return "teacher/knowledgepoint";
     }
 
@@ -54,6 +55,7 @@ public class teacherController {
         return "redirect:knowledgepoint.do";
     }
 
+    //删除
     @RequestMapping("delKonwledgepoint")
     public String delKonwledgepoint(String idKp,Model model)throws Exception{
         int idKpInt=Integer.valueOf(idKp);
@@ -65,6 +67,24 @@ public class teacherController {
 
 //        return "teacher/knowledgepoint";
         return "redirect:knowledgepoint.do";
+    }
+
+    //修改知识点
+    @RequestMapping("updateKnowledgepoint")
+    public String updateKnowledgepoint(String idKp,String nameKp,
+                                       String proportionKp,Model model)throws Exception{
+        Knowledgepoint kp=new Knowledgepoint();
+        kp.setIdKp(Integer.valueOf(idKp));
+        kp.setNameKp(nameKp);
+        kp.setProportionKp(proportionKp);
+
+        System.out.println(nameKp);
+
+        String str=kps.updateKonwledgepoint(kp);
+        model.addAttribute("message",str);
+
+        return "redirect:knowledgepoint.do";
+
     }
 
 }
