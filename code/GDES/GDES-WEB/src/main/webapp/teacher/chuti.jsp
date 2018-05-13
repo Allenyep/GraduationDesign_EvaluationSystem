@@ -323,7 +323,7 @@
         <!-- 出题界面 -->
         
         <div class="tpl-content-wrapper">
-        	<iframe src="/teacher/login.jsp" height="600px" width="100%"></iframe>
+        	<iframe src="/teacher/chutiindex.jsp" height="600px" width="100%"></iframe>
         </div>
 
     </div>

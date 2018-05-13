@@ -13,11 +13,18 @@ public interface KnowledgepointService {
     //TODO:知识点添加修改删除
 
     /**
+     * 查询所有知识点
+     * @return
+     * @throws Exception
+     */
+    public List<Knowledgepoint> queryAllKnowledgepoint()throws Exception;
+
+    /**
      * 根据课程编号查找知识点
      * @return
      * @throws Exception
      */
-    public List<Knowledgepoint> queryAllKonwledgepoint(String id_c)throws Exception;
+    public List<Knowledgepoint> queryAllKonwledgepointBycourse(String id_c)throws Exception;
 
     /**
      * 添加知识点
