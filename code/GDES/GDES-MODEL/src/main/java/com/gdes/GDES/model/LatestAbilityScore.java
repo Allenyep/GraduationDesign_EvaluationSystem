@@ -7,6 +7,8 @@ public class Latestabilityscore extends LatestabilityscoreKey {
 
     private String timeLas;
 
+    private Abilitypoint abilitypoint;
+
     public String getScoreLas() {
         return scoreLas;
     }
@@ -29,5 +31,13 @@ public class Latestabilityscore extends LatestabilityscoreKey {
 
     public void setTimeLas(String timeLas) {
         this.timeLas = timeLas == null ? null : timeLas.trim();
+    }
+
+    public Abilitypoint getAbilitypoint() {
+        return abilitypoint;
+    }
+
+    public void setAbilitypoint(Abilitypoint abilitypoint) {
+        this.abilitypoint = abilitypoint;
     }
 }

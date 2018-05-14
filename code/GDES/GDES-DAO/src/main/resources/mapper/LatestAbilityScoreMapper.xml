@@ -208,4 +208,7 @@
     where id_s = #{idS,jdbcType=VARCHAR}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </update>
+  <select id="getAbilityPointId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT DISTINCT id_ap FROM latestabilityscore WHERE id_s = #{idS}
+  </select>
 </mapper>

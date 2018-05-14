@@ -3,7 +3,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
-    session.setAttribute("basePath",basePath);
+    session.setAttribute("basePath", basePath);
 %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -18,13 +18,16 @@
     <link rel="stylesheet" href="../assets/css/custom.css">
     <link rel="stylesheet" href="../assets/css/amazeui.css"/>
     <link rel="stylesheet" href="../assets/css/ace.min.css"/>
+    <script type="text/javascript" src="../assets/css/app.css"></script>
     <script type="text/javascript" src="../assets/js/Chart.js"></script>
     <script type="text/javascript" src="../assets/js/echarts.min.js"></script>
     <script type="text/javascript" src="../assets/js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
 
 </head>
 <body>
+<script type="text/javascript" src="../assets/js/theme.js"></script>
 <div class="page-content">
     <div class="page-header">
         <h1>
@@ -35,23 +38,23 @@
             </small>
         </h1>
     </div>
+    <div>
+        <!--饼状图-->
+        <div class="am-u-md-6 chrt-page-grids">
+            <!-- Step Line -->
+            <div class="card-box">
+                <div id="pie3" style="width: 100%;height: 50%;"></div>
+            </div>
+        </div>
 
-    <!--饼状图-->
-    <div class="am-u-md-6 chrt-page-grids">
-        <!-- Step Line -->
-        <div class="card-box">
-            <div id="pie3" style="width: 100%;height: 400px;"></div>
+        <!--雷达图-->
+        <div class="col-md-6 chrt-page-grids">
+            <h4 class="title">职位推荐</h4>
+            <div class="radar-grid">
+                <canvas id="radar" style="width: 50%;height: 23%;"></canvas>
+            </div>
         </div>
     </div>
-
-    <!--雷达图-->
-    <div class="col-md-6 chrt-page-grids">
-        <h4 class="title">职位推荐</h4>
-        <div class="radar-grid">
-            <canvas id="radar" height="292" width="400" style="width: 400px; height: 292px;"></canvas>
-        </div>
-    </div>
-
     <div class="clearfix"></div>
 
     <div class="row">
@@ -62,10 +65,10 @@
             <div class="panel-body">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#home" data-toggle="tab">推荐职位</a>
+                        <a href="#home" data-toggle="tab">能力波动</a>
                     </li>
                     <li class="">
-                        <a href="#profile" data-toggle="tab">待定</a>
+                        <a href="#profile" data-toggle="tab">得分详情</a>
                     </li>
                     <li class="">
                         <a href="#messages" data-toggle="tab">待定</a>
@@ -77,19 +80,32 @@
 
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="home">
-                        <h4>Home Tab</h4>
-                        <p> 根据分析，推荐最佳职位为：UI设计。<br/>
-                            推荐职位排行：UI设计>数据库设计>Web开发>移动开发>前端工程师>软件测试>系统运营
-                        </p>
+                        <!--折线图-->
+                        <div id="Stack" style="width: 100%; height: 350px;"></div>
                     </div>
                     <div class="tab-pane fade" id="profile">
-                        <h4>Profile Tab</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                        <div class="row">
+                            <table width="100%" class="am-table am-table-compact tpl-table-black ">
+                                <thead>
+                                <tr>
+                                    <th>能力点编号</th>
+                                    <th>能力点名称</th>
+                                    <th>得分</th>
+                                    <th>时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${detailline}" var="d">
+                                <tr class="gradeX">
+                                    <td>${d.idAp}</td>
+                                    <td>${d.abilitypoint.nameAp}</td>
+                                    <td>${d.scoreSd}</td>
+                                    <td>${d.timeSd}</td>
+                                </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="messages">
                         <h4>Messages Tab</h4>
@@ -116,14 +132,14 @@
         <script>
             <!--雷达图-->
             var radarChartData = {
-                labels: ["Web开发", "移动开发", "UI设计", "数据库设计", "前端工程师", "软件测试", "系统运营"],
+                labels: [],
                 datasets: [
                     {
                         fillColor: "rgba(239, 85, 58, 0.87)",
                         strokeColor: "#e94e02",
                         pointColor: "#e94e02",
                         pointStrokeColor: "#fff",
-                        data: [65, 59, 90, 81, 56, 55, 40]
+                        data: []
                     },
                     // {
                     //     fillColor: "rgba(79, 82, 186, 0.87)",
@@ -135,6 +151,10 @@
                 ]
 
             };
+            <c:forEach items="${studentpost}" var="sp">
+                radarChartData.labels.push("${sp.post.nameP}");
+                radarChartData.datasets[0].data.push(${sp.scoreSp});
+            </c:forEach>
             new Chart(document.getElementById("radar").getContext("2d")).Radar(radarChartData);
         </script>
     </div>
@@ -158,7 +178,7 @@
                 },
                 series: [
                     {
-                        name: '比例',
+                        name: '得分（比例）',
                         type: 'pie',
                         radius: '55%',
                         center: ['50%', '60%'],
@@ -173,12 +193,65 @@
                     }
                 ]
             };
-
             <c:forEach items="${scorebystudentid}" var="s">
-                option.legend.data.push("${s.abilitypoint.name_ap}");
-                option.series[0].data.push({value: ${s.score_las}, name: "${s.abilitypoint.name_ap}"});
+            option.legend.data.push("${s.abilitypoint.nameAp}");
+            option.series[0].data.push({value: ${s.scoreLas}, name: "${s.abilitypoint.nameAp}"});
             </c:forEach>
             pie3.setOption(option);
+        })();
+    </script>
+    <script type="text/javascript">
+        //折线图堆叠
+        (function () {
+
+            var myChart = echarts.init(document.getElementById("Stack"));
+
+            option = {
+                title: {
+                    text: '能力波动图'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: []
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: []
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: []
+            };
+            <c:forEach items="${scorebystudentid}" var="sd">
+            option.legend.data.push("${sd.abilitypoint.nameAp}");
+            var parm = {
+                name: '${sd.abilitypoint.nameAp}',
+                type: 'line',
+                stack: '总量',
+                data: []
+            };
+            option.series.push(parm);
+            </c:forEach>
+            <c:forEach items="${detailline}" var="dl">
+            var i = option.legend.data.indexOf("${dl.abilitypoint.nameAp}");
+            option.series[i].data.push(${dl.scoreSd});
+            </c:forEach>
+            myChart.setOption(option);
         })();
     </script>
 </div>

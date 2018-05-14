@@ -5,6 +5,10 @@ public class Scoredetail extends ScoredetailKey {
 
     private String timeSd;
 
+    private Abilitypoint abilitypoint;
+
+    private Teacher teacher;
+
     public String getScoreSd() {
         return scoreSd;
     }
@@ -19,5 +23,21 @@ public class Scoredetail extends ScoredetailKey {
 
     public void setTimeSd(String timeSd) {
         this.timeSd = timeSd == null ? null : timeSd.trim();
+    }
+
+    public Abilitypoint getAbilitypoint() {
+        return abilitypoint;
+    }
+
+    public void setAbilitypoint(Abilitypoint abilitypoint) {
+        this.abilitypoint = abilitypoint;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

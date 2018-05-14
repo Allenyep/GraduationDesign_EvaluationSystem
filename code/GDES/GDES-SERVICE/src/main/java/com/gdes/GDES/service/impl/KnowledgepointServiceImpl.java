@@ -61,4 +61,18 @@ public class KnowledgepointServiceImpl implements KnowledgepointService {
         else
             return "删除失败";
     }
+
+    public long getCount() throws Exception {
+        KnowledgepointExample kpe = new KnowledgepointExample();
+        KnowledgepointExample.Criteria criteria = kpe.createCriteria();
+        criteria.andIdApIsNotNull();
+        return kpm.countByExample(kpe);
+    }
+
+    public List<Knowledgepoint> queryByAbilityId(int aid) throws Exception {
+        KnowledgepointExample example = new KnowledgepointExample();
+        KnowledgepointExample.Criteria criteria = example.createCriteria();
+        criteria.andIdApEqualTo(aid);
+        return kpm.selectByExample(example);
+    }
 }

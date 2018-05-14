@@ -28,4 +28,8 @@ public interface ScoredetailMapper {
     int updateByPrimaryKeySelective(Scoredetail record);
 
     int updateByPrimaryKey(Scoredetail record);
+
+    List<Integer> getApIdNotRepeat(String sid);
+
+    String getAvgByStuentIdAndApId(Scoredetail record);
 }

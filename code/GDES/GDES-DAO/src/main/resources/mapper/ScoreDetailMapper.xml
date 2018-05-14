@@ -240,4 +240,12 @@
       and id_q = #{idQ,jdbcType=VARCHAR}
       and id_ap = #{idAp,jdbcType=INTEGER}
   </update>
+  
+  <select id="getApIdNotRepeat" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT DISTINCT id_ap FROM scoredetail WHERE id_s = #{idS}
+  </select>
+
+  <select id="getAvgByStuentIdAndApId" parameterType="com.gdes.GDES.model.Scoredetail" resultType="java.lang.String">
+    SELECT AVG(score_sd) FROM scoredetail WHERE id_s = #{idS} AND id_ap = #{idAp}
+  </select>
 </mapper>

@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/teacher/")
-public class teacherController {
+public class TeacherController {
     //知识点
     @Resource
     private KnowledgepointService kps;

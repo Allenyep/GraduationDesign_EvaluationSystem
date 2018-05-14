@@ -28,4 +28,6 @@ public interface LatestabilityscoreMapper {
     int updateByPrimaryKeySelective(Latestabilityscore record);
 
     int updateByPrimaryKey(Latestabilityscore record);
+
+    List<Integer> getAbilityPointId(String sid);
 }

@@ -49,4 +49,19 @@ public interface KnowledgepointService {
      * @throws Exception
      */
     public String deleteKonwledgepoint(Knowledgepoint kp)throws Exception;
+
+    /**
+     * 得到知识点个数
+     * @return
+     * @throws Exception
+     */
+    public long getCount() throws Exception;
+
+    /**
+     * 根据能力点查询
+     * @param aid
+     * @return
+     * @throws Exception
+     */
+    public List<Knowledgepoint> queryByAbilityId(int aid) throws Exception;
 }

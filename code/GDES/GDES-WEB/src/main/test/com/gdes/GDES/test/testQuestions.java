@@ -20,7 +20,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath*:config/applicationContext.xml")
-public class testQuestions {
+public class TestQuestions {
     @Resource
     private QuestionsMapper qm;
 

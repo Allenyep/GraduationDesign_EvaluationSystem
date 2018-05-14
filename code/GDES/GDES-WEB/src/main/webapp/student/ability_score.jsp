@@ -27,8 +27,9 @@
                     首页
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        能力得分
+                        得分表
                     </small>
+                    <a type="button" class="btn btn-info" style="float: right" href="${basePath}excle/sdown.do?id_s=631406010102">下载分析报表</a>
                 </h1>
             </div><!-- /.page-header -->
             <div class="row">
@@ -63,13 +64,13 @@
 
                                             </td>
 
-                                            <td class="hidden-480">${a.id_ap}</td>
+                                            <td class="hidden-480">${a.idAp}</td>
                                             <td class="hidden-480">
-                                                <a href="${basePath}scoredetail/scoredetail.do?id_ap=${a.id_ap}&id_s=${a.id_s}">${a.abilitypoint.name_ap}</a>
+                                                <a href="${basePath}scoredetail/scoredetail.do?id_ap=${a.idAp}&id_s=${a.idS}">${a.abilitypoint.nameAp}</a>
                                             </td>
-                                            <td class="hidden-480">${a.score_las}</td>
+                                            <td class="hidden-480">${a.scoreLas}</td>
                                                 <%--<td>Feb 12</td>--%>
-                                            <td class="hidden-480">${a.time_las}</td>
+                                            <td class="hidden-480">${a.timeLas}</td>
 
                                             <td>
                                             </td>
@@ -133,6 +134,11 @@
             return 'left';
         }
     })
+    /*个人能力报表下载*/
+    function myDownload() {
+        var myurl = "${basePath}excle/sdown.do?id_s=631406010102";
+        window.option(myurl);
+    }
 </script>
 
 </body>

@@ -3,6 +3,8 @@ package com.gdes.GDES.dao;
 import com.gdes.GDES.model.Student;
 import com.gdes.GDES.model.StudentExample;
 import java.util.List;
+
+import com.gdes.GDES.model.Studentpost;
 import org.apache.ibatis.annotations.Param;
 
 public interface StudentMapper {
@@ -12,7 +14,7 @@ public interface StudentMapper {
 
     int deleteByPrimaryKey(String idS);
 
-    int insert(Student record);
+    int insert(Studentpost record);
 
     int insertSelective(Student record);
 

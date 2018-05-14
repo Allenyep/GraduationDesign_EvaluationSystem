@@ -5,6 +5,8 @@ public class Studentpost extends StudentpostKey {
 
     private String timeSp;
 
+    private Post post;
+
     public String getScoreSp() {
         return scoreSp;
     }
@@ -19,5 +21,13 @@ public class Studentpost extends StudentpostKey {
 
     public void setTimeSp(String timeSp) {
         this.timeSp = timeSp == null ? null : timeSp.trim();
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }

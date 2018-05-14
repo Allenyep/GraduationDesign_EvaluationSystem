@@ -1,6 +1,7 @@
 package com.gdes.GDES.test;
 
 import com.gdes.GDES.model.Knowledgepoint;
+import com.gdes.GDES.service.KnowledgepointService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,6 +22,9 @@ import java.util.List;
 public class TestKonwledgepoint {
     @Resource
     private KnowledgepointMapper kpm;
+
+    @Resource
+    private KnowledgepointService knowledgepointService;
 
     @Test
     public void testFindKonwledgepoint(){
@@ -71,5 +75,10 @@ public class TestKonwledgepoint {
 
 
         kpm.updateByPrimaryKeySelective(kp);
+    }
+
+    @Test
+    public void testGetCount() throws Exception {
+        System.out.println(knowledgepointService.getCount());
     }
 }
