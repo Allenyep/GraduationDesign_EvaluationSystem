@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdes.GDES.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Course">
+    <id column="id_c" jdbcType="VARCHAR" property="idC" />
+    <result column="name_c" jdbcType="VARCHAR" property="nameC" />
+    <result column="leader_c" jdbcType="VARCHAR" property="leaderC" />
+    <result column="introduction_c" jdbcType="VARCHAR" property="introductionC" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id_c, name_c, leader_c, introduction_c
+  </sql>
+  <select id="selectByExample" parameterType="com.gdes.GDES.model.CourseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where id_c = #{idC,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from course
+    where id_c = #{idC,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gdes.GDES.model.CourseExample">
+    delete from course
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gdes.GDES.model.Course">
+    insert into course (id_c, name_c, leader_c, 
+      introduction_c)
+    values (#{idC,jdbcType=VARCHAR}, #{nameC,jdbcType=VARCHAR}, #{leaderC,jdbcType=VARCHAR}, 
+      #{introductionC,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gdes.GDES.model.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idC != null">
+        id_c,
+      </if>
+      <if test="nameC != null">
+        name_c,
+      </if>
+      <if test="leaderC != null">
+        leader_c,
+      </if>
+      <if test="introductionC != null">
+        introduction_c,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idC != null">
+        #{idC,jdbcType=VARCHAR},
+      </if>
+      <if test="nameC != null">
+        #{nameC,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderC != null">
+        #{leaderC,jdbcType=VARCHAR},
+      </if>
+      <if test="introductionC != null">
+        #{introductionC,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gdes.GDES.model.CourseExample" resultType="java.lang.Long">
+    select count(*) from course
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update course
+    <set>
+      <if test="record.idC != null">
+        id_c = #{record.idC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nameC != null">
+        name_c = #{record.nameC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leaderC != null">
+        leader_c = #{record.leaderC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introductionC != null">
+        introduction_c = #{record.introductionC,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update course
+    set id_c = #{record.idC,jdbcType=VARCHAR},
+      name_c = #{record.nameC,jdbcType=VARCHAR},
+      leader_c = #{record.leaderC,jdbcType=VARCHAR},
+      introduction_c = #{record.introductionC,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Course">
+    update course
+    <set>
+      <if test="nameC != null">
+        name_c = #{nameC,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderC != null">
+        leader_c = #{leaderC,jdbcType=VARCHAR},
+      </if>
+      <if test="introductionC != null">
+        introduction_c = #{introductionC,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_c = #{idC,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Course">
+    update course
+    set name_c = #{nameC,jdbcType=VARCHAR},
+      leader_c = #{leaderC,jdbcType=VARCHAR},
+      introduction_c = #{introductionC,jdbcType=VARCHAR}
+    where id_c = #{idC,jdbcType=VARCHAR}
+  </update>
+</mapper>

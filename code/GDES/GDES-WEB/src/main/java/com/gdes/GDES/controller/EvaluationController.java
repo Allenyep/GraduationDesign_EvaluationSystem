@@ -261,7 +261,8 @@ public class EvaluationController {
             }
         }*/
 
-        return scoreProportion(studentid, model);
+//        return scoreProportion(studentid, model);
+        return "redirect:/las/scoreproportion.do?id_s="+studentid;
     }
 
     /**
@@ -270,7 +271,7 @@ public class EvaluationController {
      * @param model
      * @return
      */
-    public String scoreProportion(String id_s, Model model) throws Exception {
+    /*public String scoreProportion(String id_s, Model model) throws Exception {
         //饼图
         List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
         model.addAttribute("scorebystudentid", latestAbilityScores);
@@ -281,7 +282,7 @@ public class EvaluationController {
         List<Studentpost> studentpostList = studentpostService.getListByStudentId(id_s);
         model.addAttribute("studentpost", studentpostList);
         return "student/charts";
-    }
+    }*/
 
     /**
      * 获取当前时间
