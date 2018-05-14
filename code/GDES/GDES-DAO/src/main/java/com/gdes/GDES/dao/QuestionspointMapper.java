@@ -1,10 +1,10 @@
 package com.gdes.GDES.dao;
 
-import com.gdes.GDES.model.*;
-
-import org.apache.ibatis.annotations.Param;
-
+import com.gdes.GDES.model.Questionspoint;
+import com.gdes.GDES.model.QuestionspointExample;
+import com.gdes.GDES.model.QuestionspointKey;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface QuestionspointMapper {
     long countByExample(QuestionspointExample example);

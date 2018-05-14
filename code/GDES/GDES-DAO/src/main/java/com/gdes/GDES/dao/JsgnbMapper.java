@@ -1,10 +1,9 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Jsgnb;
-import com.allen.model.JsgnbExample;
-import org.apache.ibatis.annotations.Param;
-
+import com.gdes.GDES.model.Jsgnb;
+import com.gdes.GDES.model.JsgnbExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface JsgnbMapper {
     long countByExample(JsgnbExample example);

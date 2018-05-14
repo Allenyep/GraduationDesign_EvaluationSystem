@@ -5,7 +5,7 @@
     <id column="id_s" jdbcType="VARCHAR" property="idS" />
     <result column="name_s" jdbcType="VARCHAR" property="nameS" />
     <result column="id_m" jdbcType="VARCHAR" property="idM" />
-    <result column="data_s" jdbcType="VARCHAR" property="dataS" />
+    <result column="date_s" jdbcType="VARCHAR" property="dateS" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id_s, name_s, id_m, data_s
+    id_s, name_s, id_m, date_s
   </sql>
   <select id="selectByExample" parameterType="com.gdes.GDES.model.StudentExample" resultMap="BaseResultMap">
     select
@@ -100,9 +100,9 @@
   </delete>
   <insert id="insert" parameterType="com.gdes.GDES.model.Student">
     insert into student (id_s, name_s, id_m, 
-      data_s)
+      date_s)
     values (#{idS,jdbcType=VARCHAR}, #{nameS,jdbcType=VARCHAR}, #{idM,jdbcType=VARCHAR}, 
-      #{dataS,jdbcType=VARCHAR})
+      #{dateS,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gdes.GDES.model.Student">
     insert into student
@@ -116,8 +116,8 @@
       <if test="idM != null">
         id_m,
       </if>
-      <if test="dataS != null">
-        data_s,
+      <if test="dateS != null">
+        date_s,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -130,8 +130,8 @@
       <if test="idM != null">
         #{idM,jdbcType=VARCHAR},
       </if>
-      <if test="dataS != null">
-        #{dataS,jdbcType=VARCHAR},
+      <if test="dateS != null">
+        #{dateS,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -153,8 +153,8 @@
       <if test="record.idM != null">
         id_m = #{record.idM,jdbcType=VARCHAR},
       </if>
-      <if test="record.dataS != null">
-        data_s = #{record.dataS,jdbcType=VARCHAR},
+      <if test="record.dateS != null">
+        date_s = #{record.dateS,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -166,7 +166,7 @@
     set id_s = #{record.idS,jdbcType=VARCHAR},
       name_s = #{record.nameS,jdbcType=VARCHAR},
       id_m = #{record.idM,jdbcType=VARCHAR},
-      data_s = #{record.dataS,jdbcType=VARCHAR}
+      date_s = #{record.dateS,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -180,8 +180,8 @@
       <if test="idM != null">
         id_m = #{idM,jdbcType=VARCHAR},
       </if>
-      <if test="dataS != null">
-        data_s = #{dataS,jdbcType=VARCHAR},
+      <if test="dateS != null">
+        date_s = #{dateS,jdbcType=VARCHAR},
       </if>
     </set>
     where id_s = #{idS,jdbcType=VARCHAR}
@@ -190,7 +190,7 @@
     update student
     set name_s = #{nameS,jdbcType=VARCHAR},
       id_m = #{idM,jdbcType=VARCHAR},
-      data_s = #{dataS,jdbcType=VARCHAR}
+      date_s = #{dateS,jdbcType=VARCHAR}
     where id_s = #{idS,jdbcType=VARCHAR}
   </update>
 </mapper>

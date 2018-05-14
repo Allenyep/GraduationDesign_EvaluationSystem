@@ -1,10 +1,9 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Userrole;
-import com.allen.model.UserroleExample;
-import org.apache.ibatis.annotations.Param;
-
+import com.gdes.GDES.model.Userrole;
+import com.gdes.GDES.model.UserroleExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserroleMapper {
     long countByExample(UserroleExample example);

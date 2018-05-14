@@ -1,11 +1,10 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Latestabilityscore;
-import com.allen.model.LatestabilityscoreExample;
-import com.allen.model.LatestabilityscoreKey;
-import org.apache.ibatis.annotations.Param;
-
+import com.gdes.GDES.model.Latestabilityscore;
+import com.gdes.GDES.model.LatestabilityscoreExample;
+import com.gdes.GDES.model.LatestabilityscoreKey;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface LatestabilityscoreMapper {
     long countByExample(LatestabilityscoreExample example);

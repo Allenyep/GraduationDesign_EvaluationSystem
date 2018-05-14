@@ -1,10 +1,9 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Major;
-import com.allen.model.MajorExample;
-import org.apache.ibatis.annotations.Param;
-
+import com.gdes.GDES.model.Major;
+import com.gdes.GDES.model.MajorExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface MajorMapper {
     long countByExample(MajorExample example);

@@ -1,11 +1,10 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Postabilitypoint;
-import com.allen.model.PostabilitypointExample;
-import com.allen.model.PostabilitypointKey;
-import org.apache.ibatis.annotations.Param;
-
+import com.gdes.GDES.model.Postabilitypoint;
+import com.gdes.GDES.model.PostabilitypointExample;
+import com.gdes.GDES.model.PostabilitypointKey;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PostabilitypointMapper {
     long countByExample(PostabilitypointExample example);

@@ -1,7 +1,7 @@
 package com.gdes.GDES.service;
 
-import com.gdes.GDES.model.LatestAbilityScore;
-import com.gdes.GDES.model.ScoreDetail;
+import com.gdes.GDES.model.Latestabilityscore;
+import com.gdes.GDES.model.Scoredetail;
 
 import java.util.List;
 
@@ -14,5 +14,5 @@ public interface ScoreDetailService {
      * @param latestAbilityScore
      * @return
      */
-    public List<ScoreDetail> getScoreDetailListByAbilityId(LatestAbilityScore latestAbilityScore);
+    public List<Scoredetail> getScoreDetailListByAbilityId(Latestabilityscore latestAbilityScore);
 }

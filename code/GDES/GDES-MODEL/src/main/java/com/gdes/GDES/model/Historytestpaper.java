@@ -1,13 +1,21 @@
 package com.gdes.GDES.model;
 
 public class Historytestpaper extends HistorytestpaperKey {
+    private String answerHtp;
+
     private String scoreHtp;
 
     private String timeconsumingHtp;
 
     private String timeproportionHtp;
 
-    private String answerHtp;
+    public String getAnswerHtp() {
+        return answerHtp;
+    }
+
+    public void setAnswerHtp(String answerHtp) {
+        this.answerHtp = answerHtp == null ? null : answerHtp.trim();
+    }
 
     public String getScoreHtp() {
         return scoreHtp;
@@ -31,13 +39,5 @@ public class Historytestpaper extends HistorytestpaperKey {
 
     public void setTimeproportionHtp(String timeproportionHtp) {
         this.timeproportionHtp = timeproportionHtp == null ? null : timeproportionHtp.trim();
-    }
-
-    public String getAnswerHtp() {
-        return answerHtp;
-    }
-
-    public void setAnswerHtp(String answerHtp) {
-        this.answerHtp = answerHtp == null ? null : answerHtp.trim();
     }
 }

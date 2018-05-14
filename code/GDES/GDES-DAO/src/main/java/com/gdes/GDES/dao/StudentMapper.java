@@ -1,10 +1,9 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Student;
-import com.allen.model.StudentExample;
-import org.apache.ibatis.annotations.Param;
-
+import com.gdes.GDES.model.Student;
+import com.gdes.GDES.model.StudentExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface StudentMapper {
     long countByExample(StudentExample example);

@@ -1,10 +1,9 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Features;
-import com.allen.model.FeaturesExample;
-import org.apache.ibatis.annotations.Param;
-
+import com.gdes.GDES.model.Features;
+import com.gdes.GDES.model.FeaturesExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface FeaturesMapper {
     long countByExample(FeaturesExample example);

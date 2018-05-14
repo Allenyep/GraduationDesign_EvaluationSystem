@@ -314,73 +314,63 @@ public class MajorExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdFmIsNull() {
-            addCriterion("id_fm is null");
+        public Criteria andIdMbIsNull() {
+            addCriterion("id_mb is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmIsNotNull() {
-            addCriterion("id_fm is not null");
+        public Criteria andIdMbIsNotNull() {
+            addCriterion("id_mb is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmEqualTo(String value) {
-            addCriterion("id_fm =", value, "idFm");
+        public Criteria andIdMbEqualTo(Integer value) {
+            addCriterion("id_mb =", value, "idMb");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmNotEqualTo(String value) {
-            addCriterion("id_fm <>", value, "idFm");
+        public Criteria andIdMbNotEqualTo(Integer value) {
+            addCriterion("id_mb <>", value, "idMb");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmGreaterThan(String value) {
-            addCriterion("id_fm >", value, "idFm");
+        public Criteria andIdMbGreaterThan(Integer value) {
+            addCriterion("id_mb >", value, "idMb");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmGreaterThanOrEqualTo(String value) {
-            addCriterion("id_fm >=", value, "idFm");
+        public Criteria andIdMbGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id_mb >=", value, "idMb");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmLessThan(String value) {
-            addCriterion("id_fm <", value, "idFm");
+        public Criteria andIdMbLessThan(Integer value) {
+            addCriterion("id_mb <", value, "idMb");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmLessThanOrEqualTo(String value) {
-            addCriterion("id_fm <=", value, "idFm");
+        public Criteria andIdMbLessThanOrEqualTo(Integer value) {
+            addCriterion("id_mb <=", value, "idMb");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmLike(String value) {
-            addCriterion("id_fm like", value, "idFm");
+        public Criteria andIdMbIn(List<Integer> values) {
+            addCriterion("id_mb in", values, "idMb");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmNotLike(String value) {
-            addCriterion("id_fm not like", value, "idFm");
+        public Criteria andIdMbNotIn(List<Integer> values) {
+            addCriterion("id_mb not in", values, "idMb");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmIn(List<String> values) {
-            addCriterion("id_fm in", values, "idFm");
+        public Criteria andIdMbBetween(Integer value1, Integer value2) {
+            addCriterion("id_mb between", value1, value2, "idMb");
             return (Criteria) this;
         }
 
-        public Criteria andIdFmNotIn(List<String> values) {
-            addCriterion("id_fm not in", values, "idFm");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdFmBetween(String value1, String value2) {
-            addCriterion("id_fm between", value1, value2, "idFm");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdFmNotBetween(String value1, String value2) {
-            addCriterion("id_fm not between", value1, value2, "idFm");
+        public Criteria andIdMbNotBetween(Integer value1, Integer value2) {
+            addCriterion("id_mb not between", value1, value2, "idMb");
             return (Criteria) this;
         }
     }

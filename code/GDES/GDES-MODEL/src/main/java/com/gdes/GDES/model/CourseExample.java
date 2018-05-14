@@ -313,6 +313,76 @@ public class CourseExample {
             addCriterion("leader_c not between", value1, value2, "leaderC");
             return (Criteria) this;
         }
+
+        public Criteria andIntroductionCIsNull() {
+            addCriterion("introduction_c is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCIsNotNull() {
+            addCriterion("introduction_c is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCEqualTo(String value) {
+            addCriterion("introduction_c =", value, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCNotEqualTo(String value) {
+            addCriterion("introduction_c <>", value, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCGreaterThan(String value) {
+            addCriterion("introduction_c >", value, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCGreaterThanOrEqualTo(String value) {
+            addCriterion("introduction_c >=", value, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCLessThan(String value) {
+            addCriterion("introduction_c <", value, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCLessThanOrEqualTo(String value) {
+            addCriterion("introduction_c <=", value, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCLike(String value) {
+            addCriterion("introduction_c like", value, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCNotLike(String value) {
+            addCriterion("introduction_c not like", value, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCIn(List<String> values) {
+            addCriterion("introduction_c in", values, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCNotIn(List<String> values) {
+            addCriterion("introduction_c not in", values, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCBetween(String value1, String value2) {
+            addCriterion("introduction_c between", value1, value2, "introductionC");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntroductionCNotBetween(String value1, String value2) {
+            addCriterion("introduction_c not between", value1, value2, "introductionC");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -6,12 +6,10 @@
     <id column="id_s" jdbcType="VARCHAR" property="idS" />
     <id column="id_er" jdbcType="VARCHAR" property="idEr" />
     <id column="id_q" jdbcType="VARCHAR" property="idQ" />
+    <result column="answer_htp" jdbcType="VARCHAR" property="answerHtp" />
     <result column="score_htp" jdbcType="VARCHAR" property="scoreHtp" />
     <result column="timeconsuming_htp" jdbcType="VARCHAR" property="timeconsumingHtp" />
     <result column="timeproportion_htp" jdbcType="VARCHAR" property="timeproportionHtp" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gdes.GDES.model.Historytestpaper">
-    <result column="answer_htp" jdbcType="LONGVARCHAR" property="answerHtp" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,27 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id_t, id_s, id_er, id_q, score_htp, timeconsuming_htp, timeproportion_htp
+    id_t, id_s, id_er, id_q, answer_htp, score_htp, timeconsuming_htp, timeproportion_htp
   </sql>
-  <sql id="Blob_Column_List">
-    answer_htp
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gdes.GDES.model.HistorytestpaperExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from historytestpaper
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.gdes.GDES.model.HistorytestpaperExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -107,11 +86,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.gdes.GDES.model.HistorytestpaperKey" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="com.gdes.GDES.model.HistorytestpaperKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from historytestpaper
     where id_t = #{idT,jdbcType=VARCHAR}
       and id_s = #{idS,jdbcType=VARCHAR}
@@ -133,11 +110,11 @@
   </delete>
   <insert id="insert" parameterType="com.gdes.GDES.model.Historytestpaper">
     insert into historytestpaper (id_t, id_s, id_er, 
-      id_q, score_htp, timeconsuming_htp, 
-      timeproportion_htp, answer_htp)
+      id_q, answer_htp, score_htp, 
+      timeconsuming_htp, timeproportion_htp)
     values (#{idT,jdbcType=VARCHAR}, #{idS,jdbcType=VARCHAR}, #{idEr,jdbcType=VARCHAR}, 
-      #{idQ,jdbcType=VARCHAR}, #{scoreHtp,jdbcType=VARCHAR}, #{timeconsumingHtp,jdbcType=VARCHAR}, 
-      #{timeproportionHtp,jdbcType=VARCHAR}, #{answerHtp,jdbcType=LONGVARCHAR})
+      #{idQ,jdbcType=VARCHAR}, #{answerHtp,jdbcType=VARCHAR}, #{scoreHtp,jdbcType=VARCHAR}, 
+      #{timeconsumingHtp,jdbcType=VARCHAR}, #{timeproportionHtp,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gdes.GDES.model.Historytestpaper">
     insert into historytestpaper
@@ -154,6 +131,9 @@
       <if test="idQ != null">
         id_q,
       </if>
+      <if test="answerHtp != null">
+        answer_htp,
+      </if>
       <if test="scoreHtp != null">
         score_htp,
       </if>
@@ -162,9 +142,6 @@
       </if>
       <if test="timeproportionHtp != null">
         timeproportion_htp,
-      </if>
-      <if test="answerHtp != null">
-        answer_htp,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -180,6 +157,9 @@
       <if test="idQ != null">
         #{idQ,jdbcType=VARCHAR},
       </if>
+      <if test="answerHtp != null">
+        #{answerHtp,jdbcType=VARCHAR},
+      </if>
       <if test="scoreHtp != null">
         #{scoreHtp,jdbcType=VARCHAR},
       </if>
@@ -188,9 +168,6 @@
       </if>
       <if test="timeproportionHtp != null">
         #{timeproportionHtp,jdbcType=VARCHAR},
-      </if>
-      <if test="answerHtp != null">
-        #{answerHtp,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -215,6 +192,9 @@
       <if test="record.idQ != null">
         id_q = #{record.idQ,jdbcType=VARCHAR},
       </if>
+      <if test="record.answerHtp != null">
+        answer_htp = #{record.answerHtp,jdbcType=VARCHAR},
+      </if>
       <if test="record.scoreHtp != null">
         score_htp = #{record.scoreHtp,jdbcType=VARCHAR},
       </if>
@@ -224,24 +204,7 @@
       <if test="record.timeproportionHtp != null">
         timeproportion_htp = #{record.timeproportionHtp,jdbcType=VARCHAR},
       </if>
-      <if test="record.answerHtp != null">
-        answer_htp = #{record.answerHtp,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update historytestpaper
-    set id_t = #{record.idT,jdbcType=VARCHAR},
-      id_s = #{record.idS,jdbcType=VARCHAR},
-      id_er = #{record.idEr,jdbcType=VARCHAR},
-      id_q = #{record.idQ,jdbcType=VARCHAR},
-      score_htp = #{record.scoreHtp,jdbcType=VARCHAR},
-      timeconsuming_htp = #{record.timeconsumingHtp,jdbcType=VARCHAR},
-      timeproportion_htp = #{record.timeproportionHtp,jdbcType=VARCHAR},
-      answer_htp = #{record.answerHtp,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -252,6 +215,7 @@
       id_s = #{record.idS,jdbcType=VARCHAR},
       id_er = #{record.idEr,jdbcType=VARCHAR},
       id_q = #{record.idQ,jdbcType=VARCHAR},
+      answer_htp = #{record.answerHtp,jdbcType=VARCHAR},
       score_htp = #{record.scoreHtp,jdbcType=VARCHAR},
       timeconsuming_htp = #{record.timeconsumingHtp,jdbcType=VARCHAR},
       timeproportion_htp = #{record.timeproportionHtp,jdbcType=VARCHAR}
@@ -262,6 +226,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.gdes.GDES.model.Historytestpaper">
     update historytestpaper
     <set>
+      <if test="answerHtp != null">
+        answer_htp = #{answerHtp,jdbcType=VARCHAR},
+      </if>
       <if test="scoreHtp != null">
         score_htp = #{scoreHtp,jdbcType=VARCHAR},
       </if>
@@ -271,21 +238,7 @@
       <if test="timeproportionHtp != null">
         timeproportion_htp = #{timeproportionHtp,jdbcType=VARCHAR},
       </if>
-      <if test="answerHtp != null">
-        answer_htp = #{answerHtp,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id_t = #{idT,jdbcType=VARCHAR}
-      and id_s = #{idS,jdbcType=VARCHAR}
-      and id_er = #{idEr,jdbcType=VARCHAR}
-      and id_q = #{idQ,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gdes.GDES.model.Historytestpaper">
-    update historytestpaper
-    set score_htp = #{scoreHtp,jdbcType=VARCHAR},
-      timeconsuming_htp = #{timeconsumingHtp,jdbcType=VARCHAR},
-      timeproportion_htp = #{timeproportionHtp,jdbcType=VARCHAR},
-      answer_htp = #{answerHtp,jdbcType=LONGVARCHAR}
     where id_t = #{idT,jdbcType=VARCHAR}
       and id_s = #{idS,jdbcType=VARCHAR}
       and id_er = #{idEr,jdbcType=VARCHAR}
@@ -293,7 +246,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.gdes.GDES.model.Historytestpaper">
     update historytestpaper
-    set score_htp = #{scoreHtp,jdbcType=VARCHAR},
+    set answer_htp = #{answerHtp,jdbcType=VARCHAR},
+      score_htp = #{scoreHtp,jdbcType=VARCHAR},
       timeconsuming_htp = #{timeconsumingHtp,jdbcType=VARCHAR},
       timeproportion_htp = #{timeproportionHtp,jdbcType=VARCHAR}
     where id_t = #{idT,jdbcType=VARCHAR}

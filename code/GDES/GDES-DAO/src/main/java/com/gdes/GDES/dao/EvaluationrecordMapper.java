@@ -1,11 +1,10 @@
 package com.gdes.GDES.dao;
 
-import com.allen.model.Evaluationrecord;
-import com.allen.model.EvaluationrecordExample;
-import com.allen.model.EvaluationrecordKey;
-import org.apache.ibatis.annotations.Param;
-
+import com.gdes.GDES.model.Evaluationrecord;
+import com.gdes.GDES.model.EvaluationrecordExample;
+import com.gdes.GDES.model.EvaluationrecordKey;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface EvaluationrecordMapper {
     long countByExample(EvaluationrecordExample example);

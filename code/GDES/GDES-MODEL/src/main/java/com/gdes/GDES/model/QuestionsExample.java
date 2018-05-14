@@ -314,6 +314,76 @@ public class QuestionsExample {
             return (Criteria) this;
         }
 
+        public Criteria andContextQIsNull() {
+            addCriterion("context_q is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQIsNotNull() {
+            addCriterion("context_q is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQEqualTo(String value) {
+            addCriterion("context_q =", value, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQNotEqualTo(String value) {
+            addCriterion("context_q <>", value, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQGreaterThan(String value) {
+            addCriterion("context_q >", value, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQGreaterThanOrEqualTo(String value) {
+            addCriterion("context_q >=", value, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQLessThan(String value) {
+            addCriterion("context_q <", value, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQLessThanOrEqualTo(String value) {
+            addCriterion("context_q <=", value, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQLike(String value) {
+            addCriterion("context_q like", value, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQNotLike(String value) {
+            addCriterion("context_q not like", value, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQIn(List<String> values) {
+            addCriterion("context_q in", values, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQNotIn(List<String> values) {
+            addCriterion("context_q not in", values, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQBetween(String value1, String value2) {
+            addCriterion("context_q between", value1, value2, "contextQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andContextQNotBetween(String value1, String value2) {
+            addCriterion("context_q not between", value1, value2, "contextQ");
+            return (Criteria) this;
+        }
+
         public Criteria andScoreQIsNull() {
             addCriterion("score_q is null");
             return (Criteria) this;
@@ -451,6 +521,76 @@ public class QuestionsExample {
 
         public Criteria andTimeQNotBetween(String value1, String value2) {
             addCriterion("time_q not between", value1, value2, "timeQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQIsNull() {
+            addCriterion("answer_q is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQIsNotNull() {
+            addCriterion("answer_q is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQEqualTo(String value) {
+            addCriterion("answer_q =", value, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQNotEqualTo(String value) {
+            addCriterion("answer_q <>", value, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQGreaterThan(String value) {
+            addCriterion("answer_q >", value, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQGreaterThanOrEqualTo(String value) {
+            addCriterion("answer_q >=", value, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQLessThan(String value) {
+            addCriterion("answer_q <", value, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQLessThanOrEqualTo(String value) {
+            addCriterion("answer_q <=", value, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQLike(String value) {
+            addCriterion("answer_q like", value, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQNotLike(String value) {
+            addCriterion("answer_q not like", value, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQIn(List<String> values) {
+            addCriterion("answer_q in", values, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQNotIn(List<String> values) {
+            addCriterion("answer_q not in", values, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQBetween(String value1, String value2) {
+            addCriterion("answer_q between", value1, value2, "answerQ");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerQNotBetween(String value1, String value2) {
+            addCriterion("answer_q not between", value1, value2, "answerQ");
             return (Criteria) this;
         }
 

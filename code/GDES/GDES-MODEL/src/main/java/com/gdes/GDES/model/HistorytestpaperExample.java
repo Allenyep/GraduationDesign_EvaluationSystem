@@ -384,6 +384,76 @@ public class HistorytestpaperExample {
             return (Criteria) this;
         }
 
+        public Criteria andAnswerHtpIsNull() {
+            addCriterion("answer_htp is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpIsNotNull() {
+            addCriterion("answer_htp is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpEqualTo(String value) {
+            addCriterion("answer_htp =", value, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpNotEqualTo(String value) {
+            addCriterion("answer_htp <>", value, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpGreaterThan(String value) {
+            addCriterion("answer_htp >", value, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpGreaterThanOrEqualTo(String value) {
+            addCriterion("answer_htp >=", value, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpLessThan(String value) {
+            addCriterion("answer_htp <", value, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpLessThanOrEqualTo(String value) {
+            addCriterion("answer_htp <=", value, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpLike(String value) {
+            addCriterion("answer_htp like", value, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpNotLike(String value) {
+            addCriterion("answer_htp not like", value, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpIn(List<String> values) {
+            addCriterion("answer_htp in", values, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpNotIn(List<String> values) {
+            addCriterion("answer_htp not in", values, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpBetween(String value1, String value2) {
+            addCriterion("answer_htp between", value1, value2, "answerHtp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAnswerHtpNotBetween(String value1, String value2) {
+            addCriterion("answer_htp not between", value1, value2, "answerHtp");
+            return (Criteria) this;
+        }
+
         public Criteria andScoreHtpIsNull() {
             addCriterion("score_htp is null");
             return (Criteria) this;

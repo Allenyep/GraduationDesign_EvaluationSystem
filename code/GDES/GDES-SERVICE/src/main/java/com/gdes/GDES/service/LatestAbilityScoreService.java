@@ -1,6 +1,6 @@
 package com.gdes.GDES.service;
 
-import com.gdes.GDES.model.LatestAbilityScore;
+import com.gdes.GDES.model.Latestabilityscore;
 
 import java.util.List;
 
@@ -13,6 +13,6 @@ public interface LatestAbilityScoreService {
      * @param id_s 学号
      * @return 结果链表
      */
-    public List<LatestAbilityScore> getAbilityScoreListById(String id_s);
+    public List<Latestabilityscore> getAbilityScoreListById(String id_s);
 
 }

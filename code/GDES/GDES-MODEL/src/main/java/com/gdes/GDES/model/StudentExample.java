@@ -314,73 +314,73 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataSIsNull() {
-            addCriterion("data_s is null");
+        public Criteria andDateSIsNull() {
+            addCriterion("date_s is null");
             return (Criteria) this;
         }
 
-        public Criteria andDataSIsNotNull() {
-            addCriterion("data_s is not null");
+        public Criteria andDateSIsNotNull() {
+            addCriterion("date_s is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDataSEqualTo(String value) {
-            addCriterion("data_s =", value, "dataS");
+        public Criteria andDateSEqualTo(String value) {
+            addCriterion("date_s =", value, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSNotEqualTo(String value) {
-            addCriterion("data_s <>", value, "dataS");
+        public Criteria andDateSNotEqualTo(String value) {
+            addCriterion("date_s <>", value, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSGreaterThan(String value) {
-            addCriterion("data_s >", value, "dataS");
+        public Criteria andDateSGreaterThan(String value) {
+            addCriterion("date_s >", value, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSGreaterThanOrEqualTo(String value) {
-            addCriterion("data_s >=", value, "dataS");
+        public Criteria andDateSGreaterThanOrEqualTo(String value) {
+            addCriterion("date_s >=", value, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSLessThan(String value) {
-            addCriterion("data_s <", value, "dataS");
+        public Criteria andDateSLessThan(String value) {
+            addCriterion("date_s <", value, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSLessThanOrEqualTo(String value) {
-            addCriterion("data_s <=", value, "dataS");
+        public Criteria andDateSLessThanOrEqualTo(String value) {
+            addCriterion("date_s <=", value, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSLike(String value) {
-            addCriterion("data_s like", value, "dataS");
+        public Criteria andDateSLike(String value) {
+            addCriterion("date_s like", value, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSNotLike(String value) {
-            addCriterion("data_s not like", value, "dataS");
+        public Criteria andDateSNotLike(String value) {
+            addCriterion("date_s not like", value, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSIn(List<String> values) {
-            addCriterion("data_s in", values, "dataS");
+        public Criteria andDateSIn(List<String> values) {
+            addCriterion("date_s in", values, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSNotIn(List<String> values) {
-            addCriterion("data_s not in", values, "dataS");
+        public Criteria andDateSNotIn(List<String> values) {
+            addCriterion("date_s not in", values, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSBetween(String value1, String value2) {
-            addCriterion("data_s between", value1, value2, "dataS");
+        public Criteria andDateSBetween(String value1, String value2) {
+            addCriterion("date_s between", value1, value2, "dateS");
             return (Criteria) this;
         }
 
-        public Criteria andDataSNotBetween(String value1, String value2) {
-            addCriterion("data_s not between", value1, value2, "dataS");
+        public Criteria andDateSNotBetween(String value1, String value2) {
+            addCriterion("date_s not between", value1, value2, "dateS");
             return (Criteria) this;
         }
     }
