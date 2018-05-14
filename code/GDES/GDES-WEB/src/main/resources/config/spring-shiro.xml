@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!--配置自定义的realm-->
+	<bean id="myRealm" class="com.gdes.GDES.realm.MyRealm">
+		<!--<property name="userDAO" ref="userDAOImpl"></property>-->
+		<!--密码需要加密：加密器-->
+		<property name="credentialsMatcher" ref="credentialsMatcher" />
+		<!--<property name="userDAO" ref="userDAOImpl"></property>-->
+		<!--<property name="roleDAO" ref="roleDAOImpl"></property>-->
+		<!--<property name="permissionDAO" ref="permissionDAOImpl"></property>-->
+	</bean>
+
+	<!-- 配置安全管理器SecurityManager -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="myRealm"/>
+		<!--给shiro添加缓存机制-->
+		<property name="cacheManager" ref="cacheManager"></property>
+	</bean>
+
+	<!-- 定义ShiroFilter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"/>
+		<!--<property name="loginUrl" value="/index.jsp"/>-->
+		<!--<property name="loginUrl" value="/permission/index.jsp"/>-->
+		<property name="unauthorizedUrl" value="/nopermission.jsp"/>
+		<property name="filterChainDefinitions">
+			<value>
+				/logout=logout
+				<!--/**=authc-->
+			</value>
+		</property>
+	</bean>
+
+
+	<!-- 开启aop，对类代理 -->
+	<aop:config proxy-target-class="true"></aop:config>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	<!--&lt;!&ndash; 开启shiro注解 &ndash;&gt;-->
+	<!--<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">-->
+		<!--&lt;!&ndash;<property name="proxyTargetClass" value="true" />&ndash;&gt;-->
+	<!--</bean>-->
+	<!--&lt;!&ndash; 开启shiro注解支持 &ndash;&gt;-->
+	<!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
+		<!--<property name="securityManager" ref="securityManager" />-->
+	<!--</bean>-->
+
+	<!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常页名作为值 -->
+	<!--shiro权限异常处理-->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/nopermission.jsp</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
+		<!--<property name="cacheManager" ref="ehCacheManager">-->
+
+		<!--</property>-->
+	<!--</bean>-->
+	<!--<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
+
+	<!--</bean>-->
+	<!-- 缓存管理器开始 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="ehCacheManager"/>
+	</bean>
+	<!--org.springframework.cache.ehcache.EhCacheManagerFactoryBean
+		需要引入spring-context-support依赖支持
+	-->
+	<bean id="ehCacheManager" class ="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:config/shiro-ehcache.xml" />
+		<property name="shared" value="true"></property>
+	</bean>
+
+	<!--加密器-->
+	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<!--加密算法-->
+		<property name="hashAlgorithmName" value="md5" />
+		<!--散列次数-->
+		<property name="hashIterations" value="3" />
+	</bean>
+
+</beans>

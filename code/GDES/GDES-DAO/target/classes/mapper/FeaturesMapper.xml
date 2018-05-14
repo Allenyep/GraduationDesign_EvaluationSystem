@@ -193,4 +193,26 @@
       list = #{list,jdbcType=VARCHAR}
     where id_f = #{idF,jdbcType=INTEGER}
   </update>
+
+
+  <select id="selectPermissionByUserName" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT link from features
+    where id_f in(
+    SELECT id_f FROM jsgnb
+    WHERE id_r in(
+    SELECT id_r FROM userrole
+    WHERE id_u=#{idU}))
+  </select>
+
+  <select id="getAllResources" resultType="java.lang.String">
+    SELECT link from features
+  </select>
+
+  <insert id="savaFeatures">
+    INSERT into features(name,link) VALUES(#{features.name},#{features.link})
+  </insert>
+  <!--<select id="selectPermissionByUserName" parameterType="java.lang.String" resultType="java.lang.String">-->
+  <!--SELECT  f.link  FROM user u,features f,role r,jsgnb j,userrole ur WHERE-->
+  <!--j.id_f=f.id_f AND j.id_r=r.id_r AND u.id_u=ur.id_u and u.id_u=#{idU}-->
+  <!--</select>-->
 </mapper>

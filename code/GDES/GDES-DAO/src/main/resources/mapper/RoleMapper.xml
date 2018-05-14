@@ -161,4 +161,16 @@
     set jsm = #{jsm,jdbcType=VARCHAR}
     where id_r = #{idR,jdbcType=INTEGER}
   </update>
+
+
+
+
+  <select id="selectRolesByUserName" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT  r.jsm  FROM user u,role r,userrole ur WHERE
+    u.id_u=ur.id_u and r.id_r=ur.id_r and u.id_u=#{idU}
+  </select>
+
+  <select id="getAllRolename" resultType="java.lang.String">
+    SELECT jsm FROM role
+  </select>
 </mapper>

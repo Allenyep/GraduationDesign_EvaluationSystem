@@ -27,4 +27,12 @@ public interface FeaturesMapper {
     int updateByPrimaryKeySelective(Features record);
 
     int updateByPrimaryKey(Features record);
+
+
+    //查询用户所具有的权限
+    List<String> selectPermissionByUserName(String idU);
+
+    List<String> getAllResources();
+
+    public void savaFeatures(@Param("features") Features features);
 }
