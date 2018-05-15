@@ -1,10 +1,9 @@
-package com.gdes.GDES.test;
-
 import com.gdes.GDES.dao.QuestionsMapper;
 import com.gdes.GDES.model.Questions;
 import com.gdes.GDES.model.QuestionsExample;
 
 import com.gdes.GDES.model.utils.UUid;
+import com.gdes.GDES.service.QuestionsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,6 +23,8 @@ public class TestQuestions {
     @Resource
     private QuestionsMapper qm;
 
+    @Resource
+    private QuestionsService qs;
 
     @Test
     public void testFindAllQuestion(){
@@ -67,5 +68,31 @@ public class TestQuestions {
         question.setStyleQ("2");
 
         qm.insertSelective(question);
+    }
+
+    /*==================*/
+    /*这里开始是服务层测试*/
+    @Test
+    public void selectByKnowpoint()throws Exception{
+        List<Questions> list=qs.queryQuestionByKnowpoint("6");
+        for (Questions q:list){
+            System.out.println(q.getContextQ());
+        }
+    }
+
+    @Test
+    public void selectByCourse()throws Exception{
+        List<Questions> list=qs.queryQuestionByCourse("2");
+        for (Questions q:list){
+            System.out.println(q.getContextQ());
+        }
+    }
+
+    @Test
+    public void selectByStyle()throws Exception{
+        List<Questions> list=qs.queryQuestionBySytle("4");
+        for (Questions q:list){
+            System.out.println(q.getContextQ());
+        }
     }
 }
