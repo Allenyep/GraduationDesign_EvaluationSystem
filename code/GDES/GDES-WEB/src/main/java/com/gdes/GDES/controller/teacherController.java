@@ -1,7 +1,9 @@
 package com.gdes.GDES.controller;
 
 import com.gdes.GDES.model.Knowledgepoint;
+import com.gdes.GDES.model.Questions;
 import com.gdes.GDES.service.KnowledgepointService;
+import com.gdes.GDES.service.QuestionsService;
 import com.gdes.GDES.service.TeacherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +23,12 @@ public class TeacherController {
     @Resource
     private KnowledgepointService kps;
 
+    @Resource
+    private QuestionsService qs;
 
 
+    /*==================*/
+    /*知识点控制*/
     //通过教师课程加载初始页面
     @RequestMapping("knowledgepoint")
     public String init(String message, Model model) throws Exception {
@@ -65,7 +71,6 @@ public class TeacherController {
 
         model.addAttribute("message",str);
 
-//        return "teacher/knowledgepoint";
         return "redirect:knowledgepoint.do";
     }
 
@@ -84,7 +89,24 @@ public class TeacherController {
         model.addAttribute("message",str);
 
         return "redirect:knowledgepoint.do";
-
     }
 
+    /*============*/
+    /*试题控制*/
+    //试题列表
+    @RequestMapping("shitilist")
+    public String knowpoint(String message, Model model)throws Exception{
+        List<Questions> list=qs.queryAllQusetion();
+        model.addAttribute("qlist",list);
+        model.addAttribute("message",message);
+        return "teacher/chuti";
+    }
+
+    @RequestMapping("shitidetail")
+    public String shitidetail(String idQ,Model model)throws Exception{
+        Questions q=qs.queryByPrimary(idQ);
+        model.addAttribute("que",q);
+
+        return "teacher/shitidetail";
+    }
 }
