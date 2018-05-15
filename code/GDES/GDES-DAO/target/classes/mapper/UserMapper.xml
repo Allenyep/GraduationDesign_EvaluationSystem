@@ -8,6 +8,29 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
   </resultMap>
+
+  <!--<resultMap id="UserInfoMap" type="com.gdes.GDES.model.User">-->
+    <!--<id column="id_u" jdbcType="VARCHAR" property="idU" />-->
+    <!--<result column="username" jdbcType="VARCHAR" property="username" />-->
+    <!--<result column="password" jdbcType="VARCHAR" property="password" />-->
+    <!--<result column="name" jdbcType="VARCHAR" property="name" />-->
+    <!--<result column="sex" jdbcType="VARCHAR" property="sex" />-->
+    <!--<association javaType="com.gdes.GDES.model.Student" property="idU">-->
+      <!--<id column="id_s" jdbcType="VARCHAR" property="idS" />-->
+      <!--<result column="name_s" jdbcType="VARCHAR" property="nameS" />-->
+      <!--<result column="id_m" jdbcType="VARCHAR" property="idM" />-->
+      <!--<result column="date_s" jdbcType="VARCHAR" property="dateS" />-->
+      <!--<collection property="idM" ofType="Major">-->
+        <!--<id column="id_m" jdbcType="VARCHAR" property="idM" />-->
+        <!--<result column="name_m" jdbcType="VARCHAR" property="nameM" />-->
+        <!--<result column="leader_m" jdbcType="VARCHAR" property="leaderM" />-->
+        <!--<result column="id_mb" jdbcType="INTEGER" property="idMb" />-->
+      <!--</collection>-->
+    <!--</association>-->
+
+  <!--</resultMap>-->
+
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -253,25 +276,7 @@
 
 
 
-  <!--<select id="selectAll" resultType="com.gdes.GDES.model.Human">-->
-  <!--SELECT * FROM human-->
-  <!--</select>-->
 
-  <!--<insert id="insertHuman" parameterType="com.gdes.GDES.model.Human">-->
-  <!--INSERT INTO human(name,age,sex,remark) VALUES(#{name},#{age},#{sex},#{remark})-->
-  <!--</insert>-->
-
-  <!--<update id="updateHuman" parameterType="com.gdes.GDES.model.Human">-->
-  <!--UPDATE human SET name = #{name}, age = #{age}, sex = #{sex}, remark = #{remark} where id = #{id}-->
-  <!--</update>-->
-
-  <!--<delete id="deleteHuman" parameterType="int">-->
-  <!--DELETE FROM human WHERE id = #{id}-->
-  <!--</delete>-->
-
-  <!--<select id="queryById" parameterType="int" resultType="com.gdes.GDES.model.Human">-->
-  <!--SELECT * FROM human WHERE id = #{id}-->
-  <!--</select>-->
 
 
 </mapper>

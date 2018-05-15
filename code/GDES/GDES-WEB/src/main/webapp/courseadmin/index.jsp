@@ -213,7 +213,7 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub" style="display: block">
                     <li class="sidebar-nav-link">
-                        <a href="javascript:;" target="index">
+                        <a href="/course/allCourse.do" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 基础课管理
                         </a>
                     </li>

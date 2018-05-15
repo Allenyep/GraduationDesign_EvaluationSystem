@@ -193,4 +193,11 @@
       introduction_c = #{introductionC,jdbcType=VARCHAR}
     where id_c = #{idC,jdbcType=VARCHAR}
   </update>
+
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT * from course
+  </select>
+
 </mapper>

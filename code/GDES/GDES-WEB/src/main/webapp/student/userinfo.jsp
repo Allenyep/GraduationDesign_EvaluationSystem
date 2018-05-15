@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -192,7 +193,7 @@
                 </div>
                 <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              学科负责人你好
+              你好，<shiro:principal property="username"></shiro:principal>
           </span>
                 <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
             </div>
@@ -203,40 +204,31 @@
             <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 功能菜单</span></li>
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="active">
-                    <i class="am-icon-home sidebar-nav-link-logo"></i> 首页(学科负责人个人信息)
+                    <i class="am-icon-home sidebar-nav-link-logo"></i> 首页(管理员个人信息和菜单)
                 </a>
             </li>
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 课程管理
-                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
-                </a>
-                <ul class="sidebar-nav sidebar-nav-sub" style="display: block">
-                    <li class="sidebar-nav-link">
-                        <a href="/course/allCourse.do" target="index">
-                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 基础课管理
-                        </a>
-                    </li>
-                    <li class="sidebar-nav-link">
-                        <a href="javascript:;">
-                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 专业课管理
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-            <li class="sidebar-nav-link">
-                <a href="javascript:;" class="sidebar-nav-sub-title">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 知识点管理
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 学生信息管理
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
             </li>
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 能力点管理
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 教师信息管理
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
             </li>
+            <shiro:hasRole name="student">
+            <li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 学科负责人信息管理
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+            </li>
+            </shiro:hasRole>
+            <a href="/usertest/tiao.do">跳转</a>
+            <a href="/permission/reload.do">加载权限</a>
         </ul>
     </div>
 
@@ -245,7 +237,95 @@
     <!-- 出题界面 -->
 
     <div class="tpl-content-wrapper">
-        <iframe name="index" src="" height="100%" width="100%"></iframe>
+
+        <!--<div class="container-fluid am-cf">-->
+        <!--<div class="row">-->
+        <!--<div class="am-u-sm-12 am-u-md-12 am-u-lg-9">-->
+        <!--<div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 表单 <small>Amaze UI</small></div>-->
+        <!--<p class="page-header-description">Amaze UI 有许多不同的表格可用。</p>-->
+        <!--</div>-->
+        <!--<div class="am-u-lg-3 tpl-index-settings-button">-->
+        <!--<button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--</div>-->
+
+        <div class="row-content am-cf">
+
+
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">个人资料</div>
+                            <div class="widget-function am-fr">
+                                <a href="javascript:;" class="am-icon-cog"></a>
+                            </div>
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <!--<form class="am-form tpl-form-line-form">-->
+
+                            <!--<div class="am-form-group">-->
+                            <!--<label for="user-name" class="am-u-sm-3 am-form-label">学号: </label>-->
+                            <!--<div class="am-u-sm-9">-->
+
+                            <!--<div class="am-container">-->
+                            <!--I'm in the .am-container.-->
+                            <!--</div>-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="am-form-group">
+                                <label  class="am-u-sm-3 am-form-label">学号: </label>
+                                <!--<div class="am-u-sm-9">-->
+
+                                <div class="am-container">
+                                    I'm in the .am-container.
+                                </div>
+
+                            </div>
+                            <!--</div>-->
+
+                            <div class="am-form-group">
+                                <label  class="am-u-sm-3 am-form-label">姓名： </label>
+                                <!--<div class="am-u-sm-9">-->
+
+                                <div class="am-container">
+                                    I'm in the .am-container.
+                                </div>
+
+                            </div>
+
+                            <div class="am-form-group">
+                                <label  class="am-u-sm-3 am-form-label">专业: </label>
+                                <!--<div class="am-u-sm-9">-->
+
+                                <div class="am-container">
+                                    I'm in the .am-container.
+                                </div>
+
+                            </div>
+                            <div class="am-form-group">
+                                <label  class="am-u-sm-3 am-form-label">性别: </label>
+                                <!--<div class="am-u-sm-9">-->
+
+                                <div class="am-container">
+                                    I'm in the .am-container.
+                                </div>
+
+                            </div>
+
+
+                            <!--</form>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

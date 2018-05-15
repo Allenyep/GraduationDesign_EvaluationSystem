@@ -192,55 +192,13 @@ public class UserController {
         return "permission/form";
     }
 
-    /**
-     * 新增human
-     * @param human
-     * @return
-     */
-//    @RequestMapping(value = "/submit.do", method = RequestMethod.POST)
-//    public String submit(Human human) {
-//        this.userService.addHuman(human);
-//        System.out.println(human.toString());
-//        return "redirect:success.do";
+//    @RequestMapping("/userinfo.do")
+//    public String userinfo() {
+//        User user = (User) SecurityUtils.getSubject().getPrincipal();
+//
+//
 //    }
 
-
-
-    /**
-     * 修改human
-     * @param human
-     * @return
-     */
-//    @RequestMapping("/update.do")
-//    public String update(Human human) {
-//        this.userService.updateHuman(human);
-//        return "redirect:success.do";
-//    }
-
-    /**
-     * 删除human
-     * @param id
-     * @return
-     */
-//    @RequestMapping("/del.do/{id}")
-//    public String del(@PathVariable Integer id) {
-//        System.out.println(id);
-//        this.userService.delHuman(id);
-//        return "redirect:/user/success.do";
-//    }
-
-    /**
-     * 修改界面跳转并数据回显
-     * @param id
-     * @param request
-     * @return
-     */
-//    @RequestMapping("/edit.do/{id}")
-//    public String edit(@PathVariable Integer id, HttpServletRequest request) {
-//        Human human = this.userService.queryById(id);
-//        request.setAttribute("human", human);
-//        return "form";
-//    }
 
     /**
      * 注销用户

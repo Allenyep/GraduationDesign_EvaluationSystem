@@ -32,7 +32,7 @@ public interface UserService {
      */
     Set<String> getPermissionByUserName(String idU);
 
-    User getUserInfoByUserId(String idU);
+//    User getUserInfoByUserId(String idU);
 //
 //    /**
 //     * 查询所有human

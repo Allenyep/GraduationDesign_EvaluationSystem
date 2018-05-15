@@ -34,7 +34,7 @@ public interface UserMapper {
 
     /**
      * 根据用户名查询用户
-     * @param userName
+     * @param idU
      * @return
      */
 //    User selectUserByUserName(String userName);
@@ -42,16 +42,19 @@ public interface UserMapper {
 
     /**
      * 根据用户名查询角色信息
-     * @param userName
+     * @param idU
      * @return
      */
     Set<String> selectRolesByUserName(String idU);
 
     /**
      * 根据用户名查询权限信息
-     * @param userName
+     * @param idU
      * @return
      */
     //todo
     Set<String> selectPermissionByUserName(String idU);
+
+
+
 }
