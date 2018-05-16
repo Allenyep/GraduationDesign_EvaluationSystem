@@ -66,7 +66,7 @@
                                             </td>
 
                                             <td class="hidden-480">
-                                                <a  data-toggle="modal" data-target="#myModal">
+                                                <a href="/teacher/shitidetail.do?idQ=${a.idQ}">
                                                     <div style="width:400px;word-wrap:break-word;">
                                                         ${a.contextQ}
                                                     </div>
@@ -79,7 +79,22 @@
                                             </td>
                                             <td class="hidden-480">${a.scoreQ}</td>
                                                 <%--<td>Feb 12</td>--%>
-                                            <td class="hidden-480">${a.styleQ=='2'?"填空题":"主观题"}</td>
+                                            <td class="hidden-480">
+                                                <c:choose>
+                                                    <c:when test="${a.styleQ=='1'}">
+                                                        选择题
+                                                    </c:when>
+                                                    <c:when test="${a.styleQ=='2'}">
+                                                        填空题
+                                                    </c:when>
+                                                    <c:when test="${a.styleQ=='3'}">
+                                                        判断题
+                                                    </c:when>
+                                                    <c:when test="${a.styleQ=='4'}">
+                                                        主观题
+                                                    </c:when>
+                                                </c:choose>
+                                            </td>
 
                                             <td>
                                                 <a class="btn btn-danger">删除</a>
@@ -161,11 +176,8 @@
                 return 'left';
             }
         })
-        /*个人能力报表下载*/
-        function myDownload() {
-            var myurl = "${basePath}excle/sdown.do?id_s=631406010102";
-            window.option(myurl);
-        }
+
+
     </script>
 
 </body>

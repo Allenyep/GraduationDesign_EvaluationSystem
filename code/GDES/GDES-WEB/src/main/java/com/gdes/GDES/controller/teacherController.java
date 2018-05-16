@@ -2,14 +2,18 @@ package com.gdes.GDES.controller;
 
 import com.gdes.GDES.model.Knowledgepoint;
 import com.gdes.GDES.model.Questions;
+import com.gdes.GDES.model.Questionsoption;
+import com.gdes.GDES.model.Questionspoint;
 import com.gdes.GDES.service.KnowledgepointService;
 import com.gdes.GDES.service.QuestionsService;
+import com.gdes.GDES.service.QuestionspointService;
 import com.gdes.GDES.service.TeacherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +29,11 @@ public class TeacherController {
 
     @Resource
     private QuestionsService qs;
+
+    @Resource
+    private QuestionspointService qps;
+
+    //TODO:试题选项服务层
 
 
     /*==================*/
@@ -102,11 +111,37 @@ public class TeacherController {
         return "teacher/chuti";
     }
 
+
+    //试题详情页，加载试题对应知识点
     @RequestMapping("shitidetail")
     public String shitidetail(String idQ,Model model)throws Exception{
         Questions q=qs.queryByPrimary(idQ);
         model.addAttribute("que",q);
+        //TODO:是否是选择题，读取选择题选项
+        if(q.getStyleQ().equals("1")){
+            List<Questionsoption> questionsoptions;
+        }
 
-        return "teacher/shitidetail";
+        List<Questionspoint> qs= qps.queryByQuestionId(idQ);
+        List<Knowledgepoint> Allkplist=kps.queryAllKnowledgepoint();
+        List<Knowledgepoint> reslist=new ArrayList<>();
+        for(Questionspoint qp:qs){
+            for(Knowledgepoint kp:Allkplist){
+                if(qp.getIdKp()==kp.getIdKp()){
+                    reslist.add(kp);
+                }
+            }
+        }
+        model.addAttribute("kplist",reslist);
+        model.addAttribute("Allkplist",Allkplist);
+
+        return "teacher/shitiform";
+    }
+
+    //更新试题页面,试题内容，试题答案，试题知识点
+    //TODO：选择题
+    @RequestMapping("updateshiti")
+    public String updateshiti(){
+        return null;
     }
 }
