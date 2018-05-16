@@ -228,7 +228,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="form.html">
+                <a href="shitiform.jsp">
                     <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
 
                 </a>

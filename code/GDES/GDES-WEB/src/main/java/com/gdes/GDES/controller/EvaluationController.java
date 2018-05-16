@@ -50,7 +50,7 @@ public class EvaluationController {
         double[][] score_student = {{7, 8, 2, 4, 4}}; //学生五道试题的得分
         String teacherid = "2"; //教师id
         String studentid = "631406010217"; //学生id
-        String erid = "ttt"; //评测记录id
+        String erid = "mmm"; //评测记录id
         String mid = "01"; //专业id
 
         /**
@@ -93,7 +93,7 @@ public class EvaluationController {
         }
 
         //所有试题原本对应的能力点得分（相当于每道题都已满分算出来能力点应该得的分数）
-        double[][] score_ability = ProfessionalCompetenceEvaluation.AbilityScore(question_knowledge, knowledge_ability, score_questions);
+        //double[][] score_ability = ProfessionalCompetenceEvaluation.AbilityScore(question_knowledge, knowledge_ability, score_questions);
         /**
          * 学生能力点得分，按每个能力点100分计算
          */
@@ -110,7 +110,7 @@ public class EvaluationController {
         /**
          * 学生专业所属专业大类要求下的得分
          */
-        List<Major> majors = majorService.queryByMajorId(mid);
+        /*List<Major> majors = majorService.queryByMajorId(mid);
         int mbid = majors.get(0).getIdMb(); //学生专业的专业大类id
         List<Professionalabilitypointrequirements> professionalAbilityPointRequirements = professionalabilitypointrequirementsService.queryByMajorBId(mbid);
         int mi = 1;
@@ -120,9 +120,9 @@ public class EvaluationController {
             majorrequire[mi] = con;
             //result[mi] = ProfessionalCompetenceEvaluation.roundOffTwoDecimalPlaces(result[mi]*con);
             mi++;
-        }
+        }*/
         //得到试题和能力点的得分占比,每道试题能力点加起来为1
-        double[][] question_ability = ProfessionalCompetenceEvaluation.ColumnRatioByRow(
+        /*double[][] question_ability = ProfessionalCompetenceEvaluation.ColumnRatioByRow(
                 ProfessionalCompetenceEvaluation.MatrixMultiplication(question_knowledge, knowledge_ability));
         //每道试题能力点的得分
         for(int i=0;i<question_ability.length;i++) {
@@ -131,7 +131,7 @@ public class EvaluationController {
                     question_ability[i][j] = (score_student[0][i]/score_questions[0][i])*majorrequire[j]*100;
                 }
             }
-        }
+        }*/
         /**
          * 插入得分详情
          */
@@ -218,7 +218,7 @@ public class EvaluationController {
         }
         Long postcount = postService.getCount(); //岗位个数
         //学生岗位得分
-        double[][] ability_post = new double[83][Integer.parseInt(Long.toString(postcount))+1];
+        /*double[][] ability_post = new double[83][Integer.parseInt(Long.toString(postcount))+1];
         for(int i=1;i<postcount+1;i++) {
             List<Postabilitypoint> postabilitypointList = postabilitypointService.getListByPId(i);
             for(Postabilitypoint pa:postabilitypointList) {
@@ -231,8 +231,8 @@ public class EvaluationController {
         double[][] score_abilitymax = new double[1][83];
         for(int i=0;i<score_abilitymax[0].length;i++) {
             score_abilitymax[0][i] = 100;
-        }
-        double[][] ability_post_max = ProfessionalCompetenceEvaluation.MatrixMultiplication(score_abilitymax, ability_post);
+        }*/
+        //double[][] ability_post_max = ProfessionalCompetenceEvaluation.MatrixMultiplication(score_abilitymax, ability_post);
         //学生岗位最终得分
         /**
          * 插入学生岗位
