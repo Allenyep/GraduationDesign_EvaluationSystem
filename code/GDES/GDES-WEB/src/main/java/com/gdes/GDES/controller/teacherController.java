@@ -1,16 +1,11 @@
 package com.gdes.GDES.controller;
 
 import com.gdes.GDES.model.Knowledgepoint;
-<<<<<<< HEAD
-import com.gdes.GDES.service.KnowledgepointService;
-import com.gdes.GDES.service.TeacherService;
-=======
 import com.gdes.GDES.model.Questions;
 import com.gdes.GDES.model.Questionsoption;
 import com.gdes.GDES.model.Questionspoint;
 import com.gdes.GDES.model.utils.UUid;
 import com.gdes.GDES.service.*;
->>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +25,8 @@ public class TeacherController {
     @Resource
     private KnowledgepointService kps;
 
+    @Resource
+    private QuestionsService qs;
 
     @Resource
     private QuestionspointService qps;
@@ -38,6 +35,8 @@ public class TeacherController {
     private QuestionsoptionService qos;
 
 
+    /*==================*/
+    /*知识点控制*/
     //通过教师课程加载初始页面
     @RequestMapping("knowledgepoint")
     public String init(String message, Model model) throws Exception {
@@ -80,7 +79,6 @@ public class TeacherController {
 
         model.addAttribute("message",str);
 
-//        return "teacher/knowledgepoint";
         return "redirect:knowledgepoint.do";
     }
 
@@ -99,11 +97,19 @@ public class TeacherController {
         model.addAttribute("message",str);
 
         return "redirect:knowledgepoint.do";
-
     }
 
-<<<<<<< HEAD
-=======
+    /*============*/
+    /*试题控制*/
+    //试题列表
+    @RequestMapping("shitilist")
+    public String knowpoint(String message, Model model)throws Exception{
+        List<Questions> list=qs.queryAllQusetion();
+        model.addAttribute("qlist",list);
+        model.addAttribute("message",message);
+        return "teacher/chuti";
+    }
+
 
     //试题详情页，加载试题对应知识点
     @RequestMapping("shitidetail")
@@ -180,5 +186,4 @@ public class TeacherController {
 
         return null;
     }
->>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
 }

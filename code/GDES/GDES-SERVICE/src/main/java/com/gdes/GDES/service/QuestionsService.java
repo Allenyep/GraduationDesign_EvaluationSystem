@@ -10,11 +10,7 @@ import java.util.List;
  */
 public interface QuestionsService {
 
-<<<<<<< HEAD
-    //TODO:根据课程，题目类型，知识点查询试题
-=======
     //根据试题编号，课程，题目类型，知识点查询试题
->>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
 
     /**
      * 查询所有知识点
@@ -22,6 +18,14 @@ public interface QuestionsService {
      * @throws Exception
      */
     public List<Questions> queryAllQusetion()throws Exception;
+
+    /**
+     * 根据试题编号查询课程
+     * @param idQ
+     * @return
+     * @throws Exception
+     */
+    public Questions queryByPrimary(String idQ)throws Exception;
 
     /**
      * 根据课程查询试题
