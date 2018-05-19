@@ -11,21 +11,21 @@
     <meta charset="utf-8">
     <title>首页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-    <link rel="stylesheet" href="assets/css/app.css">
-    <script src="assets/js/jquery.min.js"></script>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="stylesheet" href="../assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../assets/css/app.css">
 
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
 </head>
 
 <body>
-<script src="assets/js/theme.js"></script>
+<script src="../assets/js/theme.js"></script>
 <div class="am-g tpl-g">
     <!-- 头部 -->
     <header>
         <!-- logo -->
         <div class="am-fl tpl-header-logo">
-            <a href="javascript:;"><img src="assets/img/logo.png" alt=""></a>
+            <a href="javascript:;"><img src="../assets/img/logo.png" alt=""></a>
         </div>
         <!-- 右侧内容 -->
         <div class="tpl-header-fluid">
@@ -82,7 +82,7 @@
                             <li class="tpl-dropdown-menu-messages">
                                 <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                     <div class="menu-messages-ico">
-                                        <img src="assets/img/user00.png" alt="">
+                                        <img src="../assets/img/user00.png" alt="">
                                     </div>
                                     <div class="menu-messages-time">
                                         5天前
@@ -188,7 +188,7 @@
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable">
                 <div class="tpl-user-panel-profile-picture">
-                    <img src="assets/img/user04.png" alt="">
+                    <img src="../assets/img/user04.png" alt="">
                 </div>
                 <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
@@ -236,13 +236,18 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="javascript:;">
+                        <a href="${basePath}loading/record.do?idT=1" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 测评记录查看
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:;">
-                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 学生成绩查看
+                        <a href="${basePath}loading/tabilityscore.do?idM=01" target="index">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 学生能力查看
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="${basePath}loading/stupost.do?idM=01" target="index">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 职位推荐情况
                         </a>
                     </li>
                 </ul>
@@ -262,13 +267,55 @@
     <!-- 出题界面 -->
 
     <div class="tpl-content-wrapper">
-        <iframe name="index" src="" height="100%" width="100%"></iframe>
+        <iframe name="index" src="../student/loading.jsp" height="100%" width="100%"></iframe>
     </div>
 
 </div>
 </div>
-<script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script src="../assets/js/amazeui.min.js"></script>
+<script src="../assets/js/app.js"></script>
+<script type="text/javascript">
+    function myloading() {
+        //获取浏览器页面可见高度和宽度
+        var _PageHeight = document.documentElement.clientHeight,
+            _PageWidth = document.documentElement.clientWidth;
+        //计算loading框距离顶部和左部的距离（loading框的宽度为215px，高度为61px）
+        var _LoadingTop = _PageHeight > 61 ? (_PageHeight - 61) / 2 : 0,
+            _LoadingLeft = _PageWidth > 215 ? (_PageWidth - 215) / 2 : 0;
+        //在页面未加载完毕之前显示的loading Html自定义内容
+        var _LoadingHtml = '<div id="loadingDiv" style="position:absolute;left:0;width:100%;height:' + _PageHeight + 'px;top:0;background:#f3f8ff;opacity:1;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; left: ' + _LoadingLeft + 'px; top:' + _LoadingTop + 'px; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background: #fff url(../assets/img/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>';
+        //呈现loading效果
+        document.write(_LoadingHtml);
+
+        //window.onload = function () {
+        //    var loadingMask = document.getElementById('loadingDiv');
+        //    loadingMask.parentNode.removeChild(loadingMask);
+        //};
+
+        //监听加载状态改变
+        document.onreadystatechange = completeLoading;
+
+        //加载状态为complete时移除loading效果
+        /*function completeLoading() {
+         if (document.readyState == "complete") {
+         var loadingMask = document.getElementById('loadingDiv');
+         loadingMask.parentNode.removeChild(loadingMask);
+         }
+         }*/
+
+    }
+
+    function aaa() {
+        alert("111");
+        window.location.href = "${basePath}las/allbymajorid.do?id_m=01";
+    }
+
+    function bbb() {
+        alert("222");
+        window.location.href = "${basePath}student/loading.jsp";
+    }
+</script>
+
 
 </body>
 

@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface KnowledgepointService {
-    //TODO:知识点添加修改删除
+    //知识点添加修改删除
 
     /**
      * 查询所有知识点

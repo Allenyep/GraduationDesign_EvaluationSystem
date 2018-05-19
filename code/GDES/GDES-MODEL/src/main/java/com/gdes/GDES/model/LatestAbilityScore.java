@@ -9,6 +9,8 @@ public class Latestabilityscore extends LatestabilityscoreKey {
 
     private Abilitypoint abilitypoint;
 
+    private Student student;
+
     public String getScoreLas() {
         return scoreLas;
     }
@@ -39,5 +41,13 @@ public class Latestabilityscore extends LatestabilityscoreKey {
 
     public void setAbilitypoint(Abilitypoint abilitypoint) {
         this.abilitypoint = abilitypoint;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

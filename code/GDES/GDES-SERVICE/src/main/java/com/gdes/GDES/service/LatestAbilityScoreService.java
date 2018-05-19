@@ -48,4 +48,12 @@ public interface LatestabilityscoreService {
      * @throws Exception
      */
     public int updateAbilityScoreByStudentId(Latestabilityscore las) throws Exception;
+
+    /**
+     * 查询某个专业所有学生的最新能力得分
+     * @param mid
+     * @return
+     * @throws Exception
+     */
+    public List<Latestabilityscore> getListByMajorId(String mid) throws Exception;
 }

@@ -213,12 +213,12 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub" style="display: block">
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}las/listbystudentid.do?id_s=631406010217" target="index">
+                        <a href="${basePath}loading/scoretable.do?idS=631406010217" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 得分表
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}las/scoreproportion.do?id_s=631406010217" target="index">
+                        <a href="${basePath}loading/scorecharts.do?idS=631406010217" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 评价图
                         </a>
                     </li>
@@ -231,12 +231,12 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub" style="display: block">
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}evaluation/execut.do" target="index">
+                        <a href="${basePath}loading/execut.do" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 正式测评
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:;">
+                        <a href="/student/examlianxi.do?idS=6314040925" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 测评练习
                         </a>
                     </li>

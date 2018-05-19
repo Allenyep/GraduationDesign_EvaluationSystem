@@ -11,5 +11,5 @@ public interface MajorService {
      * @return
      * @throws Exception
      */
-    public List<Major> queryByMajorId(String mid) throws Exception;
+    public Major queryByMajorId(String mid) throws Exception;
 }

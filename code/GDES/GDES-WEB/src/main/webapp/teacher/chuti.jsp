@@ -63,11 +63,38 @@
 
                                             <td class="hidden-480">${a.idAp}</td>
                                             <td class="hidden-480">
+<<<<<<< HEAD
                                                 <a href="${basePath}scoredetail/scoredetail.do?id_ap=${a.idAp}&id_s=${a.idS}">${a.abilitypoint.nameAp}</a>
+=======
+                                                <a href="/teacher/shitidetail.do?idQ=${a.idQ}">
+                                                    <div style="width:400px;word-wrap:break-word;">
+                                                        ${a.contextQ}
+                                                    </div>
+                                                </a>
+>>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
                                             </td>
                                             <td class="hidden-480">${a.scoreLas}</td>
                                                 <%--<td>Feb 12</td>--%>
+<<<<<<< HEAD
                                             <td class="hidden-480">${a.timeLas}</td>
+=======
+                                            <td class="hidden-480">
+                                                <c:choose>
+                                                    <c:when test="${a.styleQ=='1'}">
+                                                        选择题
+                                                    </c:when>
+                                                    <c:when test="${a.styleQ=='2'}">
+                                                        填空题
+                                                    </c:when>
+                                                    <c:when test="${a.styleQ=='3'}">
+                                                        判断题
+                                                    </c:when>
+                                                    <c:when test="${a.styleQ=='4'}">
+                                                        主观题
+                                                    </c:when>
+                                                </c:choose>
+                                            </td>
+>>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
 
                                             <td>
                                             </td>
@@ -87,6 +114,7 @@
     </div><!-- /.main-content -->
 </div><!-- /.main-container -->
 
+<<<<<<< HEAD
 <!-- basic scripts -->
 <script type="text/javascript">
     window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
@@ -134,6 +162,72 @@
 
 
 </script>
+=======
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">编辑题目内容</h4>
+            </div>
+            <div class="modal-body">在这里添加一些文本</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+    <!-- basic scripts -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/js/jquery.dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var oTable1 = $('#sample-table-2').dataTable({
+                "aoColumns": [
+                    {"bSortable": false},
+                    null, null, null, null, null,
+                    {"bSortable": false}
+                ]
+            });
+
+
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function () {
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+            });
+
+
+            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+
+
+    </script>
+>>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
 
 </body>
 </html>

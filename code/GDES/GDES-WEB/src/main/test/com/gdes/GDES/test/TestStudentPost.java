@@ -37,4 +37,15 @@ public class TestStudentPost {
     public void testGetCountByStudentId() throws Exception {
         System.out.println(studentpostService.getCountByStudentId("631406010217"));
     }
+
+    @Test
+    public void testGetListByMajorId() throws Exception {
+        List<Studentpost> studentpostList = studentpostService.getListByMajorId("01");
+        for(Studentpost sp:studentpostList) {
+            System.out.println(sp.getIdS());
+            System.out.println(sp.getStudent().getNameS());
+            System.out.println(sp.getPost().getNameP());
+            System.out.println(sp.getScoreSp());
+        }
+    }
 }

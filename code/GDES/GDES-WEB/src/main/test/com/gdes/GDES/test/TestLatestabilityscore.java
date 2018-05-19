@@ -1,4 +1,6 @@
+import com.gdes.GDES.model.Latestabilityscore;
 import com.gdes.GDES.service.LatestabilityscoreService;
+import com.gdes.GDES.service.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,6 +29,15 @@ public class TestLatestabilityscore {
         List<Integer> list = latestabilityscoreService.getAbilityPointIdList("631406010217");
         for(int i=0;i<list.size();i++) {
             System.out.println(list.get(i));
+        }
+    }
+
+    @Test
+    public void testGetListByMajorId() throws Exception {
+        List<Latestabilityscore> latestabilityscores = latestabilityscoreService.getListByMajorId("01");
+        for(Latestabilityscore la:latestabilityscores) {
+            System.out.println(la.getIdS());
+            System.out.println(la.getScoreLas());
         }
     }
 

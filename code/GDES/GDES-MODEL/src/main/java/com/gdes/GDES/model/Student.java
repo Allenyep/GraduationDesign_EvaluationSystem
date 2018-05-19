@@ -9,6 +9,8 @@ public class Student {
 
     private String dateS;
 
+    private Major major;
+
     public String getIdS() {
         return idS;
     }
@@ -39,5 +41,13 @@ public class Student {
 
     public void setDateS(String dateS) {
         this.dateS = dateS == null ? null : dateS.trim();
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
     }
 }

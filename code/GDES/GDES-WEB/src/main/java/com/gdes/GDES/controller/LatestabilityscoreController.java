@@ -1,11 +1,7 @@
 package com.gdes.GDES.controller;
 
-import com.gdes.GDES.model.Latestabilityscore;
-import com.gdes.GDES.model.Scoredetail;
-import com.gdes.GDES.model.Studentpost;
-import com.gdes.GDES.service.LatestabilityscoreService;
-import com.gdes.GDES.service.ScoredetailService;
-import com.gdes.GDES.service.StudentpostService;
+import com.gdes.GDES.model.*;
+import com.gdes.GDES.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +20,12 @@ public class LatestabilityscoreController {
 
     @Resource
     private StudentpostService studentpostService;
+
+    @Resource
+    private MajorService majorService;
+
+    @Resource
+    private StudentService studentService;
 
     /**
      * 按学生id查询能力得分
@@ -58,4 +60,47 @@ public class LatestabilityscoreController {
         model.addAttribute("studentpost", studentpostList);
         return "student/charts";
     }
+
+    /**
+     * 教师功能
+     */
+    /**
+     *
+     * 按专业查询
+     * @param id_m
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("allbymajorid")
+    public String queryStudentListByMajorId(String id_m, Model model) throws Exception {
+        Major major = majorService.queryByMajorId(id_m);
+        model.addAttribute("major", major);
+        List<Latestabilityscore> latestabilityscores = latestabilityscoreService.getListByMajorId(id_m);
+        model.addAttribute("allbymajorid", latestabilityscores);
+
+        System.out.println(999999999);
+
+        return "teacher/studentabilityscore";
+    }
+
+    @RequestMapping("scorecharts")
+    public String scoreCharts(String id_s, Model model) throws Exception {
+        //某个学生能力饼图
+        List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
+        model.addAttribute("scorep", latestAbilityScores);
+        //某个学生能力折线图
+        List<Scoredetail> scoreDetailList = scoredetailService.queryByStudentId(id_s);
+        model.addAttribute("scorel", scoreDetailList);
+        //某个学生能力雷达图
+        List<Studentpost> studentpostList = studentpostService.getListByStudentId(id_s);
+        model.addAttribute("scorez", studentpostList);
+        //某个学生能力学生个人信息
+        Student student = studentService.queryStudentById(id_s);
+        Major major = majorService.queryByMajorId(student.getIdM());
+        student.setMajor(major);
+        model.addAttribute("student", student);
+        return "teacher/charts";
+    }
+
 }

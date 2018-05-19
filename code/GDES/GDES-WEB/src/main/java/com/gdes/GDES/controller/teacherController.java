@@ -1,13 +1,22 @@
 package com.gdes.GDES.controller;
 
 import com.gdes.GDES.model.Knowledgepoint;
+<<<<<<< HEAD
 import com.gdes.GDES.service.KnowledgepointService;
 import com.gdes.GDES.service.TeacherService;
+=======
+import com.gdes.GDES.model.Questions;
+import com.gdes.GDES.model.Questionsoption;
+import com.gdes.GDES.model.Questionspoint;
+import com.gdes.GDES.model.utils.UUid;
+import com.gdes.GDES.service.*;
+>>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +30,12 @@ public class TeacherController {
     @Resource
     private KnowledgepointService kps;
 
+
+    @Resource
+    private QuestionspointService qps;
+
+    @Resource
+    private QuestionsoptionService qos;
 
 
     //通过教师课程加载初始页面
@@ -87,4 +102,83 @@ public class TeacherController {
 
     }
 
+<<<<<<< HEAD
+=======
+
+    //试题详情页，加载试题对应知识点
+    @RequestMapping("shitidetail")
+    public String shitidetail(String idQ,Model model)throws Exception{
+        Questions q=qs.queryByPrimary(idQ);
+        model.addAttribute("que",q);
+        //是否是选择题，读取选择题选项
+        if(q.getStyleQ().equals("1")){
+            List<Questionsoption> questionsoptions=qos.queryByidQ(q.getIdQ());
+            model.addAttribute("oplist",questionsoptions);
+        }
+
+        List<Questionspoint> qs= qps.queryByQuestionId(idQ);
+        List<Knowledgepoint> Allkplist=kps.queryAllKnowledgepoint();
+        List<Knowledgepoint> reslist=new ArrayList<>();
+        for(Questionspoint qp:qs){
+            for(Knowledgepoint kp:Allkplist){
+                if(qp.getIdKp().equals(kp.getIdKp())){
+                    reslist.add(kp);
+                }
+            }
+        }
+        model.addAttribute("kplist",reslist);
+        model.addAttribute("Allkplist",Allkplist);
+
+        return "teacher/shitiform";
+    }
+
+    //更新试题页面,试题内容，试题答案，试题知识点
+    //TODO：选择题,添加知识点,修改试题选项，修改知识点
+    @RequestMapping("updateshiti")
+    public String updateshiti(String contextQ,String answerQ,
+                              String scoreQ,String idQ,Model model)throws Exception{
+        Questions q=new Questions();
+        q.setContextQ(contextQ);
+        q.setAnswerQ(answerQ);
+        q.setScoreQ(scoreQ);
+        q.setIdQ(idQ);
+
+        String str=qs.updateQuestion(q);
+        model.addAttribute("message",str);
+        return shitidetail(idQ,model);
+    }
+
+    //添加试题,填空，大题
+    @RequestMapping("addshiti1")
+    public String addshiti1(String contextQ,String answerQ,
+                            String scoreQ,Model model)throws Exception{
+        Questions q=new Questions();
+        q.setIdQ(UUid.getUUID());
+        q.setContextQ(contextQ);
+        q.setAnswerQ(answerQ);
+        q.setScoreQ(scoreQ);
+        if(answerQ.length()>10){
+            q.setStyleQ("4");
+        }else{
+            q.setStyleQ("2");
+        }
+
+        //TODO:课程，教师
+        q.setIdT("1");
+        q.setIdC("2");
+
+        String str=qs.addQuestion(q);
+        model.addAttribute("message",str);
+        System.out.println(str);
+
+        return knowpoint(str,model);
+    }
+
+    //添加选择，多选单选
+    @RequestMapping("addshiti2")
+    public String addshiti2()throws Exception{
+
+        return null;
+    }
+>>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
 }

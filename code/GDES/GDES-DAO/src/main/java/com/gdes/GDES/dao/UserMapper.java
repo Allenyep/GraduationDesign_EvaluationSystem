@@ -52,7 +52,7 @@ public interface UserMapper {
      * @param idU
      * @return
      */
-    //todo
+    //
     Set<String> selectPermissionByUserName(String idU);
 
 

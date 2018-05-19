@@ -29,7 +29,7 @@
                         <i class="icon-double-angle-right"></i>
                         得分表
                     </small>
-                    <a type="button" class="btn btn-info" style="float: right" href="${basePath}excle/sdown.do?id_s=631406010102">下载分析报表</a>
+                    <a type="button" class="btn btn-info" style="float: right" href="${basePath}excle/down.do?id_s=631406010102">下载分析报表</a>
                 </h1>
             </div><!-- /.page-header -->
             <div class="row">
@@ -41,17 +41,18 @@
                                 <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="center">
-
-                                        </th>
-                                        <th class="hidden-480">能力点编号</th>
-                                        <th class="hidden-480">能力点名称</th>
-                                        <th class="hidden-480">得分</th>
+                                        <th class="center"></th>
+                                        <th class="hidden-480 center">能力点编号</th>
+                                        <th class="hidden-480 center">能力点名称</th>
+                                        <th class="hidden-480 center">得分</th>
                                         <%--<th>
                                             <i class="icon-time bigger-110 hidden-480"></i>
                                             更新日期(最后日期)
                                         </th>--%>
-                                        <th class="hidden-480">更新时间</th>
+                                        <th class="center">
+                                            <i class="icon-time bigger-110 hidden-480"></i>
+                                            更新时间
+                                        </th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -60,23 +61,16 @@
                                     <tbody>
                                     <c:forEach items="${scorebystudentid}" var="a">
                                         <tr>
-                                            <td class="center">
-
-                                            </td>
-
-                                            <td class="hidden-480">${a.idAp}</td>
-                                            <td class="hidden-480">
+                                            <td class="center"></td>
+                                            <td class="hidden-480 center">${a.idAp}</td>
+                                            <td class="hidden-480 center">
                                                 <a href="${basePath}scoredetail/scoredetail.do?id_ap=${a.idAp}&id_s=${a.idS}">${a.abilitypoint.nameAp}</a>
                                             </td>
-                                            <td class="hidden-480">${a.scoreLas}</td>
+                                            <td class="hidden-480 center">${a.scoreLas}</td>
                                                 <%--<td>Feb 12</td>--%>
-                                            <td class="hidden-480">${a.timeLas}</td>
-
-                                            <td>
-                                            </td>
-
-                                            <td>
-                                            </td>
+                                            <td class="hidden-480 center">${a.timeLas}</td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
