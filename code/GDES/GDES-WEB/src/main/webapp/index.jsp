@@ -48,7 +48,7 @@
 
 
 
-            <form class="am-form tpl-form-line-form" action="${ctx}/usertest/login.do" method="post">
+            <form class="am-form tpl-form-line-form" action="/usertest/login.do" method="post">
                 <div class="am-form-group">
                     <input type="text" class="tpl-form-input" id="username" name="idU" placeholder="请输入账号">
 

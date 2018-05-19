@@ -4,8 +4,9 @@
   <resultMap id="BaseResultMap" type="com.gdes.GDES.model.Course">
     <id column="id_c" jdbcType="VARCHAR" property="idC" />
     <result column="name_c" jdbcType="VARCHAR" property="nameC" />
-    <result column="leader_c" jdbcType="VARCHAR" property="leaderC" />
+    <result column="courseType" jdbcType="VARCHAR" property="courseType" />
     <result column="introduction_c" jdbcType="VARCHAR" property="introductionC" />
+    <result column="courseCode" jdbcType="INTEGER" property="courseCode"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id_c, name_c, leader_c, introduction_c
+    id_c, name_c, courseType, introduction_c,courseCode
   </sql>
   <select id="selectByExample" parameterType="com.gdes.GDES.model.CourseExample" resultMap="BaseResultMap">
     select
@@ -113,11 +114,14 @@
       <if test="nameC != null">
         name_c,
       </if>
-      <if test="leaderC != null">
-        leader_c,
+      <if test="courseType != null">
+        courseType,
       </if>
       <if test="introductionC != null">
         introduction_c,
+      </if>
+      <if test="courseCode != null">
+        courseCode,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -127,11 +131,14 @@
       <if test="nameC != null">
         #{nameC,jdbcType=VARCHAR},
       </if>
-      <if test="leaderC != null">
-        #{leaderC,jdbcType=VARCHAR},
+      <if test="courseType != null">
+        #{courseType,jdbcType=VARCHAR},
       </if>
       <if test="introductionC != null">
         #{introductionC,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCode != null">
+        #{courseCode,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -200,4 +207,26 @@
     SELECT * from course
   </select>
 
+
+  <select id="getCourseBYCourseType" resultMap="BaseResultMap">
+    SELECT * from course WHERE courseType=#{courseType}
+  </select>
+
+
+
+  <select id="findCourseByCourseType" resultMap="BaseResultMap">
+    SELECT * FROM course
+    <if test="courseType != null">
+      WHERE courseType=#{courseType}
+    </if>
+  </select>
+
+  <select id="findCourseBynameC" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * FROM course WHERE name_c LIKE "%"#{nameC}"%"
+  </select>
+
+  <select id="deleteByCourseCode" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    delete from course
+    where courseCode = #{courseCode}
+  </select>
 </mapper>

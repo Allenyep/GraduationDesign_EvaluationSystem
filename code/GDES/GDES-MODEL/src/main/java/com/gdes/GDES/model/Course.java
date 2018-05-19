@@ -5,9 +5,18 @@ public class Course {
 
     private String nameC;
 
-    private String leaderC;
+    private String courseType;//课程类型
 
     private String introductionC;
+    private String courseCode;//课程编号
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
 
     public String getIdC() {
         return idC;
@@ -25,12 +34,12 @@ public class Course {
         this.nameC = nameC == null ? null : nameC.trim();
     }
 
-    public String getLeaderC() {
-        return leaderC;
+    public String getCourseType() {
+        return courseType;
     }
 
-    public void setLeaderC(String leaderC) {
-        this.leaderC = leaderC == null ? null : leaderC.trim();
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 
     public String getIntroductionC() {

@@ -218,7 +218,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="/teacher/shitilist.do" target="index">
+                        <a href="javascript:;">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 查看试题列表
                         </a>
                     </li>

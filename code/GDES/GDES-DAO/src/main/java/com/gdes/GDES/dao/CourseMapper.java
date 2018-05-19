@@ -2,8 +2,9 @@ package com.gdes.GDES.dao;
 
 import com.gdes.GDES.model.Course;
 import com.gdes.GDES.model.CourseExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CourseMapper {
     long countByExample(CourseExample example);
@@ -28,5 +29,20 @@ public interface CourseMapper {
 
     int updateByPrimaryKey(Course record);
 
+
+
+//    ===================
     List<Course> selectAll();
+
+    //按课程分类查询
+    List<Course> getCourseBYCourseType(String courseType);
+
+    //按课程分类查询
+    List<Course> findCourseByCourseType(@Param("courseType") String courseType);
+
+    //模糊查询
+    List<Course> findCourseBynameC(@Param("nameC") String nameC);
+
+
+    int deleteByCourseCode(Integer courseCode);
 }
