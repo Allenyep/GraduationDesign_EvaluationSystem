@@ -193,4 +193,7 @@
       date_s = #{dateS,jdbcType=VARCHAR}
     where id_s = #{idS,jdbcType=VARCHAR}
   </update>
+  <select id="studentIdListByMajorId" parameterType="java.lang.String" resultType="java.lang.String">
+    select id_s FROM student WHERE id_m = #{idM}
+  </select>
 </mapper>

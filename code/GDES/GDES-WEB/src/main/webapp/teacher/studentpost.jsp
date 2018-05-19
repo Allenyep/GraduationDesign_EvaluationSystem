@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../assets/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="../assets/css/ace.min.css"/>
+
 </head>
 
 <body>
@@ -24,12 +25,13 @@
         <div class="page-content">
             <div class="page-header">
                 <h1>
-                    首页
+                    <a href="#">首页</a>
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        得分表
+                        职位推荐情况
                     </small>
-                    <a type="button" class="btn btn-info" style="float: right" href="${basePath}excle/down.do?id_s=631406010102">下载分析报表</a>
+                    <label class="text-center" style="margin-left: 20%">专业：${major.nameM}</label>
+                    <a type="button" class="btn btn-info" style="float: right" href="${basePath}excle/down.do?pid_m=${major.idM}">下载职位信息</a>
                 </h1>
             </div><!-- /.page-header -->
             <div class="row">
@@ -42,35 +44,33 @@
                                     <thead>
                                     <tr>
                                         <th class="center"></th>
-                                        <th class="hidden-480 center">能力点编号</th>
-                                        <th class="hidden-480 center">能力点名称</th>
-                                        <th class="hidden-480 center">得分</th>
+                                        <th class="hidden-480 center">学号</th>
+                                        <th class="hidden-480 center">姓名</th>
+                                        <th class="hidden-480 center">职位编号</th>
                                         <%--<th>
                                             <i class="icon-time bigger-110 hidden-480"></i>
                                             更新日期(最后日期)
                                         </th>--%>
+                                        <th class="hidden-480 center">职位名称</th>
+                                        <th class="center">得分</th>
                                         <th class="center">
                                             <i class="icon-time bigger-110 hidden-480"></i>
                                             更新时间
                                         </th>
-                                        <th></th>
-                                        <th></th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
-                                    <c:forEach items="${scorebystudentid}" var="a">
+                                    <c:forEach items="${postlist}" var="p">
                                         <tr>
                                             <td class="center"></td>
-                                            <td class="hidden-480 center">${a.idAp}</td>
-                                            <td class="hidden-480 center">
-                                                <a href="${basePath}scoredetail/scoredetail.do?id_ap=${a.idAp}&id_s=${a.idS}">${a.abilitypoint.nameAp}</a>
-                                            </td>
-                                            <td class="hidden-480 center">${a.scoreLas}</td>
+                                            <td class="hidden-480 center">${p.idS}</td>
+                                            <td class="hidden-480 center">${p.student.nameS}</td>
+                                            <td class="hidden-480 center">${p.idP}</td>
+                                            <td class="hidden-480 center">${p.post.nameP}</td>
                                                 <%--<td>Feb 12</td>--%>
-                                            <td class="hidden-480 center">${a.timeLas}</td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="center">${p.scoreSp}</td>
+                                            <td class="center">${p.timeSp}</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -128,11 +128,6 @@
             return 'left';
         }
     })
-    /*个人能力报表下载*/
-    function myDownload() {
-        var myurl = "${basePath}excle/sdown.do?id_s=631406010102";
-        window.option(myurl);
-    }
 </script>
 
 </body>

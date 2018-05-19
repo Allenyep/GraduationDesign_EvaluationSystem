@@ -34,4 +34,12 @@ public interface StudentpostService {
      * @throws Exception
      */
     public int updateStudentPost(Studentpost studentpost) throws Exception;
+
+    /**
+     * 查询某个专业职位推荐
+     * @param mid
+     * @return
+     * @throws Exception
+     */
+    public List<Studentpost> getListByMajorId(String mid) throws Exception;
 }

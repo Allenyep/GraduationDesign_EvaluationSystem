@@ -15,10 +15,7 @@ public class MajorServiceImpl implements MajorService {
     @Resource
     private MajorMapper majorMapper;
 
-    public List<Major> queryByMajorId(String mid) throws Exception {
-        MajorExample example = new MajorExample();
-        MajorExample.Criteria criteria = example.createCriteria();
-        criteria.andIdMEqualTo(mid);
-        return majorMapper.selectByExample(example);
+    public Major queryByMajorId(String mid) throws Exception {
+        return majorMapper.selectByPrimaryKey(mid);
     }
 }

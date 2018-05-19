@@ -7,6 +7,10 @@ public class Evaluationrecord extends EvaluationrecordKey {
 
     private String consumptionEr;
 
+    private Student student;
+
+    private Teacher teacher;
+
     public String getBeginEr() {
         return beginEr;
     }
@@ -29,5 +33,21 @@ public class Evaluationrecord extends EvaluationrecordKey {
 
     public void setConsumptionEr(String consumptionEr) {
         this.consumptionEr = consumptionEr == null ? null : consumptionEr.trim();
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

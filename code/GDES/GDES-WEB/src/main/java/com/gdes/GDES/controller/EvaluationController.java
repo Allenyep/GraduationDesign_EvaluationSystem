@@ -1,8 +1,8 @@
 package com.gdes.GDES.controller;
 
 import com.gdes.GDES.model.*;
+import com.gdes.GDES.model.utils.ProfessionalCompetenceEvaluation;
 import com.gdes.GDES.service.*;
-import myclass.ProfessionalCompetenceEvaluation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,12 +45,12 @@ public class EvaluationController {
     @RequestMapping("execut")
     public String executing(Model model) throws Exception {
         //假设当前是五道试题
-        String[] ique = {"91613e1409cd40bcab2a5a1e3e928202", "6d802eac75d942038335caaf42be27fa", "9061c8c7eeef4a19972db7215b5da6a9", "998ce548e5fc44e5a1d3ad477d577ee0", "f3ed67c494bf4f7da11881d1bb07c64c"};
-        double[][] score_questions = {{10, 10, 5, 5, 5}}; //题目本来的分值
-        double[][] score_student = {{7, 8, 2, 4, 4}}; //学生五道试题的得分
+        String[] ique = {"10ce6b128195427fae43bd7a820effa5", "6d802eac75d942038335caaf42be27fa", "9061c8c7eeef4a19972db7215b5da6a9", "91613e1409cd40bcab2a5a1e3e928202", "998ce548e5fc44e5a1d3ad477d577ee0"};
+        double[][] score_questions = {{1, 10, 5, 10, 5}}; //题目本来的分值
+        double[][] score_student = {{1, 8, 3, 7, 4}}; //学生五道试题的得分
         String teacherid = "2"; //教师id
-        String studentid = "631406010217"; //学生id
-        String erid = "mmm"; //评测记录id
+        String studentid = "631406010101"; //学生id
+        String erid = "yyy"; //评测记录id
         String mid = "01"; //专业id
 
         /**
@@ -110,8 +110,8 @@ public class EvaluationController {
         /**
          * 学生专业所属专业大类要求下的得分
          */
-        /*List<Major> majors = majorService.queryByMajorId(mid);
-        int mbid = majors.get(0).getIdMb(); //学生专业的专业大类id
+        Major majors = majorService.queryByMajorId(mid);
+        int mbid = majors.getIdMb(); //学生专业的专业大类id
         List<Professionalabilitypointrequirements> professionalAbilityPointRequirements = professionalabilitypointrequirementsService.queryByMajorBId(mbid);
         int mi = 1;
         double[] majorrequire = new double[83];
@@ -120,9 +120,9 @@ public class EvaluationController {
             majorrequire[mi] = con;
             //result[mi] = ProfessionalCompetenceEvaluation.roundOffTwoDecimalPlaces(result[mi]*con);
             mi++;
-        }*/
+        }
         //得到试题和能力点的得分占比,每道试题能力点加起来为1
-        /*double[][] question_ability = ProfessionalCompetenceEvaluation.ColumnRatioByRow(
+        double[][] question_ability = ProfessionalCompetenceEvaluation.ColumnRatioByRow(
                 ProfessionalCompetenceEvaluation.MatrixMultiplication(question_knowledge, knowledge_ability));
         //每道试题能力点的得分
         for(int i=0;i<question_ability.length;i++) {
@@ -131,11 +131,11 @@ public class EvaluationController {
                     question_ability[i][j] = (score_student[0][i]/score_questions[0][i])*majorrequire[j]*100;
                 }
             }
-        }*/
+        }
         /**
          * 插入得分详情
          */
-        /*for(int i=0;i<question_ability.length;i++) {
+        for(int i=0;i<question_ability.length;i++) {
             for(int j=0;j<question_ability[0].length;j++) {
                 if(question_ability[i][j]!=0) {
                     Scoredetail scoredetail = new Scoredetail();
@@ -149,7 +149,7 @@ public class EvaluationController {
                     scoredetailService.addScoredetail(scoredetail); //插入数据库
                 }
             }
-        }*/
+        }
 
         /**
          * 插入最新能力得分
@@ -158,7 +158,7 @@ public class EvaluationController {
         List<Integer> apidList = scoredetailService.getApIdNotRepeat(studentid);
         //若不存在该学生的能力点得分
         long isexist = latestabilityscoreService.queryStudentByStudentId(studentid);
-        /*if(isexist==0) {
+        if(isexist==0) {
             for (int i = 0; i < apidList.size(); i++) {
                 Scoredetail scoredetail = new Scoredetail();
                 scoredetail.setIdS(studentid);
@@ -206,7 +206,7 @@ public class EvaluationController {
                     latestabilityscoreService.addLatestabilityscore(la);
                 }
             }
-        }*/
+        }
 
         /**
          * 岗位推荐
@@ -218,7 +218,7 @@ public class EvaluationController {
         }
         Long postcount = postService.getCount(); //岗位个数
         //学生岗位得分
-        /*double[][] ability_post = new double[83][Integer.parseInt(Long.toString(postcount))+1];
+        double[][] ability_post = new double[83][Integer.parseInt(Long.toString(postcount))+1];
         for(int i=1;i<postcount+1;i++) {
             List<Postabilitypoint> postabilitypointList = postabilitypointService.getListByPId(i);
             for(Postabilitypoint pa:postabilitypointList) {
@@ -231,15 +231,15 @@ public class EvaluationController {
         double[][] score_abilitymax = new double[1][83];
         for(int i=0;i<score_abilitymax[0].length;i++) {
             score_abilitymax[0][i] = 100;
-        }*/
-        //double[][] ability_post_max = ProfessionalCompetenceEvaluation.MatrixMultiplication(score_abilitymax, ability_post);
+        }
+        double[][] ability_post_max = ProfessionalCompetenceEvaluation.MatrixMultiplication(score_abilitymax, ability_post);
         //学生岗位最终得分
         /**
          * 插入学生岗位
          */
         //是否有该学生的岗位分析
         long isexiststudent = studentpostService.getCountByStudentId(studentid);
-        /*if(isexiststudent==0) {
+        if(isexiststudent==0) {
             for (int i = 1; i < score_post[0].length; i++) {
                 Studentpost sp = new Studentpost();
                 sp.setIdS(studentid);
@@ -259,30 +259,9 @@ public class EvaluationController {
                 sp.setTimeSp(nowTime());
                 studentpostService.updateStudentPost(sp);
             }
-        }*/
-
-//        return scoreProportion(studentid, model);
+        }
         return "redirect:/las/scoreproportion.do?id_s="+studentid;
     }
-
-    /**
-     * 能力点得分比例
-     * @param id_s
-     * @param model
-     * @return
-     */
-    /*public String scoreProportion(String id_s, Model model) throws Exception {
-        //饼图
-        List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
-        model.addAttribute("scorebystudentid", latestAbilityScores);
-        //折线图
-        List<Scoredetail> scoreDetailList = scoredetailService.queryByStudentId(id_s);
-        model.addAttribute("detailline", scoreDetailList);
-        //雷达图
-        List<Studentpost> studentpostList = studentpostService.getListByStudentId(id_s);
-        model.addAttribute("studentpost", studentpostList);
-        return "student/charts";
-    }*/
 
     /**
      * 获取当前时间

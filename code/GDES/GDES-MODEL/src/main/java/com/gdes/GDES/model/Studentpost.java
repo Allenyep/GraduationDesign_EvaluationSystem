@@ -7,6 +7,8 @@ public class Studentpost extends StudentpostKey {
 
     private Post post;
 
+    private Student student;
+
     public String getScoreSp() {
         return scoreSp;
     }
@@ -29,5 +31,13 @@ public class Studentpost extends StudentpostKey {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }
