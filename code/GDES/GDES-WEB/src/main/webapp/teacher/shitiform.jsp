@@ -71,7 +71,7 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">试题表单</div>
+                            <div class="widget-title am-fl">试题表单           ${message}</div>
                             <div class="widget-function am-fr">
                                 <a href="javascript:;"  class="am-icon-cog" ></a>
                             </div>
@@ -81,24 +81,54 @@
                             <form class="am-form tpl-form-border-form tpl-form-border-br"
                                   method="post" action="/teacher/updateshiti.do">
                                 <div class="am-form-group">
+                                    <input type="hidden" value="${que.idQ}" name="idQ">
                                     <div class="am-form-group">
-                                        <label for="user-intro" class="am-u-sm-3 am-form-label">试题内容<span
+                                        <label for="contextQ" class="am-u-sm-3 am-form-label">试题内容<span
                                                 class="tpl-form-line-small-title">context</span></label>
                                         <div class="am-u-sm-9">
-                                            <textarea class="" rows="10" id="user-intro" placeholder="试题内容">${que.contextQ}</textarea>
+                                            <textarea class="" name="contextQ" rows="10" id="contextQ" placeholder="试题内容">${que.contextQ}</textarea>
                                         </div>
                                     </div>
 
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">试题答案 <span
+                                    <label for="answerQ" class="am-u-sm-3 am-form-label">试题答案 <span
                                             class="tpl-form-line-small-title">answer</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入试题答案" value="${que.answerQ}">
+                                        <input type="text" class="tpl-form-input" name="answerQ" id="answerQ" placeholder="请输入试题答案" value="${que.answerQ}">
                                         <small>请在这里填写试题答案</small>
+                                    </div>
+
+                                    <label for="scoreQ" class="am-u-sm-3 am-form-label">试题分数 <span
+                                            class="tpl-form-line-small-title">score</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" name="scoreQ" id="scoreQ" placeholder="请输入试题分数" value="${que.scoreQ}">
+                                        <small>请在这里填写试题分数</small>
                                     </div>
                                 </div>
 
+                                <%--输出选择题选项--%>
+                                <c:forEach var="op" items="${oplist}">
+                                    <div class="am-u-lg-6">
+                                        <label for="contextO" class="am-u-sm-3 am-form-label">选项 <span
+                                                class="tpl-form-line-small-title">option</span></label>
+                                        <div class="am-input-group">
+                                            <span class="am-input-group-label">
+                                                <c:choose>
+                                                <c:when test="${op.istrueO==true}">
+                                                    <input type="checkbox" id="istrueO" name="istrueO" checked="${op.istrueO}">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input type="checkbox" id="istrueO" name="istrueO">
+                                                </c:otherwise>
+                                                </c:choose>
+                                            </span>
+                                            <input type="text" id="contextO" name="contextO"
+                                                   class="am-form-field" value="${op.contextO}">
+                                            <input type="hidden" value="${op.idO}" name="idO">
+                                        </div>
+                                    </div>
+                                </c:forEach>
 
-
+                                <%--知识点输出--%>
                                 <c:forEach var="kp" items="${kplist}">
                                     <div class="am-form-group">
                                         <label for="knowpoint" class="am-u-sm-3 am-form-label">知识点 <span
@@ -117,7 +147,7 @@
 
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">
+                                        <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">
                                             提交
                                         </button>
                                     </div>

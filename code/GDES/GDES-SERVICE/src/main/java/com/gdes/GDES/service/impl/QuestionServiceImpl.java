@@ -70,7 +70,7 @@ public class QuestionServiceImpl implements QuestionsService {
 
     public List<Questions> queryQuestionByKnowpoint(String idKp) throws Exception {
         //方法2
-        //TODO:数据库级联操作转换为服务操作
+        //数据库级联操作转换为服务操作
         QuestionspointExample qpe=new QuestionspointExample();
         QuestionspointExample.Criteria criteria=qpe.createCriteria();
         criteria.andIdKpEqualTo(Integer.valueOf(idKp));

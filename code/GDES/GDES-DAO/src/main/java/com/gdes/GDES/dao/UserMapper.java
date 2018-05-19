@@ -49,9 +49,9 @@ public interface UserMapper {
 
     /**
      * 根据用户名查询权限信息
-     * @param userName
+     * @param idU
      * @return
      */
-    //todo
+    //
     Set<String> selectPermissionByUserName(String idU);
 }
