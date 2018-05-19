@@ -236,7 +236,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:;">
+                        <a href="/student/examlianxi.do?idS=6314040925" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 测评练习
                         </a>
                     </li>

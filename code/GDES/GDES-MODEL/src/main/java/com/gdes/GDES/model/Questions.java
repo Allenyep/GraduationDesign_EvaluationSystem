@@ -1,5 +1,7 @@
 package com.gdes.GDES.model;
 
+import java.util.List;
+
 public class Questions {
     private String idQ;
 
@@ -22,6 +24,18 @@ public class Questions {
     private String automaticscoringQ;
 
     private String deleteornotQ;
+
+    //手动添加,试题选项
+    //TODO:试题选项，查询试题列表时控制选择题查询对应选项
+    private List<Questionsoption> questionsO;
+
+    public List<Questionsoption> getQuestionsO() {
+        return questionsO;
+    }
+
+    public void setQuestionsO(List<Questionsoption> questionsO) {
+        this.questionsO = questionsO;
+    }
 
     public String getIdQ() {
         return idQ;

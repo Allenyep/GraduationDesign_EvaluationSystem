@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface QuestionsService {
 
-    //TODO:根据试题编号，课程，题目类型，知识点查询试题
+    //根据试题编号，课程，题目类型，知识点查询试题
 
     /**
      * 查询所有知识点
