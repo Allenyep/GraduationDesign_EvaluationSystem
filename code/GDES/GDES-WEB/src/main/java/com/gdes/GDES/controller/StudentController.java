@@ -2,6 +2,7 @@ package com.gdes.GDES.controller;
 
 import com.gdes.GDES.model.Historytestpaper;
 import com.gdes.GDES.model.Questions;
+import com.gdes.GDES.model.utils.Exam;
 import com.gdes.GDES.service.HistorytestpaperService;
 import com.gdes.GDES.service.QuestionsService;
 import org.springframework.stereotype.Controller;
@@ -35,26 +36,10 @@ public class StudentController {
     private String  examlianxi(String idS, Model model)throws Exception{
         //TODO:练习测评出题算法
         List<Questions> qlist=qs.queryAllQusetion();
-        List<Questions> reslist=new ArrayList<>();
+        List<Questions> res;
         List<Historytestpaper> htplist=htps.queryByStudentid(idS);
-        for(Historytestpaper htp:htplist){
-            for(Questions q:qlist){
-                if(!htp.getIdQ().equals(q.getIdQ())){
-                    //未做过的试题
-                    reslist.add(q);
-                }
-            }
-        }
-        //从reslist当中随机选择5道
-        if(reslist.size()<5){
-            reslist.addAll(qlist.subList(0,5));
-        }
-        List<Questions> res=new ArrayList<>();
-        for(int i=0;i<5;i++){
-            int rand= (int)(Math.random()*reslist.size());
-            res.add(reslist.get(rand));
-            reslist.remove(rand);
-        }
+
+        res=Exam.Examlianxi(qlist,htplist);
 
         model.addAttribute("examlist",res);
 
