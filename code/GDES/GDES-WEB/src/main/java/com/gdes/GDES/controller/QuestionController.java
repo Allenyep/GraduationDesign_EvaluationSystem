@@ -39,8 +39,6 @@ public class QuestionController {
     @Resource
     private QuestionsoptionService qos;
 
-    private QuestionsService qs;
-
     @Resource
     private StudentService ss;
 
