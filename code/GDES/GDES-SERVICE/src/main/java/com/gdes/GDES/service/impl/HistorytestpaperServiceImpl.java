@@ -26,4 +26,35 @@ public class HistorytestpaperServiceImpl implements HistorytestpaperService {
 
         return htpm.selectByExample(htpe);
     }
+
+    public String addHistorytestpaper(Historytestpaper htp) {
+        if(htpm.insertSelective(htp)>0)
+            return "SUCCESS";
+        return "插入失败";
+    }
+
+    public List<Historytestpaper> queryByidEr(String idEr) {
+        HistorytestpaperExample htpe=new HistorytestpaperExample();
+        HistorytestpaperExample.Criteria criteria=htpe.createCriteria();
+        criteria.andIdErEqualTo(idEr);
+
+        List<Historytestpaper> htplist= htpm.selectByExample(htpe);
+
+        return htplist;
+    }
+
+    public String updateByIdErandIdQ(String idEr, String idQ,
+                                     String scoreHtp) throws Exception {
+        HistorytestpaperExample htpe=new HistorytestpaperExample();
+        HistorytestpaperExample.Criteria criteria=htpe.createCriteria();
+        criteria.andIdErEqualTo(idEr);
+        criteria.andIdQEqualTo(idQ);
+        List<Historytestpaper> htplist=htpm.selectByExample(htpe);
+        Historytestpaper htp=htplist.get(0);
+        htp.setScoreHtp(scoreHtp);
+        if(htpm.updateByPrimaryKeySelective(htp)>0)
+            return htp.getIdQ()+htp.getIdEr();
+
+        return "添加失败";
+    }
 }

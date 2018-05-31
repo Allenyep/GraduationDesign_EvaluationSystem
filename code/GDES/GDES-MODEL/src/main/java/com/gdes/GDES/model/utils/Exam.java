@@ -32,8 +32,30 @@ public class Exam {
         for(int i=0;i<5;i++){
             int rand= (int)(Math.random()*reslist.size());
             res.add(reslist.get(rand));
+
             reslist.remove(rand);
         }
+        //TODO:选择题测试
+        for(Questions quexuanze:qlist){
+            if(quexuanze.getStyleQ()!=null&&quexuanze.getStyleQ().equals("1")){
+                System.out.println(quexuanze.getContextQ());
+                res.add(quexuanze);
+            }
+        }
+
         return res;
+    }
+
+    //正式出题
+    public static List<Questions> Examzhengshi(List<Questions> qlist,
+                                               int n)throws Exception{
+        List<Questions> reslist=new ArrayList<Questions>();
+        for(int i=0;i<n;i++){
+            int rand= (int)(Math.random()*reslist.size());
+            reslist.add(qlist.get(rand));
+
+            qlist.remove(rand);
+        }
+        return reslist;
     }
 }

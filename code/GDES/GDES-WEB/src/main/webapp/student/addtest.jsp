@@ -13,19 +13,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>jQuery在线考试答题代码</title>
+    <title>练习测评</title>
 
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <style type="text/css">
-        .testCon{padding: 5px 15px;}
-        h4.tesTitle{color: #00B895;}
-        .test-form-box{max-height: 660px;overflow: auto;}
-        .assignment{margin: 30px 0 60px;text-align: center;}
-        .assignment .btn{background: #00B895;width: 120px;font-size: 18px;border-color: #00B895;}
-        #testForm .testCon:nth-child(odd){background: #eee;}
-        label{font-weight: normal;}
-        .jxz-title{text-align: justify;}
-        .topic-answer{display: none;}
+        .testCon {
+            padding: 5px 15px;
+        }
+
+        h4.tesTitle {
+            color: #00B895;
+        }
+
+        .test-form-box {
+            max-height: 660px;
+            overflow: auto;
+        }
+
+        .assignment {
+            margin: 30px 0 60px;
+            text-align: center;
+        }
+
+        .assignment .btn {
+            background: #00B895;
+            width: 120px;
+            font-size: 18px;
+            border-color: #00B895;
+        }
+
+        #testForm .testCon:nth-child(odd) {
+            background: #eee;
+        }
+
+        label {
+            font-weight: normal;
+        }
+
+        .jxz-title {
+            text-align: justify;
+        }
+
+        .topic-answer {
+            display: none;
+        }
     </style>
 
 </head>
@@ -36,19 +67,48 @@
         <div class="page-header">
             <h3 class="text-center">测评练习</h3>
         </div>
-        <form method="post" action="">
+        <form method="post" action="/question/examlianxiupload.do">
+            <input type="hidden" value="631404090425" name="idS">
+            <input type="hidden" value="1" name="idT">
             <c:forEach items="${examlist}" var="que" varStatus="i">
-                <div class="testCon" >
-                    <input type="hidden" value="${que.answerQ}">
-                </div>
-                <h4 class="jxz-title">第${i.index+1}题 ${que.contextQ} (分值${que.scoreQ})</h4>
-                <div class="jxz-option">
-                <textarea name="test" class="form-control" style="width: 50%" rows="5" placeholder="在此填写回答">
-                </textarea>
+                <div class="testCon">
+                        <%--<input type="hidden" value="${que.answerQ}">--%>
+                    <input type="hidden" name="idQ" value="${que.idQ}">
+                    <h4 class="jxz-title">第${i.index+1}题 ${que.contextQ} (分值${que.scoreQ})</h4>
+                    <c:choose>
+                        <c:when test="${que.styleQ=='1'}">
+                            <c:forEach items="${que.questionsO}" var="op">
+                                <div class="am-u-lg-6">
+                                    <div class="jxz-option">
+                                        <input type="radio" id="istrueO" name="istrueO">
+                                        <input type="text" id="contextO" class="am-form-field"
+                                               value="${op.contextO}">
+                                        <input type="hidden" value="${op.idO}" name="idO">
+                                    </div>
+                                </div>
+                            </c:forEach>
+                            <input type="hidden" name="answerHtp" value="A">
+                        </c:when>
+                        <c:when test="${que.styleQ=='3'}">
+                            <div class="am-u-lg-6">
+                                <div class="jxz-option">
+                                    <input type="radio" id="istrue" name="panduan" >对
+                                    <input type="radio" id="isfalse" name="panduan" >错
+                                    <input type="hidden" value="错" name="answerHtp">
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                        <textarea name="answerHtp" class="form-control" style="width: 50%" rows="5"
+                                  placeholder="在此填写回答">
+                        </textarea>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
             </c:forEach>
             <div class="form-group assignment">
-                <button type="button" class="btn btn-primary" onclick="assignment()">交卷</button>
+                <button type="submit" class="btn btn-primary">交卷</button>
             </div>
         </form>
 
@@ -58,7 +118,7 @@
 <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="../assets/js/test.js"></script>
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         //题型    1单选2多选3判断4填空5问答8论述题6完型填空7阅读理解
         //json    格式参照data/test.json
         //交卷    点击交卷后可查看对错

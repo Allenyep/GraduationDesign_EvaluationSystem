@@ -15,4 +15,31 @@ public interface HistorytestpaperService {
      * @return
      */
     public List<Historytestpaper> queryByStudentid(String idS);
+
+    /**
+     * 插入历史试卷
+     *
+     * @param htp
+     * @return
+     */
+    public String addHistorytestpaper(Historytestpaper htp);
+
+    /**
+     * 根据测评记录编号查询试卷进行批改
+     * @param idEr
+     * @return
+     */
+    public List<Historytestpaper> queryByidEr(String idEr);
+
+
+    /**
+     * 教师提交批改分数
+     * 输入测评记录编号，试题编号更新试题得分
+     * @param idEr
+     * @param idQ
+     * @param scoreHtp
+     * @return
+     * @throws Exception
+     */
+    public String updateByIdErandIdQ(String idEr,String idQ,String scoreHtp)throws Exception;
 }

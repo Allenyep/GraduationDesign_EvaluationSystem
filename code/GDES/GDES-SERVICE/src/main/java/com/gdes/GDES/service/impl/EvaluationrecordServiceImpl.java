@@ -3,18 +3,19 @@ package com.gdes.GDES.service.impl;
 import com.gdes.GDES.dao.EvaluationrecordMapper;
 import com.gdes.GDES.dao.StudentMapper;
 import com.gdes.GDES.dao.TeacherMapper;
-import com.gdes.GDES.model.Evaluationrecord;
-import com.gdes.GDES.model.EvaluationrecordExample;
-import com.gdes.GDES.model.Student;
-import com.gdes.GDES.model.Teacher;
+import com.gdes.GDES.model.*;
+import com.gdes.GDES.model.utils.UUid;
 import com.gdes.GDES.service.EvaluationrecordService;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public class EvaluationrecordServiceImpl implements EvaluationrecordService {
+
 
     @Resource
     private EvaluationrecordMapper evaluationrecordMapper;
@@ -38,5 +39,47 @@ public class EvaluationrecordServiceImpl implements EvaluationrecordService {
             er.setTeacher(teacher);
         }
         return evaluationrecords;
+    }
+
+    public String addEvaluationrecord(String idS, String idT) throws Exception {
+        //根据教师，学生编号插入测评记录
+        Evaluationrecord er=new Evaluationrecord();
+        er.setIdS(idS);
+        er.setIdT(idT);
+        er.setIdEr(UUid.getUUID());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+        String timestr=formatter.format(new Date(System.currentTimeMillis()));
+        er.setBeginEr(timestr);
+
+        if(evaluationrecordMapper.insertSelective(er)>0)
+            return er.getIdEr();
+
+        return "添加失败";
+    }
+
+    public List<Evaluationrecord> queryByendErIsNull(String idT) throws Exception {
+        EvaluationrecordExample ere=new EvaluationrecordExample();
+        EvaluationrecordExample.Criteria criteria=ere.createCriteria();
+        criteria.andIdTEqualTo(idT);
+        criteria.andEndErIsNull();
+
+
+        List<Evaluationrecord> erlist=evaluationrecordMapper.selectByExample(ere);
+        return erlist;
+    }
+
+    public String updateEvaluationrecordByIdEr(String idEr) throws Exception {
+        EvaluationrecordExample ere=new EvaluationrecordExample();
+        EvaluationrecordExample.Criteria criteria=ere.createCriteria();
+        criteria.andIdErEqualTo(idEr);
+        List<Evaluationrecord> erlist=evaluationrecordMapper.selectByExample(ere);
+        Evaluationrecord er=erlist.get(0);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+        String timestr=formatter.format(new Date(System.currentTimeMillis()));
+        er.setEndEr(timestr);
+        if (evaluationrecordMapper.updateByPrimaryKeySelective(er)>0)
+            return er.getIdEr();
+
+        return "添加失败";
     }
 }
