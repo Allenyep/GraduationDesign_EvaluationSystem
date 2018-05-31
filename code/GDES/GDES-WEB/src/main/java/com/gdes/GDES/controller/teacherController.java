@@ -1,9 +1,6 @@
 package com.gdes.GDES.controller;
 
-import com.gdes.GDES.model.Knowledgepoint;
-import com.gdes.GDES.model.Questions;
-import com.gdes.GDES.model.Questionsoption;
-import com.gdes.GDES.model.Questionspoint;
+import com.gdes.GDES.model.*;
 import com.gdes.GDES.model.utils.UUid;
 import com.gdes.GDES.service.*;
 import org.springframework.stereotype.Controller;
@@ -34,6 +31,14 @@ public class TeacherController {
     @Resource
     private QuestionsoptionService qos;
 
+    @Resource
+    private TeacherService teacherService;
+
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private MajorService majorService;
 
     /*==================*/
     /*知识点控制*/
@@ -185,5 +190,18 @@ public class TeacherController {
     public String addshiti2()throws Exception{
 
         return null;
+    }
+
+    /**
+     * 教师首页界面
+     */
+    @RequestMapping("tprofile")
+    public String profile(String idT, Model model) throws Exception {
+        Teacher teacher = teacherService.getTeacherById(idT);
+        model.addAttribute("teacher", teacher);
+        Major major = majorService.queryByMajorId(teacher.getIdM());
+        User user = userService.getUserByUserName(idT);
+        model.addAttribute("user", user);
+        return "teacher/profile";
     }
 }

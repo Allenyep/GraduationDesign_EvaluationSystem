@@ -5,6 +5,10 @@ public class Professionalabilitypointrequirements extends Professionalabilitypoi
 
     private String conversionratioPapr;
 
+    private Abilitypoint abilitypoint;
+
+    private Majorb majorb;
+
     public Integer getRequiredlevelPapr() {
         return requiredlevelPapr;
     }
@@ -19,5 +23,21 @@ public class Professionalabilitypointrequirements extends Professionalabilitypoi
 
     public void setConversionratioPapr(String conversionratioPapr) {
         this.conversionratioPapr = conversionratioPapr == null ? null : conversionratioPapr.trim();
+    }
+
+    public Abilitypoint getAbilitypoint() {
+        return abilitypoint;
+    }
+
+    public void setAbilitypoint(Abilitypoint abilitypoint) {
+        this.abilitypoint = abilitypoint;
+    }
+
+    public Majorb getMajorb() {
+        return majorb;
+    }
+
+    public void setMajorb(Majorb majorb) {
+        this.majorb = majorb;
     }
 }

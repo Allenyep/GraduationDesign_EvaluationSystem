@@ -29,7 +29,7 @@
                         <a href="javascript:history.back(-1)">得分表</a>
                         <small>
                             <i class="icon-double-angle-right"></i>
-                            得分详情
+                            能力点得分详情
                         </small>
                     </small>
                 </h1>
@@ -57,7 +57,7 @@
                                          <td class="center">${d.idAp}</td>
                                         <td class="center">${d.abilitypoint.nameAp}</td>
                                         <td class="center">
-                                            <a href="#">查看试题</a>
+                                            <a href="${basePath}question/shitidetail.do?idQ=${d.idQ}&idEr=${d.idEr}">查看试题</a>
                                         </td>
                                         <td class="center">${d.scoreSd}</td>
                                         <td class="center">${d.teacher.nameT}</td>

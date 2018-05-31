@@ -202,7 +202,7 @@
         <ul class="sidebar-nav">
             <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 功能菜单</span></li>
             <li class="sidebar-nav-link">
-                <a href="javascript:;" class="active">
+                <a href="${basePath}loading/sprofile.do?idS=631406010102" class="active" target="index">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页(学生个人信息能力图表)
                 </a>
             </li>
@@ -213,12 +213,12 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub" style="display: block">
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}loading/scoretable.do?idS=631406010217" target="index">
+                        <a href="${basePath}loading/scoretable.do?idS=631406010102" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 得分表
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}loading/scorecharts.do?idS=631406010217" target="index">
+                        <a href="${basePath}loading/scorecharts.do?idS=631406010102" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 评价图
                         </a>
                     </li>
@@ -252,7 +252,7 @@
     <!-- 出题界面 -->
 
     <div class="tpl-content-wrapper">
-        <iframe name="index" src="" height="100%" width="100%"></iframe>
+        <iframe name="index" src="${basePath}loading/sprofile.do?idS=631406010102" height="100%" width="100%"></iframe>
     </div>
 
 </div>

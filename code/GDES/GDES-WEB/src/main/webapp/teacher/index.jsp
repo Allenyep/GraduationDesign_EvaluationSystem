@@ -231,7 +231,7 @@
             </li>
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 学生成绩管理
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 学生管理
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
@@ -247,7 +247,7 @@
                     </li>
                     <li class="sidebar-nav-link">
                         <a href="${basePath}loading/stupost.do?idM=01" target="index">
-                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 职位推荐情况
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 岗位推荐情况
                         </a>
                     </li>
                 </ul>
@@ -257,7 +257,11 @@
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 知识点管理
                 </a>
             </li>
-
+            <li class="sidebar-nav-link">
+                <a href="${basePath}papr/getall.do" target="index">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 能力点及要求
+                </a>
+            </li>
 
         </ul>
     </div>
@@ -267,7 +271,7 @@
     <!-- 出题界面 -->
 
     <div class="tpl-content-wrapper">
-        <iframe name="index" src="../student/loading.jsp" height="100%" width="100%"></iframe>
+        <iframe name="index" src="../teacher/profile.jsp" height="100%" width="100%"></iframe>
     </div>
 
 </div>

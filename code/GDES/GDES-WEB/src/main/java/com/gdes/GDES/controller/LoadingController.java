@@ -33,6 +33,14 @@ public class LoadingController {
         return "student/loading";
     }
 
+    @RequestMapping("sprofile")
+    public String loading7(String idS, String flag, Model model) throws Exception {
+        model.addAttribute("idS",idS);
+        model.addAttribute("flag", flag);
+        String sprofile = "sprofile";
+        model.addAttribute("p", sprofile);
+        return "student/loading";
+    }
 
     /**
      * teacher

@@ -26,7 +26,7 @@
                     <a href="">首页</a>
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        <a href="javascript:history.back(-1)">学生能力查看</a>
+                        <a href="javascript:window.history.go(-1);">学生能力查看</a>
                         <small>
                             <i class="icon-double-angle-right"></i>
                             得分详情
@@ -58,7 +58,7 @@
                                          <td class="center">${d.idAp}</td>
                                         <td class="center">${d.abilitypoint.nameAp}</td>
                                         <td class="center">
-                                            <a href="#">查看试题</a>
+                                            <a href="${basePath}question/teachershitidetail.do?idQ=${d.idQ}&idEr=${d.idEr}">查看试题</a>
                                         </td>
                                         <td class="center">${d.scoreSd}</td>
                                         <td class="center">${d.teacher.nameT}</td>

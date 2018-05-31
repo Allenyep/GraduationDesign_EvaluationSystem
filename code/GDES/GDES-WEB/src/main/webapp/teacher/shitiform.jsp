@@ -113,12 +113,12 @@
                                         <div class="am-input-group">
                                             <span class="am-input-group-label">
                                                 <c:choose>
-                                                <c:when test="${op.istrueO==true}">
-                                                    <input type="checkbox" id="istrueO" name="istrueO" checked="${op.istrueO}">
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <input type="checkbox" id="istrueO" name="istrueO">
-                                                </c:otherwise>
+                                                    <c:when test="${op.istrueO==true}">
+                                                        <input type="checkbox" id="istrueO" name="istrueO" checked="${op.istrueO}">
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" id="istrueO" name="istrueO">
+                                                    </c:otherwise>
                                                 </c:choose>
                                             </span>
                                             <input type="text" id="contextO" name="contextO"

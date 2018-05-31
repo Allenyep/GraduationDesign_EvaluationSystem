@@ -63,21 +63,16 @@
 
                                             <td class="hidden-480">${a.idAp}</td>
                                             <td class="hidden-480">
-<<<<<<< HEAD
                                                 <a href="${basePath}scoredetail/scoredetail.do?id_ap=${a.idAp}&id_s=${a.idS}">${a.abilitypoint.nameAp}</a>
-=======
                                                 <a href="/teacher/shitidetail.do?idQ=${a.idQ}">
                                                     <div style="width:400px;word-wrap:break-word;">
                                                         ${a.contextQ}
                                                     </div>
                                                 </a>
->>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
                                             </td>
                                             <td class="hidden-480">${a.scoreLas}</td>
                                                 <%--<td>Feb 12</td>--%>
-<<<<<<< HEAD
                                             <td class="hidden-480">${a.timeLas}</td>
-=======
                                             <td class="hidden-480">
                                                 <c:choose>
                                                     <c:when test="${a.styleQ=='1'}">
@@ -94,7 +89,6 @@
                                                     </c:when>
                                                 </c:choose>
                                             </td>
->>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
 
                                             <td>
                                             </td>
@@ -114,7 +108,6 @@
     </div><!-- /.main-content -->
 </div><!-- /.main-container -->
 
-<<<<<<< HEAD
 <!-- basic scripts -->
 <script type="text/javascript">
     window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
@@ -160,9 +153,7 @@
         }
     })
 
-
 </script>
-=======
 
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -227,7 +218,6 @@
 
 
     </script>
->>>>>>> f4188c395b06d06129bd7298c83c78b0d193c82c
 
 </body>
 </html>

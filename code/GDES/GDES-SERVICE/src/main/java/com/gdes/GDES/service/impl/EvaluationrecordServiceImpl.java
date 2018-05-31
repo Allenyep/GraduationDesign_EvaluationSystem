@@ -30,6 +30,7 @@ public class EvaluationrecordServiceImpl implements EvaluationrecordService {
         EvaluationrecordExample example = new EvaluationrecordExample();
         EvaluationrecordExample.Criteria criteria = example.createCriteria();
         criteria.andIdSIn(sidlist);
+        criteria.andEndErIsNotNull();
         List<Evaluationrecord> evaluationrecords = evaluationrecordMapper.selectByExample(example);
         for(Evaluationrecord er:evaluationrecords) {
             Student student = studentMapper.selectByPrimaryKey(er.getIdS());
@@ -37,6 +38,27 @@ public class EvaluationrecordServiceImpl implements EvaluationrecordService {
             Teacher teacher = teacherMapper.selectByPrimaryKey(er.getIdT());
             er.setTeacher(teacher);
         }
+        return evaluationrecords;
+    }
+
+    public List<Evaluationrecord> evaluateList(String sid) throws Exception {
+        EvaluationrecordExample example = new EvaluationrecordExample();
+        EvaluationrecordExample.Criteria criteria = example.createCriteria();
+        criteria.andBeginErIsNotNull();
+        criteria.andEndErIsNotNull();
+        criteria.andIdSEqualTo(sid);
+        example.setOrderByClause("begin_er DESC");
+        List<Evaluationrecord> evaluationrecords = evaluationrecordMapper.selectByExample(example);
+        return evaluationrecords;
+    }
+
+    public List<Evaluationrecord> practiseList(String sid) throws Exception {
+        EvaluationrecordExample example = new EvaluationrecordExample();
+        EvaluationrecordExample.Criteria criteria = example.createCriteria();
+        criteria.andBeginErIsNull();
+        criteria.andEndErIsNull();
+        criteria.andIdSEqualTo(sid);
+        List<Evaluationrecord> evaluationrecords = evaluationrecordMapper.selectByExample(example);
         return evaluationrecords;
     }
 }

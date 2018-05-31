@@ -26,4 +26,12 @@ public class HistorytestpaperServiceImpl implements HistorytestpaperService {
 
         return htpm.selectByExample(htpe);
     }
+
+    public List<Historytestpaper> queryQuestionByIdQandIdEr(String idQ, String idEr) throws Exception {
+        HistorytestpaperExample example = new HistorytestpaperExample();
+        HistorytestpaperExample.Criteria criteria = example.createCriteria();
+        criteria.andIdQEqualTo(idQ);
+        criteria.andIdErEqualTo(idEr);
+        return htpm.selectByExample(example);
+    }
 }

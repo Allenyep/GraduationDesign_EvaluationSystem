@@ -1,6 +1,7 @@
 package com.gdes.GDES.service;
 
 import com.gdes.GDES.model.Historytestpaper;
+import com.gdes.GDES.model.HistorytestpaperExample;
 
 import java.util.List;
 
@@ -15,4 +16,13 @@ public interface HistorytestpaperService {
      * @return
      */
     public List<Historytestpaper> queryByStudentid(String idS);
+
+    /**
+     * 根据评测记录和学生id查询某道试题
+     * @param idQ
+     * @param idEr
+     * @return
+     * @throws Exception
+     */
+    public List<Historytestpaper> queryQuestionByIdQandIdEr(String idQ, String idEr) throws Exception;
 }

@@ -42,15 +42,16 @@ public class EvaluationController {
     @Resource
     private StudentpostService studentpostService;
 
+
     @RequestMapping("execut")
     public String executing(Model model) throws Exception {
         //假设当前是五道试题
-        String[] ique = {"10ce6b128195427fae43bd7a820effa5", "6d802eac75d942038335caaf42be27fa", "9061c8c7eeef4a19972db7215b5da6a9", "91613e1409cd40bcab2a5a1e3e928202", "998ce548e5fc44e5a1d3ad477d577ee0"};
-        double[][] score_questions = {{1, 10, 5, 10, 5}}; //题目本来的分值
-        double[][] score_student = {{1, 8, 3, 7, 4}}; //学生五道试题的得分
+        String[] ique = {"41", "6d802eac75d942038335caaf42be27fa", "9061c8c7eeef4a19972db7215b5da6a9", "91613e1409cd40bcab2a5a1e3e928202", "998ce548e5fc44e5a1d3ad477d577ee0"};
+        double[][] score_questions = {{3, 10, 5, 10, 5}}; //题目本来的分值
+        double[][] score_student = {{3, 8, 3, 7, 4}}; //学生五道试题的得分
         String teacherid = "2"; //教师id
-        String studentid = "631406010101"; //学生id
-        String erid = "yyy"; //评测记录id
+        String studentid = "631406010102"; //学生id
+        String erid = "bbb"; //评测记录id
         String mid = "01"; //专业id
 
         /**

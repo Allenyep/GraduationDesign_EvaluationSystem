@@ -1,9 +1,7 @@
 package com.gdes.GDES.controller;
 
-import com.gdes.GDES.model.Historytestpaper;
-import com.gdes.GDES.model.Questions;
-import com.gdes.GDES.service.HistorytestpaperService;
-import com.gdes.GDES.service.QuestionsService;
+import com.gdes.GDES.model.*;
+import com.gdes.GDES.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +25,18 @@ public class StudentController {
 
     @Resource
     private QuestionsService qs;
+
+    @Resource
+    private StudentService studentService;
+
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private EvaluationrecordService evaluationrecordService;
+
+    @Resource
+    private LatestabilityscoreService latestabilityscoreService;
 
     //学生发送做题请求
     //练习测评,从题库中选取未做过的试题进行计算，时间不写入
@@ -70,4 +80,24 @@ public class StudentController {
 
         return null;
     }
+
+    /**
+     * 学生首页界面
+     */
+    @RequestMapping("profile")
+    public String profile(String idS, String flag, Model model) throws Exception {
+        model.addAttribute("flag", flag);
+        Student student = studentService.queryStudentById(idS);
+        model.addAttribute("student", student);
+        User user = userService.getUserByUserName(idS);
+        model.addAttribute("user", user);
+        List<Evaluationrecord> evaluationrecords = evaluationrecordService.evaluateList(idS);
+        model.addAttribute("evaluatetimes", evaluationrecords); //测评记录
+        List<Evaluationrecord> practise = evaluationrecordService.practiseList(idS);
+        model.addAttribute("practisetimes", practise); //练习记录
+        List<Integer> apcount = latestabilityscoreService.getAbilityPointIdList(idS);
+        model.addAttribute("apcount", apcount);
+        return "student/profile";
+    }
+
 }

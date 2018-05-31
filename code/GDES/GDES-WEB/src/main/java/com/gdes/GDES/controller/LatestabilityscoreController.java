@@ -38,7 +38,11 @@ public class LatestabilityscoreController {
     public String listByStudentId(String id_s, Model model) throws Exception {
         List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
         model.addAttribute("scorebystudentid", latestAbilityScores);
-        return "student/ability_score";
+        if(latestAbilityScores.size()==0){
+            return "redirect:/loading/sprofile.do?idS="+id_s+"&flag=noscore";
+        } else {
+            return "student/ability_score";
+        }
     }
 
     /**
@@ -58,7 +62,11 @@ public class LatestabilityscoreController {
         //雷达图
         List<Studentpost> studentpostList = studentpostService.getListByStudentId(id_s);
         model.addAttribute("studentpost", studentpostList);
-        return "student/charts";
+        if(latestAbilityScores.size()==0) {
+            return "redirect:/loading/sprofile.do?idS="+id_s+"&flag=nopost";
+        } else {
+            return "student/charts";
+        }
     }
 
     /**
@@ -79,8 +87,6 @@ public class LatestabilityscoreController {
         List<Latestabilityscore> latestabilityscores = latestabilityscoreService.getListByMajorId(id_m);
         model.addAttribute("allbymajorid", latestabilityscores);
 
-        System.out.println(999999999);
-
         return "teacher/studentabilityscore";
     }
 
@@ -99,8 +105,7 @@ public class LatestabilityscoreController {
         Student student = studentService.queryStudentById(id_s);
         Major major = majorService.queryByMajorId(student.getIdM());
         student.setMajor(major);
-        model.addAttribute("student", student);
-        return "teacher/charts";
+        model.addAttribute("student", student);return "teacher/charts";
     }
 
 }
