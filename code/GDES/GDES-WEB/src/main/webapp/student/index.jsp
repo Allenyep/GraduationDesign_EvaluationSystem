@@ -231,13 +231,18 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub" style="display: block">
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}loading/execut.do" target="index">
+                        <a href="/student/examzhengshi.do?idS=631404090425"  target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 正式测评
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
                         <a href="/student/examlianxi.do?idS=6314040925" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 测评练习
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="" target="index">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 测评数据概况
                         </a>
                     </li>
                 </ul>

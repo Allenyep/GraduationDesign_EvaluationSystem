@@ -9,6 +9,16 @@ public class Historytestpaper extends HistorytestpaperKey {
 
     private String timeproportionHtp;
 
+    private Questions questions;
+
+    public Questions getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Questions questions) {
+        this.questions = questions;
+    }
+
     public String getAnswerHtp() {
         return answerHtp;
     }

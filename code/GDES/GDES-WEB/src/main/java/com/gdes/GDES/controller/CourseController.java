@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @RequestMapping("/course")
 public class CourseController {
 
-    @Autowired
+    @Resource
     private ICourseService courseService;
 
     @RequestMapping("/selectCourse.do")

@@ -218,12 +218,12 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:;">
+                        <a href="/teacher/shitilist.do" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 查看试题列表
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:;">
+                        <a href="/question/pigailist.do?idT=1" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 试题批改
                         </a>
                     </li>
