@@ -28,11 +28,19 @@ public class EvaluationrecordController {
 
     @RequestMapping("listbymajorid")
     public String getListByMajorId(String id_t, Model model) throws Exception {
-        Teacher teacher = teacherService.getTeacherById(id_t);
-        Major major = majorService.queryByMajorId(teacher.getIdM());
-        model.addAttribute("major", major);
-        List<Evaluationrecord> evaluationrecordList = evaluationrecordService.getListInStudentIdList(teacher.getIdM());
-        model.addAttribute("listbymajor", evaluationrecordList);
-        return "teacher/evaluationrecord";
+        try {
+            Teacher teacher = teacherService.getTeacherById(id_t);
+            Major major = majorService.queryByMajorId(teacher.getIdM());
+            model.addAttribute("major", major);
+            List<Evaluationrecord> evaluationrecordList = evaluationrecordService.getListInStudentIdList(teacher.getIdM());
+            model.addAttribute("listbymajor", evaluationrecordList);
+            if(evaluationrecordList.size()==0) {
+                return "redirect:/loading/tprofile.do?idT="+id_t+"&flag=norecord";
+            } else {
+                return "teacher/evaluationrecord";
+            }
+        } catch (Exception e) {
+            return "redirect:/loading/tprofile.do?idT="+id_t+"&flag=norecord";
+        }
     }
 }

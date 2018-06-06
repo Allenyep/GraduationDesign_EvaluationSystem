@@ -36,13 +36,18 @@ public class LatestabilityscoreController {
      */
     @RequestMapping("listbystudentid")
     public String listByStudentId(String id_s, Model model) throws Exception {
-        List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
-        model.addAttribute("scorebystudentid", latestAbilityScores);
-        if(latestAbilityScores.size()==0){
+        try {
+            List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
+            model.addAttribute("scorebystudentid", latestAbilityScores);
+            if(latestAbilityScores.size()==0){
+                return "redirect:/loading/sprofile.do?idS="+id_s+"&flag=noscore";
+            } else {
+                return "student/ability_score";
+            }
+        } catch (Exception e) {
             return "redirect:/loading/sprofile.do?idS="+id_s+"&flag=noscore";
-        } else {
-            return "student/ability_score";
         }
+
     }
 
     /**
@@ -53,20 +58,25 @@ public class LatestabilityscoreController {
      */
     @RequestMapping("scoreproportion")
     public String scoreProportion(String id_s, Model model) throws Exception {
-        //饼图
-        List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
-        model.addAttribute("scorebystudentid", latestAbilityScores);
-        //折线图
-        List<Scoredetail> scoreDetailList = scoredetailService.queryByStudentId(id_s);
-        model.addAttribute("detailline", scoreDetailList);
-        //雷达图
-        List<Studentpost> studentpostList = studentpostService.getListByStudentId(id_s);
-        model.addAttribute("studentpost", studentpostList);
-        if(latestAbilityScores.size()==0) {
+        try {
+            //饼图
+            List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
+            model.addAttribute("scorebystudentid", latestAbilityScores);
+            //折线图
+            List<Scoredetail> scoreDetailList = scoredetailService.queryByStudentId(id_s);
+            model.addAttribute("detailline", scoreDetailList);
+            //雷达图
+            List<Studentpost> studentpostList = studentpostService.getListByStudentId(id_s);
+            model.addAttribute("studentpost", studentpostList);
+            if(latestAbilityScores.size()==0) {
+                return "redirect:/loading/sprofile.do?idS="+id_s+"&flag=nopost";
+            } else {
+                return "student/charts";
+            }
+        } catch (Exception e) {
             return "redirect:/loading/sprofile.do?idS="+id_s+"&flag=nopost";
-        } else {
-            return "student/charts";
         }
+
     }
 
     /**
@@ -81,13 +91,21 @@ public class LatestabilityscoreController {
      * @throws Exception
      */
     @RequestMapping("allbymajorid")
-    public String queryStudentListByMajorId(String id_m, Model model) throws Exception {
-        Major major = majorService.queryByMajorId(id_m);
-        model.addAttribute("major", major);
-        List<Latestabilityscore> latestabilityscores = latestabilityscoreService.getListByMajorId(id_m);
-        model.addAttribute("allbymajorid", latestabilityscores);
+    public String queryStudentListByMajorId(String id_m, String id_t, Model model) throws Exception {
+        try {
+            Major major = majorService.queryByMajorId(id_m);
+            model.addAttribute("major", major);
+            List<Latestabilityscore> latestabilityscores = latestabilityscoreService.getListByMajorId(id_m);
+            model.addAttribute("allbymajorid", latestabilityscores);
+            if(latestabilityscores.size()==0) {
+                return "redirect:/loading/tprofile.do?idT="+id_t+"&flag=tnoap";
+            } else {
+                return "teacher/studentabilityscore";
+            }
+        } catch (Exception e) {
+            return "redirect:/loading/tprofile.do?idT="+id_t+"&flag=tnoap";
+        }
 
-        return "teacher/studentabilityscore";
     }
 
     @RequestMapping("scorecharts")
@@ -105,7 +123,8 @@ public class LatestabilityscoreController {
         Student student = studentService.queryStudentById(id_s);
         Major major = majorService.queryByMajorId(student.getIdM());
         student.setMajor(major);
-        model.addAttribute("student", student);return "teacher/charts";
+        model.addAttribute("student", student);
+        return "teacher/charts";
     }
 
 }

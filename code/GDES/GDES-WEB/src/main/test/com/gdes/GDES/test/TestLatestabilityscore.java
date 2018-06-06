@@ -25,6 +25,21 @@ public class TestLatestabilityscore {
     }
 
     @Test
+    public void testQueryByStudentId() throws Exception {
+        List<Latestabilityscore> latestabilityscores =
+                latestabilityscoreService.queryByStudentId("631406010102");
+        for(Latestabilityscore la:latestabilityscores) {
+            System.out.println(la.getIdS());
+            System.out.println(la.getStudent().getNameS());
+            System.out.println(la.getIdAp());
+            System.out.println(la.getAbilitypoint().getNameAp());
+            System.out.println(la.getScoreLas());
+            System.out.println(la.getTimeLas());
+            System.out.println();
+        }
+    }
+
+    @Test
     public void testGetAbilityPointIdList() throws Exception {
         List<Integer> list = latestabilityscoreService.getAbilityPointIdList("631406010217");
         for(int i=0;i<list.size();i++) {
@@ -34,10 +49,14 @@ public class TestLatestabilityscore {
 
     @Test
     public void testGetListByMajorId() throws Exception {
-        List<Latestabilityscore> latestabilityscores = latestabilityscoreService.getListByMajorId("01");
+        List<Latestabilityscore> latestabilityscores =
+                latestabilityscoreService.getListByMajorId("01");
         for(Latestabilityscore la:latestabilityscores) {
-            System.out.println(la.getIdS());
+            System.out.println(la.getStudent().getNameS());
+            System.out.println(la.getAbilitypoint().getNameAp());
             System.out.println(la.getScoreLas());
+            System.out.println(la.getTimeLas());
+            System.out.println();
         }
     }
 

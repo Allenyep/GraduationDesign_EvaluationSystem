@@ -48,6 +48,9 @@ public class QuestionController {
     @Resource
     private HistorytestpaperService htps;
 
+    @Resource
+    private EvaluationService evaluationService;
+
     /**
      * 学生查看试题详情
      * @param idQ
@@ -119,7 +122,7 @@ public class QuestionController {
             htps.addHistorytestpaper(htp);
         }
         model.addAttribute("idS",idS);
-        return "loading/scorecharts";
+        return "redirect:/loading/sprofile.do?idS="+idS+"&flag=examyes";
     }
 
     //根据教师id查询待批改试题
@@ -159,12 +162,20 @@ public class QuestionController {
     //提交批改试题需要填写测评记录结束时间
     //先更新历史试题，再更新测评记录时间
     @RequestMapping("pigaiupdate")
-    public String pigaiupdate(String[] idEr,String[] idQ,String[] scoreHtp,
+    public String pigaiupdate(String[] idEr,String[] idQ,String[] scoreHtp, String[] questionscore,
                               String idT, Model model)throws Exception{
         for(int i=0;i<idEr.length;i++){
-            htps.updateByIdErandIdQ(idEr[i],idQ[i],scoreHtp[i]);
+            //htps.updateByIdErandIdQ(idEr[i],idQ[i],scoreHtp[i]);
+            System.out.println(idQ[i]);
+            System.out.println(idEr[i]);
+            System.out.println(scoreHtp[i]);
+            System.out.println(questionscore[i]);
+            System.out.println(idT);
+            System.out.println(111111);
+            System.out.println();
         }
-        ers.updateEvaluationrecordByIdEr(idEr[0]);
+        //ers.updateEvaluationrecordByIdEr(idEr[0]);
+        //evaluationService.pExecuting(idQ, scoreHtp, questionscore, idEr[0], idT);
         model.addAttribute("message","批改完成");
         //TODO:教师编号
         return  pigailist(idT,model);

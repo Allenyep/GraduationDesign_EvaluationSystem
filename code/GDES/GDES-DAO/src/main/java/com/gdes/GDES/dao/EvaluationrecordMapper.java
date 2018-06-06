@@ -19,7 +19,7 @@ public interface EvaluationrecordMapper {
 
     List<Evaluationrecord> selectByExample(EvaluationrecordExample example);
 
-    Evaluationrecord selectByPrimaryKey(EvaluationrecordKey key);
+    Evaluationrecord selectByPrimaryKey(String key);
 
     int updateByExampleSelective(@Param("record") Evaluationrecord record, @Param("example") EvaluationrecordExample example);
 

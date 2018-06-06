@@ -70,12 +70,12 @@
                     <li class="">
                         <a href="#profile" data-toggle="tab">得分详情</a>
                     </li>
-                    <li class="">
+                    <%--<li class="">
                         <a href="#messages" data-toggle="tab">待定</a>
                     </li>
                     <li class="">
                         <a href="#settings" data-toggle="tab">待定</a>
-                    </li>
+                    </li>--%>
                 </ul>
 
                 <div class="tab-content">
@@ -107,7 +107,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="messages">
+                    <%--<div class="tab-pane fade" id="messages">
                         <h4>Messages Tab</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -124,7 +124,7 @@
                             voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
                             cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
         </div>

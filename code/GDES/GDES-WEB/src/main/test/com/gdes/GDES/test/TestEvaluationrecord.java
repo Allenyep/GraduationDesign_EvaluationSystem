@@ -33,4 +33,22 @@ public class TestEvaluationrecord {
         System.out.println(str);
     }
 
+    @Test
+    public void testQueryBuErId() throws Exception {
+        List<Evaluationrecord> evaluationrecord = ers.getListByErId("cb37b6b7745f47ddaa928fa84e54694c");
+        System.out.println(evaluationrecord.get(0).getIdS());
+    }
+
+    @Test
+    public void testGetListByMajorId() throws Exception {
+        List<Evaluationrecord> evaluationrecordList =
+                ers.getListInStudentIdList("01");
+        for(Evaluationrecord er:evaluationrecordList) {
+            System.out.println(er.getStudent().getNameS());
+            System.out.println(er.getIdEr());
+            System.out.println(er.getBeginEr());
+            System.out.println();
+        }
+    }
+
 }

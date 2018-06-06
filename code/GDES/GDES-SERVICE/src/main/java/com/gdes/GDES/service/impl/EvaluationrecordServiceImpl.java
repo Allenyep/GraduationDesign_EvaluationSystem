@@ -26,6 +26,13 @@ public class EvaluationrecordServiceImpl implements EvaluationrecordService {
     @Resource
     private TeacherMapper teacherMapper;
 
+    public List<Evaluationrecord> getListByErId(String erid) throws Exception {
+        EvaluationrecordExample example = new EvaluationrecordExample();
+        EvaluationrecordExample.Criteria criteria = example.createCriteria();
+        criteria.andIdErEqualTo(erid);
+        return evaluationrecordMapper.selectByExample(example);
+    }
+
     public List<Evaluationrecord> getListInStudentIdList(String mid) throws Exception {
         List<String> sidlist = studentMapper.studentIdListByMajorId(mid);
         EvaluationrecordExample example = new EvaluationrecordExample();
@@ -51,6 +58,34 @@ public class EvaluationrecordServiceImpl implements EvaluationrecordService {
         example.setOrderByClause("begin_er DESC");
         List<Evaluationrecord> evaluationrecords = evaluationrecordMapper.selectByExample(example);
         return evaluationrecords;
+    }
+
+    public List<Evaluationrecord> evaluateListByIdT(String tid) throws Exception {
+        EvaluationrecordExample example = new EvaluationrecordExample();
+        EvaluationrecordExample.Criteria criteria = example.createCriteria();
+        criteria.andIdTEqualTo(tid);
+        List<Evaluationrecord> evaluationrecordList = evaluationrecordMapper.selectByExample(example);
+        for(Evaluationrecord er: evaluationrecordList) {
+            Student student = studentMapper.selectByPrimaryKey(er.getIdS());
+            er.setStudent(student);
+        }
+        return evaluationrecordList;
+    }
+
+    public List<Evaluationrecord> correctList(String tid) throws Exception {
+        EvaluationrecordExample example = new EvaluationrecordExample();
+        EvaluationrecordExample.Criteria criteria = example.createCriteria();
+        criteria.andIdTEqualTo(tid);
+        criteria.andEndErIsNotNull();
+        return evaluationrecordMapper.selectByExample(example);
+    }
+
+    public List<Evaluationrecord> notCorrectList(String tid) throws Exception {
+        EvaluationrecordExample example = new EvaluationrecordExample();
+        EvaluationrecordExample.Criteria criteria = example.createCriteria();
+        criteria.andIdTEqualTo(tid);
+        criteria.andEndErIsNull();
+        return evaluationrecordMapper.selectByExample(example);
     }
 
     public List<Evaluationrecord> practiseList(String sid) throws Exception {

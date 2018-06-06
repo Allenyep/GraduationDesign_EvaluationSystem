@@ -213,7 +213,7 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub" style="display: block">
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}loading/scoretable.do?idS=631406010102" target="index">
+                        <a href="${basePath}loading/scoretable.do?idS=631404090425" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 得分表
                         </a>
                     </li>
@@ -236,7 +236,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="/student/examlianxi.do?idS=6314040925" target="index">
+                        <a href="/student/examlianxi.do?idS=631406010102" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 测评练习
                         </a>
                     </li>

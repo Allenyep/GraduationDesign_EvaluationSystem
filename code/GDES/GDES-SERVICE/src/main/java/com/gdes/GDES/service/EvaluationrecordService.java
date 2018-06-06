@@ -9,6 +9,12 @@ import java.util.List;
  */
 public interface EvaluationrecordService {
     /**
+     * 根据评测记录id查询
+     * @return
+     * @throws Exception
+     */
+    public List<Evaluationrecord> getListByErId(String erid) throws Exception;
+    /**
      * 根据专业id查询评测记录
      * @param mid
      * @return
@@ -23,6 +29,30 @@ public interface EvaluationrecordService {
      * @throws Exception
      */
     public List<Evaluationrecord> evaluateList(String sid) throws Exception;
+
+    /**
+     * 根据教师id查询测评记录
+     * @param tid
+     * @return
+     * @throws Exception
+     */
+    public List<Evaluationrecord> evaluateListByIdT(String tid) throws Exception;
+
+    /**
+     * 根据教师id查询已经批改的测评记录
+     * @param tid
+     * @return
+     * @throws Exception
+     */
+    public List<Evaluationrecord> correctList(String tid) throws Exception;
+
+    /**
+     * 根据教师id查询未批改的测评记录
+     * @param tid
+     * @return
+     * @throws Exception
+     */
+    public List<Evaluationrecord> notCorrectList(String tid) throws Exception;
 
     /**
      * 根据学生id查询练习记录

@@ -48,10 +48,6 @@
     if("${p}"=="scorecharts") {
         window.location.href = "${basePath}las/scoreproportion.do?id_s=${idS}";
     }
-    if("${p}"=="execut") {
-        window.location.href = "${basePath}evaluation/execut.do";
-        document.getElementById("showc").innerHTML = "计算中，请等待...";
-    }
     if("${p}"=="sprofile") {
         window.location.href = "${basePath}student/profile.do?idS=${idS}&flag=${flag}";
     }

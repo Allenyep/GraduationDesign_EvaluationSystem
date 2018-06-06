@@ -35,6 +35,8 @@ public class StudentpostServiceImpl implements StudentpostService {
         criteria.andIdSEqualTo(sid);
         List<Studentpost> studentpostList = studentpostMapper.selectByExample(example);
         for(Studentpost sp: studentpostList) {
+            Student student = studentMapper.selectByPrimaryKey(sp.getIdS());
+            sp.setStudent(student);
             Post post = postMapper.selectByPrimaryKey(sp.getIdP());
             sp.setPost(post);
         }

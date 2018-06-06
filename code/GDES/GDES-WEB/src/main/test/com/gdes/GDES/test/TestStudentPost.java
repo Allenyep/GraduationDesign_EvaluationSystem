@@ -27,9 +27,15 @@ public class TestStudentPost {
 
     @Test
     public void testGetListByStudentId() throws Exception {
-        List<Studentpost> studentpostList = studentpostService.getListByStudentId("631406010217");
+        List<Studentpost> studentpostList =
+                studentpostService.getListByStudentId("631406010102");
         for(Studentpost sp:studentpostList) {
+            System.out.println(sp.getIdS());
+            System.out.println(sp.getStudent().getNameS());
+            System.out.println(sp.getPost().getNameP());
             System.out.println(sp.getScoreSp());
+            System.out.println(sp.getTimeSp());
+            System.out.println();
         }
     }
 
@@ -40,12 +46,14 @@ public class TestStudentPost {
 
     @Test
     public void testGetListByMajorId() throws Exception {
-        List<Studentpost> studentpostList = studentpostService.getListByMajorId("01");
+        List<Studentpost> studentpostList =
+                studentpostService.getListByMajorId("01");
         for(Studentpost sp:studentpostList) {
-            System.out.println(sp.getIdS());
             System.out.println(sp.getStudent().getNameS());
             System.out.println(sp.getPost().getNameP());
             System.out.println(sp.getScoreSp());
+            System.out.println(sp.getTimeSp());
+            System.out.println();
         }
     }
 }

@@ -244,6 +244,9 @@
     if("${flag}"=="nopost") {
         alert("还未进行测评，无评价图！");
     }
+    if("${flag}"=="examyes") {
+        alert("提交成功！");
+    }
 </script>
 
 <script type="text/javascript">

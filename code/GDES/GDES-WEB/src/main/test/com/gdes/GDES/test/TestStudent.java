@@ -1,3 +1,4 @@
+import com.gdes.GDES.model.Student;
 import com.gdes.GDES.service.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,5 +21,11 @@ public class TestStudent {
         for(int i=0;i<list.size();i++) {
             System.out.println(list.get(i));
         }
+    }
+
+    @Test
+    public void testQueryById() throws Exception{
+        Student student = studentService.queryStudentById("631406010102");
+        System.out.println(student.getNameS());
     }
 }

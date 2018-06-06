@@ -68,7 +68,7 @@
             <h3 class="text-center">测评练习</h3>
         </div>
         <form method="post" action="/question/examlianxiupload.do">
-            <input type="hidden" value="631404090425" name="idS">
+            <input type="hidden" value="631406010102" name="idS">
             <input type="hidden" value="1" name="idT">
             <c:forEach items="${examlist}" var="que" varStatus="i">
                 <div class="testCon">

@@ -26,12 +26,6 @@ public class LoadingController {
         model.addAttribute("p", scoretable);
         return "student/loading";
     }
-    @RequestMapping("execut")
-    public String loading6(Model model) throws Exception {
-        String execut = "execut";
-        model.addAttribute("p", execut);
-        return "student/loading";
-    }
 
     @RequestMapping("sprofile")
     public String loading7(String idS, String flag, Model model) throws Exception {
@@ -45,8 +39,23 @@ public class LoadingController {
     /**
      * teacher
      */
+
+    @RequestMapping("execut")
+    public String loading6(String[] idEr,String[] idQ,String[] scoreHtp, String[] questionscore,
+                           String idT, Model model) throws Exception {
+        model.addAttribute("idEr", idEr[0]);
+        model.addAttribute("idQ", idQ);
+        model.addAttribute("scoreHtp", scoreHtp);
+        model.addAttribute("questionscore", questionscore);
+        model.addAttribute("idT", idT);
+        String execut = "execut";
+        model.addAttribute("p", execut);
+        return "teacher/loading";
+    }
+
     @RequestMapping("tabilityscore")
-    public String loading1(String idM, Model model) throws Exception {
+    public String loading1(String idM, String idT, Model model) throws Exception {
+        model.addAttribute("idT", idT);
         model.addAttribute("idM",idM);
         String abilityscore = "abilityscore";
         model.addAttribute("p", abilityscore);
@@ -62,10 +71,20 @@ public class LoadingController {
     }
 
     @RequestMapping("stupost")
-    public String loading3(String idM, Model model) throws Exception {
+    public String loading3(String idM, String idT, Model model) throws Exception {
+        model.addAttribute("idT", idT);
         model.addAttribute("idM",idM);
         String stupost = "stupost";
         model.addAttribute("p", stupost);
+        return "teacher/loading";
+    }
+
+    @RequestMapping("tprofile")
+    public String loading8(String idT, String flag, Model model) throws Exception {
+        model.addAttribute("idT",idT);
+        model.addAttribute("flag", flag);
+        String tprofile = "tprofile";
+        model.addAttribute("p", tprofile);
         return "teacher/loading";
     }
 }

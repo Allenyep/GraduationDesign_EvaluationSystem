@@ -22,11 +22,20 @@ public class StudentpostController {
     private MajorService majorService;
 
     @RequestMapping("listbymajorid")
-    public String getListByMajorId(String id_m, Model model) throws Exception {
-        List<Studentpost> studentpostList = studentpostService.getListByMajorId(id_m);
-        model.addAttribute("postlist", studentpostList);
-        Major major = majorService.queryByMajorId(id_m);
-        model.addAttribute("major", major);
-        return "teacher/studentpost";
+    public String getListByMajorId(String id_m, String id_t, Model model) throws Exception {
+        try {
+            List<Studentpost> studentpostList = studentpostService.getListByMajorId(id_m);
+            model.addAttribute("postlist", studentpostList);
+            Major major = majorService.queryByMajorId(id_m);
+            model.addAttribute("major", major);
+            if(studentpostList.size()==0) {
+                return "redirect:/loading/tprofile.do?idT="+id_t+"&flag=tnopost";
+            } else {
+                return "teacher/studentpost";
+            }
+        } catch (Exception e) {
+            return "redirect:/loading/tprofile.do?idT="+id_t+"&flag=tnopost";
+        }
+
     }
 }

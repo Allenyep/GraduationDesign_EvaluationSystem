@@ -1,9 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
-    session.setAttribute("basePath",basePath);
+    session.setAttribute("basePath", basePath);
 %>
 <html>
 <head>
@@ -33,23 +34,26 @@
 
         //加载状态为complete时移除loading效果
         /*function completeLoading() {
-            if (document.readyState == "complete") {
-                var loadingMask = document.getElementById('loadingDiv');
-                loadingMask.parentNode.removeChild(loadingMask);
-            }
-        }*/
+         if (document.readyState == "complete") {
+         var loadingMask = document.getElementById('loadingDiv');
+         loadingMask.parentNode.removeChild(loadingMask);
+         }
+         }*/
     </script>
 </head>
 <body>
 <script type="text/javascript">
-    if("${p}"=="abilityscore") {
-        window.location.href = "${basePath}las/allbymajorid.do?id_m=${idM}";
+    if ("${p}" == "abilityscore") {
+        window.location.href = "${basePath}las/allbymajorid.do?id_m=${idM}&id_t=${idT}";
     }
-    if("${p}"=="record") {
+    if ("${p}" == "record") {
         window.location.href = "${basePath}evaluationrecord/listbymajorid.do?id_t=${idT}";
     }
-    if("${p}"=="stupost") {
-        window.location.href = "${basePath}studentpost/listbymajorid.do?id_m=${idM}";
+    if ("${p}" == "stupost") {
+        window.location.href = "${basePath}studentpost/listbymajorid.do?id_m=${idM}&id_t=${idT}";
+    }
+    if ("${p}" == "tprofile") {
+        window.location.href = "${basePath}teacher/tprofile.do?idT=${idT}&flag=${flag}";
     }
 </script>
 </body>

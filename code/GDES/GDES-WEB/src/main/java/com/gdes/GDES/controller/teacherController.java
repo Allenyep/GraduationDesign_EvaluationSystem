@@ -40,6 +40,9 @@ public class TeacherController {
     @Resource
     private MajorService majorService;
 
+    @Resource
+    private EvaluationrecordService evaluationrecordService;
+
     /*==================*/
     /*知识点控制*/
     //通过教师课程加载初始页面
@@ -196,12 +199,23 @@ public class TeacherController {
      * 教师首页界面
      */
     @RequestMapping("tprofile")
-    public String profile(String idT, Model model) throws Exception {
+    public String profile(String idT, String flag, Model model) throws Exception {
+        model.addAttribute("flag", flag);
         Teacher teacher = teacherService.getTeacherById(idT);
         model.addAttribute("teacher", teacher);
+        System.out.println(teacher.getIdM());
         Major major = majorService.queryByMajorId(teacher.getIdM());
+        model.addAttribute("major", major);
+        System.out.println(major.getNameM());
         User user = userService.getUserByUserName(idT);
         model.addAttribute("user", user);
+        List<Evaluationrecord> corrects = evaluationrecordService.correctList(idT);
+        model.addAttribute("correct", corrects); //批改次数
+        List<Evaluationrecord> notCorrect = evaluationrecordService.notCorrectList(idT);
+        model.addAttribute("notcorrect", notCorrect); //待批改次数
+        List<Evaluationrecord> allListidT = evaluationrecordService.evaluateListByIdT(idT);
+        model.addAttribute("allbyidt", allListidT);
         return "teacher/profile";
     }
+
 }
