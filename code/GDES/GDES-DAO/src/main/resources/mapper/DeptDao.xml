@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gdes.GDES.dao.DeptDao">
+    <select id="selectDepts" resultType="Dept">
+        <!---->
+        SELECT
+        t_dept.id,
+        t_dept.`code`,
+        t_dept.`name`,
+        t_dept.parantid
+        FROM
+        t_dept
+    </select>
+</mapper>
+

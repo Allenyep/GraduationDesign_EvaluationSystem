@@ -88,4 +88,12 @@ public interface EvaluationrecordService {
      * @throws Exception
      */
     public String updateEvaluationrecordByIdEr(String idEr)throws Exception;
+
+    /**
+     * 查询评估记录
+     * @param idS
+     * @return
+     * @throws Exception
+     */
+    public List<Evaluationrecord> queryEvaluationrecordByIdSandEndEr(String idS)throws Exception;
 }

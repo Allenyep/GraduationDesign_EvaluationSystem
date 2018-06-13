@@ -16,7 +16,13 @@ public class CourseServiceImpl implements ICourseService {
 
     public List<Course> selectAllCourse(String courseType) {
 //        return courseMapper.selectAll();
-        return courseMapper.findCourseByCourseType(courseType);
+        System.out.println("用到了");
+        System.out.println(courseType);
+        if (courseType=="111"){
+           return courseMapper.selectAll();
+        }else {
+            return courseMapper.findCourseByCourseType(courseType);
+        }
     }
 
     public int addCourse(Course course){

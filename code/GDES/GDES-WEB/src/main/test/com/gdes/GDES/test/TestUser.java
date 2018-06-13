@@ -19,7 +19,7 @@ public class TestUser {
 
     @Test
     public void testGetUser() {
-        User user = userService.getUserByUserName("001");
-        System.out.println(user.getUsername());
+//        User user = userService.getUserByUserName("001");
+//        System.out.println(user.getUsername());
     }
 }

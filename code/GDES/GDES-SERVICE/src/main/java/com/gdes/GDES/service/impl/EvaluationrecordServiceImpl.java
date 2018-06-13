@@ -137,4 +137,15 @@ public class EvaluationrecordServiceImpl implements EvaluationrecordService {
 
         return "添加失败";
     }
+
+    public List<Evaluationrecord> queryEvaluationrecordByIdSandEndEr(String idS) throws Exception {
+        EvaluationrecordExample ere=new EvaluationrecordExample();
+        EvaluationrecordExample.Criteria criteria=ere.createCriteria();
+        criteria.andIdSEqualTo(idS);
+        criteria.andEndErIsNotNull();
+
+        List<Evaluationrecord> erlist= evaluationrecordMapper.selectByExample(ere);
+        return erlist;
+
+    }
 }

@@ -69,7 +69,7 @@
                                             <td class="hidden-480 center">${a.idS}</td>
                                             <td class="hidden-480 center">${a.student.nameS}</td>
                                             <td class="hidden-480 center">
-                                                <a href="#">查看记录</a>
+                                                <a href="${basePath}question/historydetail.do?idEr=${a.idEr}">查看记录</a>
                                             </td>
                                             <td class="hidden-480 center">${a.beginEr}</td>
                                                 <%--<td>Feb 12</td>--%>

@@ -4,7 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
-    session.setAttribute("basePath",basePath);
+    session.setAttribute("basePath", basePath);
 %>
 <html>
 <head>
@@ -41,7 +41,7 @@
                             <div>
                                 <span class="profile-picture">
                                     <img id="avatar" class="editable img-responsive" alt="Alex's Avatar"
-                                         src="../assets/img/profile-pic.jpg"/>
+                                         src="../assets/img/student.jpg"/>
                                 </span>
 
                                 <div class="space-4"></div>
@@ -51,7 +51,7 @@
                                         <a class="user-title-label dropdown-toggle" data-toggle="dropdown">
                                             <i class="icon-circle light-green middle"></i>
                                             &nbsp;
-                                            <span class="white">${user.username}</span>
+                                            <span class="white">${student.nameS}</span>
                                         </a>
 
                                     </div>
@@ -83,49 +83,51 @@
 
                         <div class="col-xs-12 col-sm-9">
                             <div class="center">
-												<span class="btn btn-app btn-sm btn-light no-hover">
-													<span class="line-height-1 bigger-170 blue"> ${apcount.size()} </span>
-
-													<br/>
-													<a href="${basePath}loading/scoretable.do?idS=631406010102">
-													<span class="line-height-1 smaller-90"> 得分表 </span>
-													</a>
-												</span>
+                                <span class="btn btn-app btn-sm btn-light no-hover">
+                                    <span class="line-height-1 bigger-170 blue"> ${apcount.size()} </span>
+                                    <br/>
+                                    <a href="${basePath}loading/scoretable.do">
+                                        <span class="line-height-1 smaller-90"> 得分表 </span>
+                                    </a>
+                                </span>
 
                                 <span class="btn btn-app btn-sm btn-yellow no-hover">
-													<span class="line-height-1 bigger-170"> 7 </span>
-
-													<br/>
-													<span class="line-height-1 smaller-90"> 评价图 </span>
-												</span>
+                                    <span class="line-height-1 bigger-170"> 7 </span>
+                                    <br/>
+                                    <a href="${basePath}loading/scorecharts.do">
+                                        <span class="line-height-1 smaller-90"> 评价图 </span>
+                                    </a>
+                                </span>
 
                                 <span class="btn btn-app btn-sm btn-pink no-hover">
-													<span class="line-height-1 bigger-170"> 4 </span>
-
-													<br/>
-													<span class="line-height-1 smaller-90"> Projects </span>
-												</span>
+                                    <span class="line-height-1 bigger-170"> 4 </span>
+                                    <br/>
+                                    <a href="${basePath}loading/examzhengshi.do">
+                                        <span class="line-height-1 smaller-90"> 正是测评 </span>
+                                    </a>
+                                </span>
 
                                 <span class="btn btn-app btn-sm btn-grey no-hover">
-													<span class="line-height-1 bigger-170"> 23 </span>
-
-													<br/>
-													<span class="line-height-1 smaller-90"> Reviews </span>
-												</span>
+                                    <span class="line-height-1 bigger-170"> 23 </span>
+                                    <br/>
+                                    <a href="${basePath}loading/examlianxi.do">
+                                        <span class="line-height-1 smaller-90"> 测评练习 </span>
+                                    </a>
+                                </span>
 
                                 <span class="btn btn-app btn-sm btn-success no-hover">
-													<span class="line-height-1 bigger-170"> 7 </span>
+                                    <span class="line-height-1 bigger-170"> 7 </span>
+                                    <br/>
+                                    <a href="${basePath}loading/recordlist.do">
+                                        <span class="line-height-1 smaller-90"> 测评概况 </span>
+                                    </a>
+                                </span>
 
-													<br/>
-													<span class="line-height-1 smaller-90"> Albums </span>
-												</span>
-
-                                <span class="btn btn-app btn-sm btn-primary no-hover">
-													<span class="line-height-1 bigger-170"> 55 </span>
-
-													<br/>
-													<span class="line-height-1 smaller-90"> Contacts </span>
-												</span>
+                                <%--<span class="btn btn-app btn-sm btn-primary no-hover">
+                                    <span class="line-height-1 bigger-170"> 55 </span>
+                                    <br/>
+                                    <span class="line-height-1 smaller-90"> Contacts </span>
+                                </span>--%>
                             </div>
 
                             <div class="space-12"></div>
@@ -155,13 +157,13 @@
                                     </div>
                                 </div>
 
-                                <div class="profile-info-row">
+                                <%--<div class="profile-info-row">
                                     <div class="profile-info-name"> 性别</div>
 
                                     <div class="profile-info-value">
                                         <span class="editable">${user.sex}</span>
                                     </div>
-                                </div>
+                                </div>--%>
 
                                 <div class="profile-info-row">
                                     <div class="profile-info-name"> 入学年份</div>
@@ -197,14 +199,14 @@
                                                 <div class="profile-activity clearfix">
                                                     <div>
                                                         <img class="pull-left" alt="Alex Doe's avatar"
-                                                            src="../assets/img/avatar5.png"/>
-                                                        <a class="user" href="#"> ${student.nameS} </a>
+                                                             src="../assets/img/pikachu.jpg"/>
+                                                        <a class="user" href="${basePath}loading/sprofile.do"> ${student.nameS} </a>
                                                         进行了测评.
-                                                        <a href="#">瞧一瞧</a>
+                                                        <a href="${basePath}question/historydetail.do?idEr=${e.idEr}">瞧一瞧</a>
 
                                                         <div class="time">
                                                             <i class="icon-time bigger-110"></i>
-                                                            ${e.beginEr}
+                                                                ${e.beginEr}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -238,13 +240,13 @@
 <script src="../assets/js/ace-elements.min.js"></script>
 
 <script type="text/javascript">
-    if("${flag}"=="noscore") {
+    if ("${flag}" == "noscore") {
         alert("还未进行测评，无能力得分表！");
     }
-    if("${flag}"=="nopost") {
+    if ("${flag}" == "nopost") {
         alert("还未进行测评，无评价图！");
     }
-    if("${flag}"=="examyes") {
+    if ("${flag}" == "examyes") {
         alert("提交成功！");
     }
 </script>

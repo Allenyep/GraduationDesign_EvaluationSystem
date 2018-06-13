@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gdes.GDES.dao.PermissionMapper">
+
+
+    <select id="selectPermission" resultType="Permission">
+        SELECT
+        t_permission.id,
+        t_permission.`name`,
+        t_permission.menuname,
+        t_permission.permission,
+        t_permission.url,
+        t_permission.flag,
+        t_permission.zindex,
+        t_permission.parantid
+        FROM
+        t_permission
+    </select>
+
+    <select id="selectPermissionsByCondition" resultType="Permission">
+        <!---->
+        SELECT
+        (@r :=@r + 1) AS id,
+        t_permission.id permissionId,
+        t_permission.`name`,
+        t_permission.menuname,
+        t_permission.permission,
+        t_permission.url,
+        t_permission.flag,
+        t_permission.zindex,
+        t_permission.parantid
+        FROM
+        t_permission,
+        (SELECT @r := ${(permission.page-1)*permission.limit}) r
+        LIMIT ${(permission.page-1)*permission.limit},
+        ${permission.limit}
+    </select>
+
+    <select id="selectPermissionsCountByCondition" resultType="java.lang.Integer">
+        select
+        count(1)
+        from
+        t_permission
+    </select>
+
+    <select id="selectMenusByCondition" resultType="Permission">
+        SELECT
+        (@r :=@r + 1) AS id,
+        t_permission.id permissionId,
+        t_permission.`name`,
+        t_permission.menuname,
+        t_permission.permission,
+        t_permission.url,
+        t_permission.flag,
+        t_permission.zindex,
+        t_permission.parantid
+        FROM
+        t_permission,
+        (SELECT @r := ${(permission.page-1)*permission.limit}) r
+        where menuname!=null or menuname!=''
+        LIMIT ${(permission.page-1)*permission.limit},
+        ${permission.limit}
+    </select>
+
+    <select id="selectMenusCountByCondition" resultType="java.lang.Integer">
+        select
+        count(1)
+        from
+        t_permission
+        where menuname!=null or menuname!=''
+    </select>
+
+    <insert id="add">
+        <!---->
+        INSERT INTO `t_permission` (
+        `id`,
+        `name`,
+        `menuname`,
+        `permission`,
+        `url`,
+        `flag`,
+        `zindex`,
+        `parantid`
+        )
+        VALUES
+        (
+        #{permission.permissionId},
+        #{permission.name},
+        #{permission.menuname},
+        #{permission.permission},
+        #{permission.url},
+        #{permission.flag},
+        #{permission.zindex},
+        #{permission.parantid}
+        );
+    </insert>
+
+    <!--<select id="selectMenusCountByCondition" resultType="int">-->
+        <!--SELECT-->
+        <!--count(1)-->
+        <!--FROM-->
+        <!--t_permission-->
+        <!--where menuname!=null or menuname!=''-->
+    <!--</select>-->
+    <select id="selectNoSetMenus" resultType="Permission">
+        <!---->
+        SELECT
+        t_permission.id,
+        t_permission.`name`,
+        t_permission.menuname,
+        t_permission.permission,
+        t_permission.url,
+        t_permission.flag,
+        t_permission.zindex,
+        t_permission.parantid
+        FROM
+        t_permission
+        WHERE
+        t_permission.id != 1
+        AND t_permission.id != 2
+        and (t_permission.menuname is NULL or t_permission.menuname = '')
+    </select>
+    <select id="selectAllPermissions" resultType="Permission">
+        <!---->
+        SELECT
+        (@r :=@r + 1) AS id,
+        t_permission.id permissionId,
+        t_permission.`name`,
+        t_permission.menuname,
+        t_permission.permission,
+        t_permission.url,
+        t_permission.flag,
+        t_permission.zindex,
+        t_permission.parantid
+        FROM
+        t_permission,
+        (SELECT @r := 0) r
+        WHERE
+        t_permission.id != 1
+        AND t_permission.id != 2
+        and t_permission.parantid%1000=0 /*只保留顶级菜单和一级菜单*/
+    </select>
+    <update id="updatePermissionById">
+        <!---->
+        UPDATE `t_permission`
+        SET
+        `menuname` = #{permission.menuname},
+        `flag` = #{permission.flag},
+        `zindex` = #{permission.zindex}
+        WHERE
+        `id` = #{permission.id};
+    </update>
+    <select id="selectMaxZindexByParantid" resultType="int">
+        <!---->
+        SELECT
+        MAX(zindex)
+        from t_permission
+        where t_permission.parantid=#{permission.parantid}
+    </select>
+    <select id="selectPermissionById" resultType="Permission">
+        <!---->
+        SELECT
+        t_permission.id,
+        t_permission.`name`,
+        t_permission.menuname,
+        t_permission.permission,
+        t_permission.url,
+        t_permission.flag,
+        t_permission.zindex,
+        t_permission.parantid
+        FROM
+        t_permission
+        where t_permission.id=#{permissionId}
+    </select>
+    <update id="updateFlagById">
+        <!---->
+        UPDATE `t_permission`
+        SET
+        `flag` = #{permission.flag}
+        WHERE
+        `id` = #{permission.id};
+    </update>
+
+    <delete id="deletePermissionById">
+        <!---->
+        DELETE
+        FROM
+        t_permission
+        WHERE
+        id = #{permission.id}
+    </delete>
+    <update id="update">
+        <!---->
+        UPDATE `t_permission`
+        SET
+        `name` = #{permission.name},
+        `permission` = #{permission.permission},
+        `url` = #{permission.url},
+        `flag` =#{permission.flag},
+        `parantid` = #{permission.parantid}
+        WHERE
+        `id` = #{permission.id};
+    </update>
+    <update id="updateMenuById">
+        <!---->
+        UPDATE `t_permission`
+        SET
+        `flag` = 0,
+        `menuname`=NULL ,
+        `zindex`=NULL
+        WHERE
+        `id` = #{permission.id};
+    </update>
+
+</mapper>

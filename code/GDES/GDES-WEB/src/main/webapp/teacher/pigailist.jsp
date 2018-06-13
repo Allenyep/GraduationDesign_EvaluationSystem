@@ -86,7 +86,7 @@
 
                                             <td class="hidden-480">${a.beginEr}</td>
                                             <td class="hidden-480">
-                                                <a href="/question/pigaidetail.do?idEr=${a.idEr}" type="button"
+                                                <a href="/question/pigaidetail.do?idEr=${a.idEr}&idT=${idT}" type="button"
                                                    class="btn btn-info">批 改</a>
                                             </td>
 

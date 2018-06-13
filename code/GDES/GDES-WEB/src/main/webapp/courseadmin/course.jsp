@@ -387,8 +387,8 @@
                                             <button type="button" class="am-btn am-btn-default am-btn-warning"><span
                                                     class="am-icon-archive"></span> 审核
                                             </button>
-                                            <button type="button" class="am-btn am-btn-default am-btn-danger"><span
-                                                    class="am-icon-trash-o"></span> 删除
+                                            <button type="button" class="am-btn am-btn-default am-btn-danger" onclick="/course/selectCourse.do"><span
+                                                    class="am-icon-trash-o"></span> 刷新
                                             </button>
                                         </div>
                                     </div>
@@ -397,7 +397,8 @@
                             <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
                                 <div class="am-form-group tpl-table-list-select">
                                     <select data-am-selected="{btnSize: 'sm'}" onchange="byCourseType(this.value)">
-                                        <option value="">按课程类型查询</option>
+                                        <%--<option value="按课程类型查询">按课程类型查询</option>--%>
+                                        <option value="111">全部课程</option>
                                         <option value="理工类">理工类</option>
                                         <option value="管理类">管理类</option>
                                         <option value="经济类">经济类</option>

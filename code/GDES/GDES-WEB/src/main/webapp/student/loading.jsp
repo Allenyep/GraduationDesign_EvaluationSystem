@@ -51,6 +51,15 @@
     if("${p}"=="sprofile") {
         window.location.href = "${basePath}student/profile.do?idS=${idS}&flag=${flag}";
     }
+    if("${p}"=="recordlist") {
+        window.location.href = "${basePath}student/recordlist.do?";
+    }
+    if("${p}"=="examzhengshi") {
+        window.location.href = "${basePath}student/examzhengshi.do?";
+    }
+    if("${p}"=="examlianxi") {
+        window.location.href = "${basePath}student/examlianxi.do?";
+    }
 </script>
 </body>
 </html>

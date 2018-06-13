@@ -18,4 +18,12 @@ public interface QuestionsoptionService {
      * @throws Exception
      */
     public List<Questionsoption> queryByidQ(String idQ)throws Exception;
+
+    /**
+     * 插入试题选项，选择题出题时插入
+     * @param qo
+     * @return
+     * @throws Exception
+     */
+    public String addQuestionsOption(Questionsoption qo)throws Exception;
 }

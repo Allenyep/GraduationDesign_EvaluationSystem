@@ -204,7 +204,7 @@
 
 
   <select id="selectAll" resultMap="BaseResultMap">
-    SELECT * from course
+    SELECT * FROM course
   </select>
 
 
@@ -214,9 +214,10 @@
 
 
 
+    <!--<if test="courseType != null">-->
   <select id="findCourseByCourseType" resultMap="BaseResultMap">
     SELECT * FROM course
-    <if test="courseType != null">
+    <if test="courseType !=null">
       WHERE courseType=#{courseType}
     </if>
   </select>

@@ -48,30 +48,30 @@ public class TeacherController {
     //通过教师课程加载初始页面
     @RequestMapping("knowledgepoint")
     public String init(String message, Model model) throws Exception {
-        List<Knowledgepoint> list=kps.queryAllKnowledgepoint();
-        model.addAttribute("konwlist",list);
-        for(Knowledgepoint kp:list){
+        List<Knowledgepoint> list = kps.queryAllKnowledgepoint();
+        model.addAttribute("konwlist", list);
+        for (Knowledgepoint kp : list) {
             System.out.println(kp.getNameKp());
         }
 
-        model.addAttribute("message",message);
+        model.addAttribute("message", message);
         return "teacher/knowledgepoint";
     }
 
     //添加知识点
     @RequestMapping("addkonwpoint")
-    public String addkonwpoint(String nameKp,String proportionKp,
-                               String idC,Model model)throws Exception{
-        Knowledgepoint kp=new Knowledgepoint();
+    public String addkonwpoint(String nameKp, String proportionKp,
+                               String idC, Model model) throws Exception {
+        Knowledgepoint kp = new Knowledgepoint();
         kp.setProportionKp(proportionKp);
         kp.setNameKp(nameKp);
         //TODO:能力点配置
         kp.setIdAp(1);
         kp.setIdC(idC);
 
-        String str=kps.addKonwledgepoint(kp);
+        String str = kps.addKonwledgepoint(kp);
 
-        model.addAttribute("message",str);
+        model.addAttribute("message", str);
 
 //        return "teacher/knowledgepoint";
         return "redirect:knowledgepoint.do";
@@ -79,30 +79,30 @@ public class TeacherController {
 
     //删除
     @RequestMapping("delKonwledgepoint")
-    public String delKonwledgepoint(String idKp,Model model)throws Exception{
-        int idKpInt=Integer.valueOf(idKp);
-        Knowledgepoint kp=new Knowledgepoint();
+    public String delKonwledgepoint(String idKp, Model model) throws Exception {
+        int idKpInt = Integer.valueOf(idKp);
+        Knowledgepoint kp = new Knowledgepoint();
         kp.setIdKp(idKpInt);
-        String str=kps.deleteKonwledgepoint(kp);
+        String str = kps.deleteKonwledgepoint(kp);
 
-        model.addAttribute("message",str);
+        model.addAttribute("message", str);
 
         return "redirect:knowledgepoint.do";
     }
 
     //修改知识点
     @RequestMapping("updateKnowledgepoint")
-    public String updateKnowledgepoint(String idKp,String nameKp,
-                                       String proportionKp,Model model)throws Exception{
-        Knowledgepoint kp=new Knowledgepoint();
+    public String updateKnowledgepoint(String idKp, String nameKp,
+                                       String proportionKp, Model model) throws Exception {
+        Knowledgepoint kp = new Knowledgepoint();
         kp.setIdKp(Integer.valueOf(idKp));
         kp.setNameKp(nameKp);
         kp.setProportionKp(proportionKp);
 
         System.out.println(nameKp);
 
-        String str=kps.updateKonwledgepoint(kp);
-        model.addAttribute("message",str);
+        String str = kps.updateKonwledgepoint(kp);
+        model.addAttribute("message", str);
 
         return "redirect:knowledgepoint.do";
     }
@@ -111,37 +111,37 @@ public class TeacherController {
     /*试题控制*/
     //试题列表
     @RequestMapping("shitilist")
-    public String knowpoint(String message, Model model)throws Exception{
-        List<Questions> list=qs.queryAllQusetion();
-        model.addAttribute("qlist",list);
-        model.addAttribute("message",message);
+    public String knowpoint(String message, Model model) throws Exception {
+        List<Questions> list = qs.queryAllQusetion();
+        model.addAttribute("qlist", list);
+        model.addAttribute("message", message);
         return "teacher/chuti";
     }
 
 
     //试题详情页，加载试题对应知识点
     @RequestMapping("shitidetail")
-    public String shitidetail(String idQ,Model model)throws Exception{
-        Questions q=qs.queryByPrimary(idQ);
-        model.addAttribute("que",q);
+    public String shitidetail(String idQ, Model model) throws Exception {
+        Questions q = qs.queryByPrimary(idQ);
+        model.addAttribute("que", q);
         //是否是选择题，读取选择题选项
-        if(q.getStyleQ().equals("1")){
-            List<Questionsoption> questionsoptions=qos.queryByidQ(q.getIdQ());
-            model.addAttribute("oplist",questionsoptions);
+        if (q.getStyleQ().equals("1")) {
+            List<Questionsoption> questionsoptions = qos.queryByidQ(q.getIdQ());
+            model.addAttribute("oplist", questionsoptions);
         }
 
-        List<Questionspoint> qs= qps.queryByQuestionId(idQ);
-        List<Knowledgepoint> Allkplist=kps.queryAllKnowledgepoint();
-        List<Knowledgepoint> reslist=new ArrayList<>();
-        for(Questionspoint qp:qs){
-            for(Knowledgepoint kp:Allkplist){
-                if(qp.getIdKp().equals(kp.getIdKp())){
+        List<Questionspoint> qs = qps.queryByQuestionId(idQ);
+        List<Knowledgepoint> Allkplist = kps.queryAllKnowledgepoint();
+        List<Knowledgepoint> reslist = new ArrayList<>();
+        for (Questionspoint qp : qs) {
+            for (Knowledgepoint kp : Allkplist) {
+                if (qp.getIdKp().equals(kp.getIdKp())) {
                     reslist.add(kp);
                 }
             }
         }
-        model.addAttribute("kplist",reslist);
-        model.addAttribute("Allkplist",Allkplist);
+        model.addAttribute("kplist", reslist);
+        model.addAttribute("Allkplist", Allkplist);
 
         return "teacher/shitiform";
     }
@@ -149,31 +149,31 @@ public class TeacherController {
     //更新试题页面,试题内容，试题答案，试题知识点
     //TODO：选择题,添加知识点,修改试题选项，修改知识点
     @RequestMapping("updateshiti")
-    public String updateshiti(String contextQ,String answerQ,
-                              String scoreQ,String idQ,Model model)throws Exception{
-        Questions q=new Questions();
+    public String updateshiti(String contextQ, String answerQ,
+                              String scoreQ, String idQ, Model model) throws Exception {
+        Questions q = new Questions();
         q.setContextQ(contextQ);
         q.setAnswerQ(answerQ);
         q.setScoreQ(scoreQ);
         q.setIdQ(idQ);
 
-        String str=qs.updateQuestion(q);
-        model.addAttribute("message",str);
-        return shitidetail(idQ,model);
+        String str = qs.updateQuestion(q);
+        model.addAttribute("message", str);
+        return shitidetail(idQ, model);
     }
 
     //添加试题,填空，大题
     @RequestMapping("addshiti1")
-    public String addshiti1(String contextQ,String answerQ,
-                            String scoreQ,Model model)throws Exception{
-        Questions q=new Questions();
+    public String addshiti1(String contextQ, String answerQ,
+                            String scoreQ, Model model) throws Exception {
+        Questions q = new Questions();
         q.setIdQ(UUid.getUUID());
         q.setContextQ(contextQ);
         q.setAnswerQ(answerQ);
         q.setScoreQ(scoreQ);
-        if(answerQ.length()>10){
+        if (answerQ.length() > 10) {
             q.setStyleQ("4");
-        }else{
+        } else {
             q.setStyleQ("2");
         }
 
@@ -181,39 +181,62 @@ public class TeacherController {
         q.setIdT("1");
         q.setIdC("2");
 
-        String str=qs.addQuestion(q);
-        model.addAttribute("message",str);
+        String str = qs.addQuestion(q);
+        model.addAttribute("message", str);
         System.out.println(str);
 
-        return knowpoint(str,model);
+        return knowpoint(str, model);
     }
 
     //添加选择，多选单选
     @RequestMapping("addshiti2")
-    public String addshiti2()throws Exception{
+    public String addshiti2(String contextQ, String answerQ, String[] nameO,
+                            String scoreQ, Model model) throws Exception {
+        Questions q = new Questions();
+        q.setIdQ(UUid.getUUID());
+        q.setContextQ(contextQ);
+        q.setAnswerQ(answerQ);
+        q.setScoreQ(scoreQ);
+        q.setStyleQ("1");
+        q.setIdT("1");
+        q.setIdC("2");
+        String str = qs.addQuestion(q);
+        for (int i = 0; i < 4; i++) {
+            Questionsoption qo = new Questionsoption();
+            qo.setContextO(nameO[i]);
+            qo.setIdQ(q.getIdQ());
+            if (answerQ.charAt(0) - 'A' == i) {
+                qo.setIstrueO(true);
+            } else {
+                qo.setIstrueO(false);
+            }
+            qos.addQuestionsOption(qo);
+        }
+        model.addAttribute("message", str);
 
-        return null;
+        return knowpoint(str, model);
     }
 
     /**
      * 教师首页界面
      */
     @RequestMapping("tprofile")
-    public String profile(String idT, String flag, Model model) throws Exception {
+    public String profile(Integer idT, String flag, Model model) throws Exception {
         model.addAttribute("flag", flag);
-        Teacher teacher = teacherService.getTeacherById(idT);
+        Teacher teacher = teacherService.getTeacherById(idT.toString());
         model.addAttribute("teacher", teacher);
         System.out.println(teacher.getIdM());
         Major major = majorService.queryByMajorId(teacher.getIdM());
         model.addAttribute("major", major);
         System.out.println(major.getNameM());
-        User user = userService.getUserByUserName(idT);
+//        User user = userService.getUserByUserName(idT);
+        User user = userService.selectUserById(idT);
         model.addAttribute("user", user);
-        List<Evaluationrecord> corrects = evaluationrecordService.correctList(idT);
+        List<Evaluationrecord> corrects = evaluationrecordService.correctList(idT.toString());
         model.addAttribute("correct", corrects); //批改次数
-        List<Evaluationrecord> notCorrect = evaluationrecordService.notCorrectList(idT);
+        List<Evaluationrecord> notCorrect = evaluationrecordService.notCorrectList(idT.toString());
         model.addAttribute("notcorrect", notCorrect); //待批改次数
-        List<Evaluationrecord> allListidT = evaluationrecordService.evaluateListByIdT(idT);
+        List<Evaluationrecord> allListidT = evaluationrecordService.evaluateListByIdT(idT.toString());
         model.addAttribute("allbyidt", allListidT);
         return "teacher/profile";
     }

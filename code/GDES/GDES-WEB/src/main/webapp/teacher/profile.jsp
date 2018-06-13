@@ -41,7 +41,7 @@
                             <div>
                                 <span class="profile-picture">
                                     <img id="avatar" class="editable img-responsive" alt="Alex's Avatar"
-                                         src="../assets/img/profile-pic.jpg"/>
+                                         src="../assets/img/teacher.png"/>
                                 </span>
 
                                 <div class="space-4"></div>
@@ -83,49 +83,43 @@
 
                         <div class="col-xs-12 col-sm-9">
                             <div class="center">
-												<span class="btn btn-app btn-sm btn-light no-hover">
-													<span class="line-height-1 bigger-170 blue"> 1,411 </span>
-
-													<br/>
-													<a href="#">
-													<span class="line-height-1 smaller-90"> 得分表 </span>
-													</a>
-												</span>
+                                <span class="btn btn-app btn-sm btn-light no-hover">
+                                    <span class="line-height-1 bigger-170 blue"> 1,411 </span>
+                                    <br/>
+                                    <a href="#">
+                                        <span class="line-height-1 smaller-90"> 得分表 </span>
+                                    </a>
+                                </span>
 
                                 <span class="btn btn-app btn-sm btn-yellow no-hover">
-													<span class="line-height-1 bigger-170"> 32 </span>
-
-													<br/>
-													<span class="line-height-1 smaller-90"> 评价图 </span>
-												</span>
+                                    <span class="line-height-1 bigger-170"> 32 </span>
+                                    <br/>
+                                    <span class="line-height-1 smaller-90"> 评价图 </span>
+                                </span>
 
                                 <span class="btn btn-app btn-sm btn-pink no-hover">
-													<span class="line-height-1 bigger-170"> 4 </span>
-
-													<br/>
-													<span class="line-height-1 smaller-90"> Projects </span>
-												</span>
+                                    <span class="line-height-1 bigger-170"> 4 </span>
+                                    <br/>
+                                    <span class="line-height-1 smaller-90"> Projects </span>
+                                </span>
 
                                 <span class="btn btn-app btn-sm btn-grey no-hover">
-													<span class="line-height-1 bigger-170"> 23 </span>
-
-													<br/>
-													<span class="line-height-1 smaller-90"> Reviews </span>
-												</span>
+                                    <span class="line-height-1 bigger-170"> 23 </span>
+                                    <br/>
+                                    <span class="line-height-1 smaller-90"> Reviews </span>
+                                </span>
 
                                 <span class="btn btn-app btn-sm btn-success no-hover">
-													<span class="line-height-1 bigger-170"> 7 </span>
-
-													<br/>
-													<span class="line-height-1 smaller-90"> Albums </span>
-												</span>
+                                    <span class="line-height-1 bigger-170"> 7 </span>
+                                    <br/>
+                                    <span class="line-height-1 smaller-90"> Albums </span>
+                                </span>
 
                                 <span class="btn btn-app btn-sm btn-primary no-hover">
-													<span class="line-height-1 bigger-170"> 55 </span>
-
-													<br/>
-													<span class="line-height-1 smaller-90"> Contacts </span>
-												</span>
+                                    <span class="line-height-1 bigger-170"> 55 </span>
+                                    <br/>
+                                    <span class="line-height-1 smaller-90"> Contacts </span>
+                                </span>
                             </div>
 
                             <div class="space-12"></div>
@@ -155,11 +149,11 @@
                                     </div>
                                 </div>
 
-                                <div class="profile-info-row">
+                                <%--<div class="profile-info-row">
                                     <div class="profile-info-name"> 性别</div>
 
                                     <div class="profile-info-value">
-                                        <span class="editable">${user.sex}</span>
+                                        <span class="editable">${user.username}</span>
                                     </div>
                                 </div>
 
@@ -177,7 +171,7 @@
                                     <div class="profile-info-value">
                                         <span class="editable">${teacher.courseleaderT}</span>
                                     </div>
-                                </div>
+                                </div>--%>
 
                                 <div class="profile-info-row">
                                     <div class="profile-info-name"> 宣言</div>
@@ -206,10 +200,10 @@
                                                 <div class="profile-activity clearfix">
                                                     <div>
                                                         <img class="pull-left" alt="Alex Doe's avatar"
-                                                             src="../assets/img/avatar5.png"/>
-                                                        <a class="user" href="#"> ${a.student.nameS} </a>
+                                                             src="../assets/img/pikachu.jpg"/>
+                                                        <a class="user" href="${basePath}loading/sprofile.do?idS=${a.idS}"> ${a.student.nameS} </a>
                                                         进行了测评.
-                                                        <a href="#">瞧一瞧</a>
+                                                        <a href="${basePath}question/historydetail.do?idEr=${a.idEr}">瞧一瞧</a>
 
                                                         <div class="time">
                                                             <i class="icon-time bigger-110"></i>

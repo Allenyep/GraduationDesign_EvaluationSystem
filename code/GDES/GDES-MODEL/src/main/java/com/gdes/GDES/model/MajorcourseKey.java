@@ -5,6 +5,10 @@ public class MajorcourseKey {
 
     private String idM;
 
+    private Integer credit;
+
+    private String idT;
+
     public String getIdC() {
         return idC;
     }
@@ -19,5 +23,21 @@ public class MajorcourseKey {
 
     public void setIdM(String idM) {
         this.idM = idM == null ? null : idM.trim();
+    }
+
+    public Integer getCredit() {
+        return credit;
+    }
+
+    public void setCredit(Integer credit) {
+        this.credit = credit;
+    }
+
+    public String getIdT() {
+        return idT;
+    }
+
+    public void setIdT(String idT) {
+        this.idT = idT;
     }
 }

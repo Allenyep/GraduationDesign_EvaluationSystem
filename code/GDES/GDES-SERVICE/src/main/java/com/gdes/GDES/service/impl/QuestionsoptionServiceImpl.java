@@ -17,16 +17,24 @@ import java.util.List;
  * Created by Allen on 2018/5/16.
  */
 @Repository
-public class QuestionsoptionServiceImpl implements QuestionsoptionService{
+public class QuestionsoptionServiceImpl implements QuestionsoptionService {
 
     @Resource
     private QuestionsoptionMapper qpm;
 
     public List<Questionsoption> queryByidQ(String idQ) throws Exception {
-        QuestionsoptionExample qoe=new QuestionsoptionExample();
-        QuestionsoptionExample.Criteria criteria=qoe.createCriteria();
+        QuestionsoptionExample qoe = new QuestionsoptionExample();
+        QuestionsoptionExample.Criteria criteria = qoe.createCriteria();
         criteria.andIdQEqualTo(idQ);
 
         return qpm.selectByExample(qoe);
     }
+
+    public String addQuestionsOption(Questionsoption qo) throws Exception {
+        if (qpm.insertSelective(qo) > 0) {
+            return "插入成功";
+        } else
+            return "插入失败";
+    }
+
 }

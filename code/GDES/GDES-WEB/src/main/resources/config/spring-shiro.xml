@@ -1,97 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jee="http://www.springframework.org/schema/jee"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="
-			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
-			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-			http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	<!-- 缓存管理器 使用Ehcache实现 begin -->
+	<!-- 配置 Spring 的 EhCacheCacheManager,须要 spring-context-support 的支持 -->
+	<!--<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">-->
+	<!--<property name="cacheManager" ref="ehCacheManagerFactoryBean"/>-->
+	<!--</bean>-->
 
-	<!--配置自定义的realm-->
-	<bean id="myRealm" class="com.gdes.GDES.realm.MyRealm">
-		<!--<property name="userDAO" ref="userDAOImpl"></property>-->
-		<!--密码需要加密：加密器-->
-		<property name="credentialsMatcher" ref="credentialsMatcher" />
-		<!--<property name="userDAO" ref="userDAOImpl"></property>-->
-		<!--<property name="roleDAO" ref="roleDAOImpl"></property>-->
-		<!--<property name="permissionDAO" ref="permissionDAOImpl"></property>-->
+	<!-- 配置 Spring 的 EhCacheManagerFactoryBean ,须要 spring-context-support 的支持 -->
+	<!--<bean id="ehCacheManagerFactoryBean"-->
+	<!--class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
+	<!--<property name="configLocation" value="classpath:ehcache.xml"/>-->
+	<!--</bean>-->
+	<!-- 缓存管理器 使用Ehcache实现 end -->
+	<!-- 凭证匹配器 begin-->
+	<!-- 声明一个密码匹配器 -->
+	<bean id="credentialsMatcher"
+		  class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<!-- 设置该密码匹配器使用的算法是 md5 -->
+		<property name="hashAlgorithmName" value="md5"/><!--指定hash算法为MD5;-->
+		<!--<property name="hashIterations" value="3"/>-->
+		<!--<property name="hashIterations" value="2"/>&lt;!&ndash;指定散列次数为2次&ndash;&gt;
+        <property name="storedCredentialsHexEncoded" value="true"/>&lt;!&ndash;指定Hash散列值使用Hex加密存储;value="false"表明hash散列值用用Base64-encoded存储.&ndash;&gt;
+        &lt;!&ndash;详见http://blog.csdn.net/lookthatgirl/article/details/37593869&ndash;&gt;-->
+	</bean>
+	<!-- 凭证匹配器 end-->
+	<!-- 自定义一个权限匹配器 begin -->
+	<bean id="permissionResolver" class="com.gdes.GDES.shiro.permission.UrlPermissionResolver"/>
+	<!-- 自定义一个权限匹配器 end -->
+	<!-- Realm实现 begin-->
+	<!-- 声明一个自定义的 Realm -->
+	<bean id="myRealm" class="com.gdes.GDES.shiro.realm.MyRealm">
+		<!-- 将上面声明的密码匹配器注入到自定义 Realm 的属性中去 -->
+		<property name="credentialsMatcher" ref="credentialsMatcher"/>
+		<!-- 将自定义的权限匹配器注入到自定义 Realm 中 -->
+		<property name="permissionResolver" ref="permissionResolver"/>
+
+		<!-- 配置缓存相关 -->
+		<!-- 启用缓存 -->
+		<property name="cachingEnabled" value="true"/>
+		<!-- 开启认证缓存 -->
+		<property name="authenticationCachingEnabled" value="true"/>
+		<!-- 指定认证缓存的名字(与 ehcache.xml 中声明的相同) -->
+		<property name="authenticationCacheName" value="shiro-authenticationCache"/>
+		<!--开启授权缓存 -->
+		<property name="authorizationCachingEnabled" value="true"/>
+		<!-- 指定授权缓存的名字(与 ehcache.xml 中声明的相同) -->
+		<property name="authorizationCacheName" value="shiro-authorizationCache"/>
+	</bean>
+	<!-- Realm实现 end-->
+
+	<!--回话管理 begin-->
+	<!-- 会话ID生成器 -->
+	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+
+	<!-- 会话Cookie模板 -->
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<constructor-arg value="sid"/>
+		<property name="httpOnly" value="true"/>
+		<property name="maxAge" value="-1"/>
 	</bean>
 
-	<!-- 配置安全管理器SecurityManager -->
+	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<constructor-arg value="rememberMe"/>
+		<property name="httpOnly" value="true"/>
+		<property name="maxAge" value="2592000"/><!-- 30天 -->
+	</bean>
+	<!-- rememberMe管理器 -->
+	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+		<!-- rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）-->
+		<property name="cipherKey"
+				  value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+		<property name="cookie" ref="rememberMeCookie"/>
+	</bean>
+	<!-- 会话DAO -->
+	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+		<property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
+		<property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+	</bean>
+
+	<!-- 会话验证调度器 -->
+	<bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
+		<property name="sessionValidationInterval" value="1800000"/>
+		<property name="sessionManager" ref="sessionManager"/>
+	</bean>
+
+	<!-- 会话管理器 -->
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="globalSessionTimeout" value="1800000"/>
+		<property name="deleteInvalidSessions" value="true"/>
+		<property name="sessionValidationSchedulerEnabled" value="true"/>
+		<property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+		<property name="sessionDAO" ref="sessionDAO"/>
+		<property name="sessionIdCookieEnabled" value="true"/>
+		<property name="sessionIdCookie" ref="sessionIdCookie"/>
+	</bean>
+	<!--回话管理 end-->
+
+	<!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+		<property name="arguments" ref="securityManager"/>
+	</bean>
+
+	<!-- 基于Form表单的身份验证过滤器 -->
+	<bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+		<property name="usernameParam" value="username"/>
+		<property name="passwordParam" value="password"/>
+		<property name="rememberMeParam" value="rememberMe"/>
+		<property name="loginUrl" value="/index.jsp"/>
+	</bean>
+
+
+	<!-- 配置 shiro 的 ehcache 缓存相关,这个缓存只和 Realm 相关 begin -->
+	<!--重写EhCacheManager,关闭流-->
+	<!--<bean id="ehCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"></bean>-->
+	<!--<bean id="ehCacheManager" class="com.gdes.GDES.shiro.cache.EhCacheManager"></bean>-->
+	<!-- 配置 shiro 的 ehcache 缓存相关,这个缓存只和 Realm 相关 end -->
+
+	<!-- 配置安全管理器 begin -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- 设置安全管理器的安全数据源为自定义的 Realm -->
 		<property name="realm" ref="myRealm"/>
-		<!--给shiro添加缓存机制-->
-		<property name="cacheManager" ref="cacheManager"></property>
+		<!--<property name="cacheManager" ref="ehCacheManager"/>-->
+		<!--<property name="sessionManager" ref="sessionManager"/>-->
+		<!--<property name="rememberMeManager" ref="rememberMeManager"/>-->
 	</bean>
-
-	<!-- 定义ShiroFilter -->
+	<!-- 配置安全管理器 end-->
+	<!-- 声明一个自定义的过滤器 begin -->
+	<bean id="resourceCheckFilter" class="com.gdes.GDES.shiro.filter.PermissionCheckFilter">
+		<!-- 为上面声明的自定义过滤器注入属性值 -->
+		<property name="errorUrl" value="/unAuthorization"/>
+	</bean>
+	<!-- 声明一个自定义的过滤器 end -->
+	<!-- Shiro的Web过滤器 begin-->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager"/>
-		<!--<property name="loginUrl" value="/index.jsp"/>-->
-		<!--<property name="loginUrl" value="/permission/index.jsp"/>-->
-		<property name="unauthorizedUrl" value="/nopermission.jsp"/>
+		<!-- 如果认证不通过,浏览器通过 Get 方式请求到 /login 上 -->
+		<property name="loginUrl" value="/index.jsp"/>
+		<property name="unauthorizedUrl" value="/unAuthorization"/>
+		<property name="filters">
+			<util:map>
+				<entry key="authc" value-ref="formAuthenticationFilter"/>
+			</util:map>
+		</property>
 		<property name="filterChainDefinitions">
 			<value>
+				/assets/**=anon
+				<!--/admin/**=user,resourceCheckFilter-->
+				<!--/usertest/login.do=anon-->
+				/userlogin/login.do=anon
 				/logout=logout
-				<!--/**=authc-->
+				/**=user,resourceCheckFilter
+				/**=authc
 			</value>
 		</property>
 	</bean>
-
-
-	<!-- 开启aop，对类代理 -->
-	<aop:config proxy-target-class="true"></aop:config>
-
+	<!-- Shiro的Web过滤器 end-->
+	<!-- Shiro生命周期处理器 begin-->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-	<!--&lt;!&ndash; 开启shiro注解 &ndash;&gt;-->
-	<!--<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">-->
-		<!--&lt;!&ndash;<property name="proxyTargetClass" value="true" />&ndash;&gt;-->
-	<!--</bean>-->
-	<!--&lt;!&ndash; 开启shiro注解支持 &ndash;&gt;-->
-	<!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
-		<!--<property name="securityManager" ref="securityManager" />-->
-	<!--</bean>-->
-
-	<!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常页名作为值 -->
-	<!--shiro权限异常处理-->
-	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="exceptionMappings">
-			<props>
-				<prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/nopermission.jsp</prop>
-			</props>
-		</property>
-	</bean>
-
-	<!--<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
-		<!--<property name="cacheManager" ref="ehCacheManager">-->
-
-		<!--</property>-->
-	<!--</bean>-->
-	<!--<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
-
-	<!--</bean>-->
-	<!-- 缓存管理器开始 -->
-	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManager" ref="ehCacheManager"/>
-	</bean>
-	<!--org.springframework.cache.ehcache.EhCacheManagerFactoryBean
-		需要引入spring-context-support依赖支持
-	-->
-	<bean id="ehCacheManager" class ="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:config/shiro-ehcache.xml" />
-		<property name="shared" value="true"></property>
-	</bean>
-
-	<!--加密器-->
-	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-		<!--加密算法-->
-		<property name="hashAlgorithmName" value="md5" />
-		<!--散列次数-->
-		<property name="hashIterations" value="3" />
-	</bean>
-
+	<!-- Shiro生命周期处理器 end-->
 </beans>

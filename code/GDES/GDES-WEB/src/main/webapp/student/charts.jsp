@@ -60,7 +60,7 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                待定标题
+                详情
             </div>
             <div class="panel-body">
                 <ul class="nav nav-tabs">

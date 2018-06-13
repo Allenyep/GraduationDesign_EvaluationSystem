@@ -66,7 +66,6 @@
                                             </td>
 
                                             <td class="hidden-480">
-                                                <a href="${basePath}scoredetail/scoredetail.do?id_ap=${a.idAp}&id_s=${a.idS}">${a.abilitypoint.nameAp}</a>
                                                 <a href="/teacher/shitidetail.do?idQ=${a.idQ}">
                                                     <div style="width:400px;word-wrap:break-word;">
                                                             ${a.contextQ}
@@ -80,7 +79,6 @@
                                             </td>
                                             <td class="hidden-480">${a.scoreQ}</td>
                                                 <%--<td>Feb 12</td>--%>
-                                            <td class="hidden-480">${a.timeLas}</td>
                                             <td class="hidden-480">
                                                 <c:choose>
                                                     <c:when test="${a.styleQ=='1'}">
@@ -116,6 +114,7 @@
         </div><!-- /.page-content -->
     </div><!-- /.main-content -->
 </div><!-- /.main-container -->
+
 
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -178,71 +177,8 @@
         }
     })
 
+
 </script>
-
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">编辑题目内容</h4>
-            </div>
-            <div class="modal-body">在这里添加一些文本</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">提交更改</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-    <!-- basic scripts -->
-    <script type="text/javascript">
-        window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
-    </script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/jquery.dataTables.min.js"></script>
-    <script src="../assets/js/jquery.dataTables.bootstrap.js"></script>
-    <script type="text/javascript">
-        jQuery(function ($) {
-            var oTable1 = $('#sample-table-2').dataTable({
-                "aoColumns": [
-                    {"bSortable": false},
-                    null, null, null, null, null,
-                    {"bSortable": false}
-                ]
-            });
-
-
-            $('table th input:checkbox').on('click', function () {
-                var that = this;
-                $(this).closest('table').find('tr > td:first-child input:checkbox')
-                    .each(function () {
-                        this.checked = that.checked;
-                        $(this).closest('tr').toggleClass('selected');
-                    });
-
-            });
-
-
-            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-
-            function tooltip_placement(context, source) {
-                var $source = $(source);
-                var $parent = $source.closest('table')
-                var off1 = $parent.offset();
-                var w1 = $parent.width();
-
-                var off2 = $source.offset();
-                var w2 = $source.width();
-
-                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                return 'left';
-            }
-        })
-
-
-    </script>
 
 </body>
 </html>

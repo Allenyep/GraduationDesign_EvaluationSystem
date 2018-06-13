@@ -1,37 +1,97 @@
 package com.gdes.GDES.dao;
 
+
 import com.gdes.GDES.model.Role;
-import com.gdes.GDES.model.RoleExample;
-import java.util.List;
+import com.gdes.GDES.model.RoleAndPermission;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+
 public interface RoleMapper {
-    long countByExample(RoleExample example);
+    /**
+     * 获取角色列表
+     *
+     * @return
+     */
+    List<Role> selectRoles();
 
-    int deleteByExample(RoleExample example);
+    /**
+     * 根据条件获取角色列表
+     *
+     * @param role
+     * @return
+     */
+    List<Role> selectRoleByCondition(@Param("role") Role role);
 
-    int deleteByPrimaryKey(Integer idR);
+    /**
+     * 根据条件获取角色总数
+     *
+     * @param role
+     * @return
+     */
+    Integer selectRoleCountByCondition(@Param("role") Role role);
 
-    int insert(Role record);
+    /**
+     * 添加角色
+     *
+     * @param role
+     * @return
+     */
+    int add(@Param("role") Role role);
 
-    int insertSelective(Role record);
+    /**
+     * 批量添加角色权限关联
+     *
+     * @param roleAndPermissions
+     * @return
+     */
+    int batchAddRoleAndPermission(@Param("roleAndPermissions") List<RoleAndPermission> roleAndPermissions);
 
-    List<Role> selectByExample(RoleExample example);
+    /**
+     * 根据角色id获取权限字符串
+     *
+     * @param roleId
+     * @return
+     */
+    List<Role> selectPermissionByRoleId(@Param("roleId") Integer roleId);
 
-    Role selectByPrimaryKey(Integer idR);
+    /**
+     * 根据ID修改角色信息
+     *
+     * @param roleId
+     * @return
+     */
+    Role selectRoleById(@Param("roleId") Integer roleId);
 
-    int updateByExampleSelective(@Param("record") Role record, @Param("example") RoleExample example);
+    /**
+     * 修改角色
+     *
+     * @param role
+     * @return
+     */
+    int update(@Param("role") Role role);
 
-    int updateByExample(@Param("record") Role record, @Param("example") RoleExample example);
+    /**
+     * 删除授权
+     *
+     * @param roleId
+     * @return
+     */
+    int delectPermissionByRoleId(@Param("roleId") Integer roleId);
 
-    int updateByPrimaryKeySelective(Role record);
+    /**
+     * 删除角色
+     *
+     * @param roleId
+     * @return
+     */
+    int deleteRoleById(Integer roleId);
 
-    int updateByPrimaryKey(Role record);
-
-    //===================================
-    List<String>selectRolesByUserName(String idU);
-
-    List<String> getAllRolename();
-
-
+    /**
+     * 根据用户id获取角色id
+     * @param userId
+     * @return
+     */
+    Role selectRoleByUserId(Integer userId);
 }

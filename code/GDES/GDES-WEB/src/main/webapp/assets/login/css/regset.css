@@ -1,0 +1,133 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{	margin: 0;	padding: 0;	border: 0;	font-size: 100%;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {	display: block;}
+body {	line-height: 1;	background-color: #F2F2F2; min-width:1000px;}
+input,textarea,select{margin:0;padding:0;font-size:12px;outline:none;resize:none;}
+a{color:#000; text-decoration:none;}
+a:hover{ color:#47b877;	text-decoration:underline;}
+ol, ul {	list-style: none;}
+blockquote, q {	quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {	content: '';	content: none;}
+table {	border-collapse: collapse;	border-spacing: 0;}
+body{	background:#F2F2F2;	font:14px/1.5 "微软雅黑","Microsoft YaHei",tahoma,Srial,helvetica,sans-serif}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+.w1210{width:1210px; margin:0 auto;}
+.fl{float:left;}
+.fr{float:right;}
+/******clear float*******/
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden} /*所有主流浏览器都支持 :after 伪元素。*/ 
+.clearfix{*+height:1%;}/*不知道有什么用处，不加ie7也没有问题*/ 
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;} 
+.clearfix{*zoom:1;}/*只针对IE6/7 */ 
+*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+
+.form-horizontal .form-group:before,.form-horizontal .form-group:after{display:table;content:" "}
+.form-horizontal .form-group:after{clear:both}.form-horizontal .form-group:before,.form-horizontal .form-group:after{display:table;content:" "}
+.form-horizontal .form-group:after{clear:both}
+.f-cb:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.f-cb{zoom:1;}
+
+i.icon{position:absolute; background:url(../images/sprite.png) no-repeat; display:inline-block;}
+
+.g-header{height:80px; width:100%; background-color:#FFF; min-width:1000px;}
+.g-in{width:1000px; margin:0 auto;}
+
+.m-logobar{height:80px; line-height:80px;}
+.m-logobar h1,.m-logobar h2,.m-logobar .pdtLogo,.m-logobar i{float:left;}
+.m-logobar h1{margin-top:15px;}
+.m-logobar h2{font-size:24px;font-weight:normal;}
+.m-logobar .pdtLogo{display:table-cell;table-layout:fixed;vertical-align:middle;height:50px;margin-right:16px;overflow:hidden;*display:block;*font-size:40px;}
+.m-logobar .pdtLogo img{vertical-align:middle;}
+.m-logobar h1 em,.m-logobar .pdtLogo em{display:none;}
+.m-logobar i{width:1px;height:26px;overflow:hidden;margin:29px 20px 0 20px;text-indent:-9999px;background:#dfdfdf;}
+.m-logobar a{margin:35px 0px 0 0px;}
+
+.m-back{margin-top:25px; padding-left:28px; position:relative;}
+.m-back a{color:#555; font-size:16px;}
+.m-back a:hover{color:#3969A3;}
+.m-back .icon-back{height:20px; width:20px; top:2px; left:0px; background-position:0 0;}
+
+.g-main{padding:30px 0;}
+.m-box{background-color:#FFF; padding:40px 50px 20px; min-height:530px;}
+
+.u-step li{width:300px; float:left; overflow:hidden;}
+.u-step li span{background:url(../images/step.png) no-repeat; width:300px; display:inline-block; text-indent:9999em;height:55px;}
+.u-step li p{text-align:center;}
+.u-step .current{color:#333;}
+.u-step .current1 span{ background-position:0 -67px;}
+.u-step .current2 span{ background-position:-300px -67px;}
+.u-step .current3 span{ background-position:-600px -67px;}
+.u-step .before,.u-step .after{color:#bbb;}
+.u-step .after2 span{background-position:-300px 0;}
+.u-step .after3 span{background-position:-600px 0;}
+.u-step .before1 span{background-position:0px -137px;}
+.u-step .before2 span{background-position:-300px -137px;}
+
+.getPwdWay{width:820px; margin:50px auto 60px;}
+.getPwdWay li{height:70px; background:#F1F1F1; margin-bottom:25px; position:relative;}
+.getPwdWay li .u-tips-icon{height:70px; width:70px; display:block; float:left; position:relative;}
+.getPwdWay li .u-tips-email .u-tips-icon{background-color:#59B57F;}
+.getPwdWay li .u-tips-email .u-tips-icon i{background-position:0 -100px; width:46px; height:30px; top:20px; left:12px;}
+.getPwdWay li .u-tips-name .u-tips-icon{background-color:#DD8B73;}
+.getPwdWay li .u-tips-name .u-tips-icon i{background-position:0 -150px; width:45px; height:35px; top:18px; left:12px;}
+.getPwdWay li .u-tips-phone .u-tips-icon{background-color:#E5B064;}
+.getPwdWay li .u-tips-phone .u-tips-icon i{background-position:0 -200px; width:46px; height:48px; top:11px; left:12px;}
+.getPwdWay li .u-tips-text{font-size:20px; color:#333; line-height:70px; display:block; float:left; padding-left:30px;}
+.getPwdWay li .icon-next{width:15px; height:30px; background-position:0 -40px; right:30px; top:20px;}
+
+.g-footer{height:90px; background-color:#E8E8E8; width:100%; min-width:1000px; color:#ADADAD; line-height:26px; text-align:center;}
+.g-footer .g-in{padding-top:20px;}
+
+/*表单开始*/
+.form-horizontal{width:355px; margin:40px auto 10px;}
+.u-tips-title{font-size:20px; color:#333; height:44px; line-height:44px; border-bottom:1px dashed #DCDCDC; margin-bottom:20px;}
+.form-horizontal .control-label {text-align: right; float:left; margin-bottom: 0; margin-top: 0; padding-top: 7px; width:80px; font-size:16px; color:#333;}
+.form-group{}
+.control-input{float:left;}
+.form-control{display:block;width:275px;height:40px;padding:6px 12px;font-size:16px;line-height:1.428571429;color:#333;vertical-align:middle;background-color:#F1F1F1;background-image:none;border:1px solid #DDDDDD;border-radius:3px;}
+
+.u-tips{height:30px; line-height:30px; clear:both;}
+
+/*错误*/
+.input-error{border:1px solid #FF6533; background-color:#FBEFEF;}
+.u-tips-err{color:#FF3F06; font-size:16px; position:relative; padding-left:25px;}
+.u-tips-err span{display:block;}
+.u-tips-err i.icon{background-position:0 -310px; width:20px; height:20px; top:5px; left:0px;} 
+
+/*正确*/
+.u-tips-success{color:#333; font-size:16px; position:relative; padding-left:25px;}
+.u-tips-success i.icon{background-position:0 -280px; width:20px; height:20px; top:5px; left:0px;} 
+
+
+.w155{width:155px;}
+.u-btn{background-color:#FDFDFD; border:1px solid #DDDDDD;height:40px;padding:6px 12px;font-size:16px;line-height:1.428571429;color:#555;border-radius:3px; float:left; margin-left:10px; width:110px;}
+.conf-img{float:left; width:110px; height:40px; margin-left:10px;}
+.u-btn2{background-color:#59B57F; height:50px; line-height:50px; text-align:center; color:#FFF; display:block; width:355px; font-size:20px; border-radius:3px; margin-top:10px; margin-bottom:56px; cursor: pointer;}
+.u-btmTip{text-align:center; font-size:16px;}
+.u-btmTip a{ color:#3969A3; text-decoration:underline;}
+
+/*密码强度*/
+.u-tips-pwd-success i{display:none;}
+.u-pwdStrength{background:url(../images/pwd.png) no-repeat; width:173px; height:19px; display:inline-block; margin-top:7px;}
+.u-pwdStrength-low{background-position:0 0px;}
+.u-pwdStrength-mid{background-position:0 -30px;}
+.u-pwdStrength-high{background-position:0 -60px;}
+
+
+form .u-tips2 {font-size: 0; height: 54px; line-height: 54px; padding-left:50px; position:relative; width:450px; margin:110px auto 0;}
+
+.u-tips2-ok i {background-position: 0 -350px;}
+.u-tips2 i {height: 40px; width: 40px; top:0px; left:0px;}
+.u-tips2 span, .u-tips2 i {display: inline-block; font-size: 24px; line-height: 1.5em; vertical-align: middle;}
+
+.u-tips2 span {color: #333; overflow: hidden; word-wrap: break-word;}
+.u-tips2 span a,.id-tips a,.email-succ a{color:#3969A3;}
+
+form  .u-tips2-id-ok{width:280px;}
+.id-tips{text-align:center; font-size: 24px;color: #333;}
+
+
+.email-succ{font-size:16px; color:#333; margin-bottom:30px;}

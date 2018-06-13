@@ -30,83 +30,86 @@
             <option value="2">填空题</option>
             <option value="2">主观题</option>
         </select>
-        <button class="btn" onclick="addquestion()">提交问题</button>
+        <%--<button class="btn" onclick="addquestion()">提交问题</button>--%>
     </div>
     <!--选项卡区域  模板区域---------------------------------------------------------------------------------------------------------------------------------------->
     <div class="xxk_box">
         <div class="xxk_conn hide">
             <!--单选----------------------------------------------------------------------------------------------------------------------------------------->
             <div class="xxk_xzqh_box dxuan ">
-                <form action="" method="post">
-                <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_dx"
+                <form action="/teacher/addshiti2.do" id="danxuanform" method="post">
+                <textarea name="contextQ" cols="" rows="" class="input_wenbk btwen_text btwen_text_dx"
                           placeholder="单选题目"></textarea>
                     <div class="title_itram">
                         <div class="kzjxx_iteam">
                             <input name="istrueO1" type="radio" value="" class="dxk">
-                            <input name="nameO1" type="text" class="input_wenbk" value="" placeholder="选项1">
+                            <input name="nameO" type="text" class="input_wenbk" value="" placeholder="选项1">
 
                         </div>
                         <div class="kzjxx_iteam">
                             <input name="istrueO2" type="radio" value="" class="dxk">
-                            <input name="nameO2" type="text" class="input_wenbk" value="" placeholder="选项2">
+                            <input name="nameO" type="text" class="input_wenbk" value="" placeholder="选项2">
 
                         </div>
                         <div class="kzjxx_iteam">
                             <input name="istrueO3" type="radio" value="" class="dxk">
-                            <input name="nameO3" type="text" class="input_wenbk" value="" placeholder="选项3">
+                            <input name="nameO" type="text" class="input_wenbk" value="" placeholder="选项3">
                         </div>
                         <div class="kzjxx_iteam">
                             <input name="istrueO4" type="radio" value="" class="dxk">
-                            <input name="nameO4" type="text" class="input_wenbk" value="" placeholder="选项4">
+                            <input name="nameO" type="text" class="input_wenbk" value="" placeholder="选项4">
                         </div>
                         <div class="kzjxx_iteam">
                             <label class="dxk">&nbsp;分</label>
                             <input name="scoreQ" type="text" class="input_wenbk" value="0" placeholder="分数">
+                        </div>
+                        <div class="kzjxx_iteam">
+                            <label class="dxk">&nbsp;答案</label>
+                            <input name="answerQ" type="text" class="input_wenbk" value="0" placeholder="答案">
                         </div>
                     </div>
                     <%--<a href="javascript:void(0)" class="zjxx">增加选项</a> --%>
                     <!--完成编辑-->
                     <div class="bjqxwc_box">
                         <a href="javascript:void(0);" class="qxbj_but">取消编辑</a>
-                        <a href="javascript:void(0);" class="swcbj_but"> 完成编辑</a>
+                        <a href="javascript:$('#danxuanform').submit()" class="swcbj_but">完成编辑</a>
                     </div>
                 </form>
             </div>
             <!--多选----------------------------------------------------------------------------------------------------------------------------------------->
             <div class="xxk_xzqh_box duoxuan hide">
-                <form action="" method="post">
+                <form action="/teacher/addshiti2.do" method="post" id="duoxuanform">
                 <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_duox"
                           placeholder="多选题目"></textarea>
                     <div class="title_itram">
                         <div class="kzjxx_iteam">
                             <input name="istrueO1" type="checkbox" value="" class="dxk">
-                            <input name="nameO1" type="text" class="input_wenbk" value="选项" placeholder="选项">
+                            <input name="nameO" type="text" class="input_wenbk" value="选项" placeholder="选项">
 
                         </div>
                         <div class="kzjxx_iteam">
                             <input name="istrueO2" type="checkbox" value="" class="dxk">
-                            <input name="nameO2" type="text" class="input_wenbk" value="选项" placeholder="选项">
+                            <input name="nameO" type="text" class="input_wenbk" value="选项" placeholder="选项">
 
                         </div>
                         <div class="kzjxx_iteam">
                             <input name="istrueO3" type="checkbox" value="" class="dxk">
-                            <input name="nameO3" type="text" class="input_wenbk" value="选项" placeholder="选项">
+                            <input name="nameO" type="text" class="input_wenbk" value="选项" placeholder="选项">
 
                         </div>
                         <div class="kzjxx_iteam">
                             <input name="istrueO4" type="checkbox" value="" class="dxk">
-                            <input name="nameO4" type="text" class="input_wenbk" value="选项" placeholder="选项">
+                            <input name="nameO" type="text" class="input_wenbk" value="选项" placeholder="选项">
                         </div>
                         <div class="kzjxx_iteam">
                             <label class="dxk">&nbsp;分</label>
                             <input name="scoreQ" type="text" class="input_wenbk" value="0" placeholder="分数">
                         </div>
                     </div>
-                    <!-- <a href="javascript:void(0)" class="zjxx">增加选项</a> -->
                     <!--完成编辑-->
                     <div class="bjqxwc_box">
                         <a href="javascript:void(0);" class="qxbj_but">取消编辑</a>
-                        <a href="javascript:void(0);" class="swcbj_but"> 完成编辑</a>
+                        <a href="javascript:$('#duoxuanform').submit()" class="swcbj_but">完成编辑</a>
                     </div>
                 </form>
             </div>

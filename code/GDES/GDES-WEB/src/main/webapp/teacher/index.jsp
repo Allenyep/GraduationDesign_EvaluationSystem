@@ -223,7 +223,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="/question/pigailist.do?idT=1" target="index">
+                        <a href="/question/pigailist.do" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 试题批改
                         </a>
                     </li>
@@ -236,17 +236,17 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}loading/record.do?idT=1" target="index">
+                        <a href="${basePath}loading/record.do" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 测评记录查看
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}loading/tabilityscore.do?idM=01&idT=1" target="index">
+                        <a href="${basePath}loading/tabilityscore.do?idM=01" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 学生能力查看
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="${basePath}loading/stupost.do?idM=01&idT=1" target="index">
+                        <a href="${basePath}loading/stupost.do?idM=01" target="index">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 岗位推荐情况
                         </a>
                     </li>

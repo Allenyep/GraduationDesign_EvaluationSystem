@@ -58,7 +58,7 @@
                         <div class="widget-body am-fr">
                             <form class="am-form tpl-form-border-form tpl-form-border-br"
                                   method="post" action="${basePath}question/pigaiupdate.do">
-                                <input type="hidden" value="1" name="idT">
+                                <input type="hidden" value="${idT}" name="idT">
                                 <%--从这里开始循环--%>
                                 <c:forEach items="${htplist}" var="htp" varStatus="i">
                                     <div class="am-form-group">
@@ -104,7 +104,7 @@
                                 <%--这里结束循环--%>
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="submit" onclick="loading()"
+                                        <button type="submit"
                                                 class="am-btn am-btn-primary tpl-btn-bg-color-success ">
                                             提交
                                         </button>

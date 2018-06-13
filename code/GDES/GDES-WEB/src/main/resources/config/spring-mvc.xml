@@ -43,6 +43,7 @@
     <aop:config proxy-target-class="true" />
 
     <!-- 静态资源 -->
+    <mvc:resources mapping="assets/**" location="assets/"/>
     <!--<mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>-->
     <!--<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>-->
     <!--<mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>-->
@@ -54,6 +55,10 @@
         <property name="suffix" value=".jsp" />
         <property name="order" value="2"/>
     </bean>
+
+
+    
+
 
     <!-- 避免IE在ajax请求时，返回json出现下载 -->
     <!--<bean id="jacksonMessageConverter"-->
